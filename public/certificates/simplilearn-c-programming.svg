@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 840" width="100%" height="100%">
+  <defs>
+    <style>
+      .cert-of { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 400; font-size: 26px; fill: #64748b; letter-spacing: 2px; }
+      .completion-large { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 50px; fill: #1e293b; letter-spacing: 1.5px; }
+      .c-name { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 44px; fill: #0f172a; letter-spacing: 0.5px; }
+      .completed-lead { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 400; font-size: 18px; fill: #475569; }
+      .course-c { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 700; font-size: 32px; fill: #1e293b; }
+      .praise-c { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px; fill: #475569; line-height: 1.4; }
+      .date-c { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 600; font-size: 16px; fill: #1e293b; }
+      .code-c { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 400; font-size: 15px; fill: #475569; }
+      .signer-name-c { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 600; font-size: 15px; fill: #1e293b; text-anchor: middle; }
+      .signer-role-c { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 400; font-size: 13px; fill: #64748b; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- Clean Canvas -->
+  <rect width="1200" height="840" fill="#ffffff" />
+  
+  <!-- Outer Frame -->
+  <rect x="18" y="18" width="1164" height="804" fill="none" stroke="#0284c7" stroke-width="6" />
+  <rect x="28" y="28" width="1144" height="784" fill="none" stroke="#f59e0b" stroke-width="2" />
+
+  <!-- Right Decorative Navy Ribbons & Gold Borders -->
+  <rect x="870" y="28" width="180" height="784" fill="#0f2b48" />
+  <rect x="885" y="28" width="150" height="784" fill="#1b3f68" />
+  <line x1="870" y1="28" x2="870" y2="812" stroke="#f59e0b" stroke-width="3" />
+  <line x1="1050" y1="28" x2="1050" y2="812" stroke="#f59e0b" stroke-width="3" />
+
+  <!-- Gold & Blue Seal on the Right -->
+  <g transform="translate(960, 390)">
+    <!-- Gold Outer Rosette / Starburst -->
+    <circle cx="0" cy="0" r="72" fill="#f59e0b" />
+    <circle cx="0" cy="0" r="62" fill="#ffffff" />
+    <circle cx="0" cy="0" r="54" fill="#0f2b48" />
+    <circle cx="0" cy="0" r="50" fill="#ffffff" />
+    <!-- Simplilearn Bars in Seal -->
+    <rect x="-12" y="-20" width="6" height="40" rx="3" fill="#f97316" />
+    <rect x="-2" y="-28" width="6" height="56" rx="3" fill="#0284c7" />
+    <rect x="8" y="-16" width="6" height="32" rx="3" fill="#f97316" />
+  </g>
+
+  <!-- Top Left: Simplilearn SkillUP Logo -->
+  <g transform="translate(90, 80)">
+    <text x="0" y="24" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="28" fill="#f97316">simpli</text>
+    <text x="80" y="24" font-family="'Segoe UI', Roboto, sans-serif" font-weight="400" font-size="28" fill="#0284c7">learn</text>
+    <line x1="160" y1="4" x2="160" y2="28" stroke="#cbd5e1" stroke-width="1.5" />
+    <text x="175" y="24" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="28" fill="#0284c7">Skill<tspan fill="#f97316">UP</tspan></text>
+  </g>
+
+  <!-- Certificate Heading -->
+  <g transform="translate(90, 175)">
+    <text x="0" y="0" class="cert-of">CERTIFICATE OF</text>
+    <text x="0" y="46" class="completion-large">COMPLETION</text>
+  </g>
+
+  <!-- Recipient Name -->
+  <g transform="translate(90, 280)">
+    <text x="0" y="0" class="c-name">ANAND MOHOD</text>
+    <line x1="0" y1="18" x2="680" y2="18" stroke="#cbd5e1" stroke-dasharray="2 2" stroke-width="1.5" />
+  </g>
+
+  <!-- Course Completion Lead -->
+  <g transform="translate(90, 340)">
+    <text x="0" y="0" class="completed-lead">has successfully completed the online course:</text>
+    <text x="0" y="42" class="course-c">C Programming Basics</text>
+  </g>
+
+  <!-- Praise Text -->
+  <g transform="translate(90, 435)">
+    <text x="0" y="0" class="praise-c">This professional has demonstrated initiative and a</text>
+    <text x="0" y="24" class="praise-c">commitment to deepening their skills and advancing</text>
+    <text x="0" y="48" class="praise-c">their career. Well done!</text>
+  </g>
+
+  <!-- Watermark Stamp in background -->
+  <g transform="translate(500, 480) rotate(-15)">
+    <rect x="-100" y="-30" width="200" height="60" rx="6" fill="none" stroke="#e2e8f0" stroke-width="3" opacity="0.5" />
+    <text x="0" y="10" font-family="'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" fill="#e2e8f0" text-anchor="middle" letter-spacing="4" opacity="0.6">VERIFIED</text>
+  </g>
+
+  <!-- Footer Dates & Code Left -->
+  <g transform="translate(90, 560)">
+    <text x="0" y="0" class="date-c">16<tspan font-size="11" dy="-6">th</tspan><tspan font-size="16" dy="6"> April 2025</tspan></text>
+    <text x="0" y="26" class="code-c">Certificate code : <tspan font-weight="600" fill="#1e293b">8201936</tspan></text>
+  </g>
+
+  <!-- Signatory Middle-Right -->
+  <g transform="translate(640, 530)">
+    <!-- Signature -->
+    <path d="M -40 10 Q -25 -15, -10 15 T 10 0 Q 25 20, 40 5" 
+          fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" />
+    <text x="0" y="38" class="signer-name-c">Krishna Kumar</text>
+    <text x="0" y="56" class="signer-role-c">CEO, Simplilearn</text>
+  </g>
+</svg>

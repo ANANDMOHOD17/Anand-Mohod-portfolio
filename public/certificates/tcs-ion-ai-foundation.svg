@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 840" width="100%" height="100%">
+  <defs>
+    <style>
+      .tcs-title { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 700; font-size: 44px; fill: #1f2937; }
+      .congrats-text { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 400; font-size: 24px; fill: #4b5563; }
+      .name-blue { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 48px; fill: #005696; letter-spacing: 0.5px; }
+      .body-main { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 500; font-size: 20px; fill: #1f2937; }
+      .body-syllabus { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px; fill: #4b5563; }
+      .signer-name { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 700; font-size: 16px; fill: #111827; }
+      .signer-sub { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 400; font-size: 14px; fill: #4b5563; }
+      .meta-dates { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 500; font-size: 14px; fill: #374151; }
+      .cert-badge-text { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 700; font-size: 12px; fill: #005696; letter-spacing: 1px; }
+      .cert-id-sub { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 11px; fill: #4b5563; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="840" fill="#ffffff" />
+  
+  <!-- Outer border -->
+  <rect x="2" y="2" width="1196" height="836" fill="none" stroke="#e5e7eb" stroke-width="2" />
+
+  <!-- Top Blue Decorative Wave Ribbons -->
+  <path d="M 0 0 L 1200 0 L 1200 130 C 950 250, 450 40, 0 160 Z" fill="#0077c8" opacity="0.9" />
+  <path d="M 0 0 L 1200 0 L 1200 90 C 800 230, 400 30, 0 130 Z" fill="#003b71" />
+  <path d="M 0 130 C 350 30, 850 220, 1200 110 L 1200 145 C 850 240, 350 50, 0 150 Z" fill="#41b6e6" opacity="0.6" />
+
+  <!-- Top Left: TCS iON Logo -->
+  <g transform="translate(80, 75)">
+    <text x="0" y="30" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="38" fill="#111827">tcs</text>
+    <text x="62" y="30" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="38" fill="#e11d48">i</text>
+    <text x="74" y="30" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="38" fill="#111827">ON</text>
+  </g>
+
+  <!-- Top Right: TATA Logo -->
+  <g transform="translate(1030, 65)">
+    <ellipse cx="35" cy="20" rx="26" ry="16" fill="none" stroke="#003b71" stroke-width="3" />
+    <path d="M 23 12 L 47 12 M 35 12 L 35 28 M 28 17 L 42 17" stroke="#003b71" stroke-width="2.5" stroke-linecap="round" />
+    <text x="35" y="52" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="18" fill="#003b71" text-anchor="middle" letter-spacing="3">TATA</text>
+  </g>
+
+  <!-- Certificate Heading -->
+  <g transform="translate(80, 260)">
+    <text x="0" y="0" class="tcs-title">Certificate of Achievement</text>
+    <text x="0" y="50" class="congrats-text">Congratulations</text>
+  </g>
+
+  <!-- Recipient Name -->
+  <text x="80" y="390" class="name-blue">ANAND MOHOD</text>
+
+  <!-- Description / Course Details -->
+  <g transform="translate(80, 445)">
+    <text x="0" y="0" class="body-main">
+      for successfully completing <tspan font-weight="700">TCS iON Career Edge - AI Foundation</tspan> course that cover
+    </text>
+    <text x="0" y="36" class="body-syllabus">
+      Introduction to AI  |  Generative AI Essentials  |  Prompt Engineering Basics  |  AI Tools  |  Responsible AI
+    </text>
+  </g>
+
+  <!-- Subtle Bottom Arc Graphic -->
+  <path d="M 400 840 C 600 680, 950 620, 1200 660 L 1200 840 Z" fill="#f8fafc" />
+  <path d="M 400 840 C 600 680, 950 620, 1200 660" fill="none" stroke="#e2e8f0" stroke-width="2" />
+
+  <!-- Bottom Left: Signatory -->
+  <g transform="translate(80, 640)">
+    <!-- Mehul Mehta Signature -->
+    <path d="M 10 25 Q 35 -5, 55 25 T 90 5 Q 110 30, 130 10 T 160 22 Q 185 0, 205 15" 
+          fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round" />
+    <text x="0" y="58" class="signer-name">Mehul Mehta</text>
+    <text x="0" y="80" class="signer-sub">Global Delivery Head – TCS iON,</text>
+    <text x="0" y="100" class="signer-sub">Tata Consultancy Services</text>
+  </g>
+
+  <!-- Bottom Right: Dates & Verification Badge -->
+  <g transform="translate(900, 640)">
+    <text x="0" y="20" class="meta-dates">Start Date: <tspan font-weight="400">12 Aug 2026</tspan></text>
+    <text x="0" y="44" class="meta-dates">End Date: <tspan font-weight="400">26 Aug 2026</tspan></text>
+
+    <!-- TCS Certified Badge -->
+    <g transform="translate(0, 75)">
+      <!-- Badge Rosette / Shield -->
+      <circle cx="22" cy="22" r="20" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" />
+      <path d="M 15 22 L 20 27 L 30 16" fill="none" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      
+      <!-- Text details -->
+      <text x="52" y="15" class="cert-badge-text">CERTIFIED</text>
+      <text x="52" y="30" class="cert-id-sub">Cert ID: 279243-33443934-1016</text>
+      <text x="52" y="45" class="cert-id-sub">Date: 26 Aug 2026</text>
+    </g>
+  </g>
+</svg>

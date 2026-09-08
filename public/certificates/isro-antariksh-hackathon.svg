@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 840" width="100%" height="100%">
+  <defs>
+    <style>
+      .isro-header { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 52px; fill: #111827; letter-spacing: 2px; }
+      .sub-cert { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 500; font-size: 26px; fill: #4b5563; letter-spacing: 3px; }
+      .presented-to { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 400; font-size: 18px; fill: #374151; }
+      .recipient-isro { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 800; font-size: 44px; fill: #111827; letter-spacing: 1px; }
+      .body-para { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif; font-weight: 400; font-size: 15px; fill: #374151; line-height: 1.5; }
+      .cert-id-isro { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 13px; font-weight: 600; fill: #1f2937; }
+    </style>
+    <linearGradient id="spaceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050814" />
+      <stop offset="40%" stop-color="#111827" />
+      <stop offset="75%" stop-color="#7c2d12" />
+      <stop offset="100%" stop-color="#c2410c" />
+    </linearGradient>
+  </defs>
+
+  <!-- Left Side White Background -->
+  <rect width="780" height="840" fill="#ffffff" />
+
+  <!-- Right Side Dark Space Banner -->
+  <rect x="780" y="0" width="420" height="840" fill="url(#spaceGradient)" />
+
+  <!-- Outer Canvas Border -->
+  <rect x="2" y="2" width="1196" height="836" fill="none" stroke="#e5e7eb" stroke-width="2" />
+
+  <!-- Top Left: ISRO Logo -->
+  <g transform="translate(70, 50)">
+    <!-- ISRO Rocket Arrow / Solar Panels Graphic -->
+    <path d="M 40 10 L 48 50 L 32 50 Z" fill="#ea580c" />
+    <path d="M 20 25 L 35 25 L 35 32 L 20 32 Z" fill="#0284c7" />
+    <path d="M 45 25 L 60 25 L 60 32 L 45 32 Z" fill="#0284c7" />
+    <circle cx="40" cy="18" r="4" fill="#f97316" />
+    
+    <!-- Text: इसरो isro -->
+    <text x="75" y="42" font-family="'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="28" fill="#f97316">इसरो</text>
+    <text x="135" y="42" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="28" fill="#0284c7">isro</text>
+  </g>
+
+  <!-- Title: CERTIFICATE OF PARTICIPATION -->
+  <g transform="translate(70, 180)">
+    <text x="0" y="40" class="isro-header">CERTIFICATE</text>
+    <text x="0" y="80" class="sub-cert">OF PARTICIPATION <tspan fill="#0284c7">•</tspan></text>
+  </g>
+
+  <!-- Presented To -->
+  <text x="70" y="320" class="presented-to">This certificate is proudly presented to</text>
+
+  <!-- Recipient Name -->
+  <text x="70" y="380" class="recipient-isro">ANAND MOHOD</text>
+  
+  <!-- Divider -->
+  <line x1="70" y1="405" x2="680" y2="405" stroke="#cbd5e1" stroke-width="1.5" />
+
+  <!-- Recognition Paragraphs -->
+  <g transform="translate(70, 440)">
+    <text x="0" y="0" class="body-para">in recognition of your participation and successful idea submission in</text>
+    <text x="0" y="24" class="body-para">the <tspan font-weight="700" fill="#111827">Bharatiya Antariksh Hackathon 2026</tspan>, presented by <tspan font-weight="700">Indian Space</tspan></text>
+    <text x="0" y="48" class="body-para"><tspan font-weight="700">Research Organisation (ISRO)</tspan> and powered by Hack2skill.</text>
+
+    <text x="0" y="100" class="body-para">Your enthusiasm, innovation, and commitment to solving real-</text>
+    <text x="0" y="124" class="body-para">world space challenges are truly appreciated. Thank you for</text>
+    <text x="0" y="148" class="body-para">contributing your ideas and being a part of this national</text>
+    <text x="0" y="172" class="body-para">innovation initiative.</text>
+  </g>
+
+  <!-- Certificate ID Footer -->
+  <text x="70" y="745" class="cert-id-isro">Certificate ID: 2026H2S06BAH-P12082</text>
+
+  <!-- Right Side Space / Hackathon Graphics -->
+  <g transform="translate(820, 60)">
+    <!-- Powered by Hack2Skill -->
+    <text x="290" y="20" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" fill="#94a3b8" text-anchor="end">Powered by <tspan font-weight="800" fill="#ffffff">H2S</tspan></text>
+
+    <!-- Hackathon Title -->
+    <g transform="translate(0, 180)">
+      <text x="0" y="0" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="34" fill="#38bdf8" letter-spacing="1">BHARATIYA</text>
+      <text x="0" y="40" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="34" fill="#f97316" letter-spacing="1">ANTARIKSH</text>
+      <text x="0" y="80" font-family="'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="32" fill="#ffffff" letter-spacing="1">HACKATHON</text>
+      <text x="215" y="125" font-family="'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="28" fill="#ffffff">2026</text>
+    </g>
+
+    <!-- Space / Mars Astronaut Graphic Representation -->
+    <g transform="translate(100, 420)">
+      <!-- Stars in background -->
+      <circle cx="20" cy="-40" r="1.5" fill="#ffffff" opacity="0.8" />
+      <circle cx="180" cy="-80" r="1.5" fill="#ffffff" opacity="0.8" />
+      <circle cx="80" cy="-120" r="2" fill="#ffffff" opacity="0.9" />
+      
+      <!-- Martian surface curve -->
+      <path d="M -150 240 Q 20 180, 260 240 Z" fill="#9a3412" />
+
+      <!-- Astronaut Helmet / Suit Silhouette -->
+      <circle cx="70" cy="120" r="55" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" />
+      <!-- Golden Visor -->
+      <path d="M 30 115 C 30 90, 110 90, 110 115 C 110 135, 30 135, 30 115 Z" fill="#f59e0b" stroke="#d97706" stroke-width="2" />
+      <path d="M 40 108 Q 70 100, 100 108" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8" />
+      
+      <!-- Suit Body with Indian Tricolor Badge -->
+      <path d="M 0 175 C 0 145, 140 145, 140 175 L 150 260 L -10 260 Z" fill="#cbd5e1" />
+      
+      <!-- Indian Tricolor Badge on Chest -->
+      <g transform="translate(55, 160)">
+        <circle cx="15" cy="15" r="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+        <rect x="3" y="5" width="24" height="6" fill="#f97316" rx="2" />
+        <rect x="3" y="11" width="24" height="8" fill="#ffffff" />
+        <circle cx="15" cy="15" r="3" fill="none" stroke="#1e3a8a" stroke-width="0.8" />
+        <rect x="3" y="19" width="24" height="6" fill="#16a34a" rx="2" />
+      </g>
+    </g>
+  </g>
+</svg>
