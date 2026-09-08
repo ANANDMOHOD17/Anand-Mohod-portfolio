@@ -10,6 +10,9 @@ import { profileData } from '@/data/profile';
 import { FileText, Download, ExternalLink, CheckCircle2 } from 'lucide-react';
 
 export default function ResumeSection() {
+  const basePath = process.env.NODE_ENV === 'production' ? '/Anand-Mohod-portfolio' : '';
+  const resumePdfPath = `${basePath}/resume/Anand_Mohod_Resume.pdf`;
+
   return (
     <section id="resume" className="py-24 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,7 +52,7 @@ export default function ResumeSection() {
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <a
-                href="/resume/Anand_Mohod_Resume.pdf"
+                href={resumePdfPath}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -60,7 +63,7 @@ export default function ResumeSection() {
               </a>
 
               <a
-                href="/resume/Anand_Mohod_Resume.pdf"
+                href={resumePdfPath}
                 download="Anand_Mohod_Resume.pdf"
               >
                 <GlassButton variant="primary" size="md" className="w-full sm:w-auto">

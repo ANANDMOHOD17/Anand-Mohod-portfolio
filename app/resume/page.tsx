@@ -26,7 +26,8 @@ import {
 } from 'lucide-react';
 
 export default function ResumePage() {
-  const resumePdfPath = '/resume/Anand_Mohod_Resume.pdf';
+  const basePath = process.env.NODE_ENV === 'production' ? '/Anand-Mohod-portfolio' : '';
+  const resumePdfPath = `${basePath}/resume/Anand_Mohod_Resume.pdf`;
   const resumeDownloadName = 'Anand_Mohod_Resume.pdf';
 
   return (
