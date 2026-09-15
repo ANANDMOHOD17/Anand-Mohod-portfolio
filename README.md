@@ -3,6 +3,8 @@
 > **Computer Engineering Student**  
 > *“Passionate About Building, Learning & Solving with Technology.”*
 
+[![Deploy Portfolio to GitHub Pages](https://github.com/ANANDMOHOD17/Anand-Mohod-portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/ANANDMOHOD17/Anand-Mohod-portfolio/actions/workflows/deploy.yml)
+
 A custom-crafted, production-ready personal developer portfolio engineered with a **Dark Graphite** aesthetic, **Liquid Glass UI**, interactive **Three.js / React Three Fiber** 3D environment, editorial typography, and high-performance micro-interactions.
 
 ---
