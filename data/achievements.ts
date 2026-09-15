@@ -25,7 +25,7 @@ export const achievementsData: Achievement[] = [
     id: 'Ecell-pitch-fest-2025',
     title: 'E-CELL Pitch Fest',
     date: '2025',
-    organization: 'Jagdamba College of Engineering and Technology, Yavatmal',
+    organization: 'Prof. Ram Meghe Institute of Technology & Research',
     category: 'Competition / Entrepreneurship',
     role: 'Participant',
     description:
