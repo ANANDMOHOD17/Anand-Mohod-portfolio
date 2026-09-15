@@ -22,14 +22,14 @@ export const achievementsData: Achievement[] = [
       'Coordinated and participated in the Startup Carnival, supporting event decoration and managing responsibilities within the Discipline Committee. Received a Certificate of Participation.',
   },
   {
-    id: 'pcell-pitch-fest-2025',
-    title: 'P-CELL Pitch Fest',
+    id: 'Ecell-pitch-fest-2025',
+    title: 'E-CELL Pitch Fest',
     date: '2025',
     organization: 'Jagdamba College of Engineering and Technology, Yavatmal',
     category: 'Competition / Entrepreneurship',
     role: 'Participant',
     description:
-      'Participated in the P-CELL Pitch Fest, gaining practical exposure to entrepreneurship, idea presentation, innovation, and collaborative problem-solving.',
+      'Participated in the E-CELL Pitch Fest, gaining practical exposure to entrepreneurship, idea presentation, innovation, and collaborative problem-solving.',
   },
   {
     id: 'hackathon-govt-college-2025',

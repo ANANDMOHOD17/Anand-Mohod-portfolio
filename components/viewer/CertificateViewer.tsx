@@ -12,6 +12,16 @@ interface CertificateViewerProps {
 }
 
 export default function CertificateViewer({ certificate, onClose }: CertificateViewerProps) {
+  const basePath = process.env.NODE_ENV === 'production' ? '/Anand-Mohod-portfolio' : '';
+  const resolveUrl = (url?: string) => {
+    if (!url) return '';
+    if (url.startsWith('http://') || url.startsWith('https://')) return url;
+    if (url.startsWith('/')) return `${basePath}${url}`;
+    return `${basePath}/${url}`;
+  };
+
+  const docUrl = resolveUrl(certificate?.pdfUrl || certificate?.image);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -68,7 +78,7 @@ export default function CertificateViewer({ certificate, onClose }: CertificateV
           {/* Body Content */}
           <div className="p-6 md:p-8 overflow-y-auto space-y-6">
             {/* Embedded Certificate Document Preview (Image or PDF) */}
-            {(certificate.image || certificate.pdfUrl) && (
+            {docUrl && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-accent">
@@ -76,7 +86,7 @@ export default function CertificateViewer({ certificate, onClose }: CertificateV
                     <span>Certificate Document Preview</span>
                   </div>
                   <a
-                    href={certificate.pdfUrl || certificate.image}
+                    href={docUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-mono text-accent hover:underline"
@@ -90,14 +100,14 @@ export default function CertificateViewer({ certificate, onClose }: CertificateV
                   {certificate.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src={certificate.image}
+                      src={docUrl}
                       alt={certificate.name}
                       className="w-full h-auto max-h-[500px] object-contain rounded-lg shadow-2xl transition-transform hover:scale-[1.01]"
                     />
                   ) : certificate.pdfUrl ? (
-                    <div className="w-full h-[360px] sm:h-[460px]">
+                    <div className="w-full h-[360px] sm:h-[480px]">
                       <iframe
-                        src={`${certificate.pdfUrl}#toolbar=0&navpanes=0`}
+                        src={`${docUrl}#toolbar=1&navpanes=0`}
                         title={certificate.name}
                         className="w-full h-full border-0 rounded-lg"
                       />
@@ -174,9 +184,9 @@ export default function CertificateViewer({ certificate, onClose }: CertificateV
             </div>
 
             <div className="flex flex-wrap items-center gap-2.5">
-              {(certificate.pdfUrl || certificate.image) && (
+              {docUrl && (
                 <a
-                  href={certificate.pdfUrl || certificate.image}
+                  href={docUrl}
                   download
                   className="inline-block"
                 >
