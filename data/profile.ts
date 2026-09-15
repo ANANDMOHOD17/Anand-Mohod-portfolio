@@ -1,10 +1,11 @@
 import { Profile } from '@/types';
+import { getAssetPath } from '@/lib/utils';
 
 export const profileData: Profile = {
   name: 'ANAND MOHOD',
   title: 'Computer Engineering Student',
   tagline: 'Passionate About Building, Learning & Solving with Technology.',
-  avatar: '/images/profile.jpg',
+  avatar: getAssetPath('/images/profile.jpg'),
   about: {
     lead: 'Computer Engineering student pursuing B.Tech with hands-on experience in Python, software development, databases, AI, and full-stack project development.',
     paragraphs: [
