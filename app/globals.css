@@ -23,6 +23,17 @@ html {
   background-color: var(--bg-main);
 }
 
+/* Ensure fixed navbar offset during scroll navigation */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+@media (min-width: 1024px) {
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;

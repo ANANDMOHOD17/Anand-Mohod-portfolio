@@ -1,10 +1,30 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { profileData } from '@/data/profile';
 import { Phone, Mail, Linkedin, Github, ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname();
+  const isHomePage = pathname === '/' || pathname === '';
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (isHomePage && href.includes('#')) {
+      e.preventDefault();
+      const targetId = href.split('#')[1];
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', `#${targetId}`);
+      }
+    }
+  };
 
   return (
     <footer className="border-t border-white/10 bg-graphite-950/80 relative z-20">
@@ -36,12 +56,20 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="/#about" className="text-slate-400 hover:text-white transition-colors">
+                <Link
+                  href="/#about"
+                  onClick={(e) => handleNavClick(e, '/#about')}
+                  className="text-slate-400 hover:text-white transition-colors"
+                >
                   About Me
                 </Link>
               </li>
               <li>
-                <Link href="/#skills" className="text-slate-400 hover:text-white transition-colors">
+                <Link
+                  href="/#skills"
+                  onClick={(e) => handleNavClick(e, '/#skills')}
+                  className="text-slate-400 hover:text-white transition-colors"
+                >
                   Technical Skills
                 </Link>
               </li>
@@ -118,6 +146,7 @@ export default function Footer() {
           <p>© {currentYear} {profileData.name}. All rights reserved. Crafted with Next.js & React.</p>
           <a
             href="#home"
+            onClick={(e) => handleNavClick(e, '#home')}
             className="inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors"
           >
             <span>Back to top</span>

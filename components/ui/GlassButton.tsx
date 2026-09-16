@@ -73,6 +73,7 @@ export default function GlassButton({
         rel={rel}
         className={cn(baseStyles, sizeStyles[size], variantStyles[variant], className)}
         {...(motionProps as any)}
+        {...(props as any)}
       >
         {children}
       </motion.a>

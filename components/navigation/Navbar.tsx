@@ -24,30 +24,117 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const pathname = usePathname();
+  const isHomePage = pathname === '/' || pathname === '';
 
+  // Handle smooth navigation clicks reliably on desktop & mobile
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (isHomePage && href.includes('#')) {
+      e.preventDefault();
+      const targetId = href.split('#')[1];
+      const targetEl = document.getElementById(targetId);
+
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', `#${targetId}`);
+        setActiveSection(targetId);
+      }
+    }
+    setMobileMenuOpen(false);
+  };
+
+  const handleBrandClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isHomePage) {
+      e.preventDefault();
+      const homeEl = document.getElementById('home');
+      if (homeEl) {
+        homeEl.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      window.history.pushState(null, '', window.location.pathname);
+      setActiveSection('home');
+    }
+    setMobileMenuOpen(false);
+  };
+
+  // Direct URL hash navigation on mount or hash change
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-
-      // Simple active section detection for homepage
-      if (pathname === '/') {
-        const sections = ['contact', 'journey', 'certificates', 'achievements', 'projects', 'skills', 'about', 'home'];
-        for (const section of sections) {
-          const el = document.getElementById(section);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= 200) {
-              setActiveSection(section);
-              break;
-            }
-          }
+    const handleHashNavigation = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          setActiveSection(id);
         }
       }
     };
 
+    const timeoutId = setTimeout(handleHashNavigation, 150);
+    window.addEventListener('hashchange', handleHashNavigation);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('hashchange', handleHashNavigation);
+    };
+  }, []);
+
+  // Track active section with IntersectionObserver and scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+
+      if (
+        window.innerHeight + Math.round(window.scrollY) >=
+        document.documentElement.scrollHeight - 60
+      ) {
+        setActiveSection('contact');
+      } else if (window.scrollY < 100) {
+        setActiveSection('home');
+      }
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname]);
+
+    if (!isHomePage) {
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+
+    const sections = ['home', 'about', 'skills', 'projects', 'achievements', 'certificates', 'journey', 'contact'];
+    const elements = sections
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible.length > 0) {
+          const primary = visible.reduce((prev, curr) =>
+            curr.intersectionRatio > prev.intersectionRatio ? curr : prev
+          );
+          if (primary.target.id) {
+            setActiveSection(primary.target.id);
+          }
+        }
+      },
+      {
+        root: null,
+        rootMargin: '-20% 0px -40% 0px',
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+      }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isHomePage]);
 
   return (
     <>
@@ -66,6 +153,7 @@ export default function Navbar() {
             {/* Monogram + Brand */}
             <Link
               href="/"
+              onClick={handleBrandClick}
               className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded-lg p-1"
             >
               <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-white/15 bg-white/5 flex items-center justify-center font-mono text-xs font-bold text-accent transition-colors group-hover:border-accent/50 shadow-glass-sm flex-shrink-0">
@@ -97,6 +185,7 @@ export default function Navbar() {
                   <Link
                     key={link.name}
                     href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium tracking-wide transition-all ${
                       isActive
                         ? 'text-accent bg-accent/10 border border-accent/20'
@@ -147,7 +236,7 @@ export default function Navbar() {
               <div className="flex flex-col space-y-3">
                 <Link
                   href="/#home"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, '/#home')}
                   className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
                 >
                   Home
@@ -156,7 +245,7 @@ export default function Navbar() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className="px-4 py-2.5 rounded-xl text-sm font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
                   >
                     {link.name}
