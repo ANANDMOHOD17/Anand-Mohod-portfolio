@@ -23,6 +23,7 @@ import {
   GitBranch,
   Github,
   MonitorCheck,
+  Server,
 } from 'lucide-react';
 
 const categories: { label: SkillCategory; icon: React.ReactNode }[] = [
@@ -63,6 +64,8 @@ function getSkillIcon(iconName: string) {
       return <Github className="w-4 h-4" />;
     case 'MonitorCheck':
       return <MonitorCheck className="w-4 h-4" />;
+    case 'Server':
+      return <Server className="w-4 h-4" />;
     default:
       return <Code2 className="w-4 h-4" />;
   }

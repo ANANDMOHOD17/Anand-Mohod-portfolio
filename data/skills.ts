@@ -85,6 +85,20 @@ export const skillsData: Skill[] = [
     description: 'Machine learning workflows, predictive model implementation, dataset integration, and inference execution.',
     relatedProjects: ['ai-climate-twin-india'],
   },
+  {
+    name: 'Node.js',
+    category: 'Frameworks / AI',
+    iconName: 'Server',
+    description: 'JavaScript server-side runtime, asynchronous event-driven I/O, REST APIs, and backend service architectures.',
+    relatedProjects: ['kabadiwala-connect', 'voting-portal'],
+  },
+  {
+    name: 'Express.js',
+    category: 'Frameworks / AI',
+    iconName: 'Layers',
+    description: 'Fast, minimalist web framework for Node.js API development and middleware handling.',
+    relatedProjects: ['kabadiwala-connect', 'voting-portal'],
+  },
 
   // Tools / Platforms
   {
