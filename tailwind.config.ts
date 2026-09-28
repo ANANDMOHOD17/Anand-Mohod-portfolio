@@ -12,26 +12,26 @@ const config: Config = {
     extend: {
       colors: {
         graphite: {
-          950: '#060608',
-          900: '#0a0a0e',
-          850: '#0f0f15',
-          800: '#14141c',
-          750: '#1a1a25',
-          700: '#222230',
-          600: '#323246',
-          500: '#484860',
-          400: '#71718f',
-          300: '#a2a2bd',
-          200: '#d0d0e0',
-          100: '#f0f0f5',
-          50: '#f8fafc',
+          950: '#0d0d10',
+          900: '#111115',
+          850: '#16161b',
+          800: '#1c1c24',
+          750: '#23232e',
+          700: '#2c2c3b',
+          600: '#3d3d52',
+          500: '#52526e',
+          400: '#757596',
+          300: '#9898b0',
+          200: '#c8c8d8',
+          100: '#ededf2',
+          50: '#f7f7f8',
         },
         accent: {
-          DEFAULT: '#38bdf8', // Electric Sky / Cyan
-          hover: '#0ea5e9',
-          active: '#0284c7',
-          dim: 'rgba(56, 189, 248, 0.12)',
-          glow: 'rgba(56, 189, 248, 0.25)',
+          DEFAULT: '#6366f1', // Indigo 500
+          hover: '#818cf8',
+          active: '#4338ca',
+          dim: 'rgba(99, 102, 241, 0.12)',
+          glow: 'rgba(99, 102, 241, 0.20)',
         },
       },
       fontFamily: {
@@ -55,7 +55,7 @@ const config: Config = {
         'glass-lg': '0 20px 45px -8px rgba(0, 0, 0, 0.8)',
         'glass-light-sm': '0 2px 10px rgba(0, 0, 0, 0.06)',
         'glass-light-md': '0 8px 24px rgba(0, 0, 0, 0.08)',
-        'accent-glow': '0 0 25px -4px rgba(56, 189, 248, 0.25)',
+        'accent-glow': '0 0 25px -4px rgba(99, 102, 241, 0.20)',
       },
       animation: {
         'pulse-subtle': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',

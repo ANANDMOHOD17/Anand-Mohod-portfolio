@@ -5,14 +5,14 @@
 
 [![Deploy Portfolio to GitHub Pages](https://github.com/ANANDMOHOD17/Anand-Mohod-portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/ANANDMOHOD17/Anand-Mohod-portfolio/actions/workflows/deploy.yml)
 
-A custom-crafted, production-ready personal developer portfolio engineered with a **Dark Graphite** aesthetic, **Liquid Glass UI**, interactive **Three.js / React Three Fiber** 3D environment, editorial typography, and high-performance micro-interactions.
+A custom-crafted, production-ready personal developer portfolio engineered with a **Charcoal & Deep Indigo** aesthetic, **Liquid Glass UI**, interactive **CSS 3D perspective tilt photo effect**, editorial typography, and high-performance micro-interactions.
 
 ---
 
 ## 💎 Features
 
-- **Dark Graphite & Liquid Glass System**: Bespoke design language with calibrated backdrop blur, subtle borders (`rgba(255, 255, 255, 0.08)`), soft highlights, and dynamic cursor specular reflections.
-- **Controlled 3D Environment**: Interactive Glass + Metal geometric tech structure built using Three.js and React Three Fiber. Includes mouse parallax, scroll reaction, and accessible high-fidelity WebGL fallback.
+- **Charcoal & Deep Indigo System**: Bespoke design language with calibrated backdrop blur, subtle borders (`rgba(255, 255, 255, 0.08)`), soft highlights, and dynamic cursor specular reflections.
+- **Tasteful 3D Photo Motion**: Smooth CSS 3D perspective tilt tied to cursor coordinates with spring physics and subtle ambient sheen.
 - **Truthful & Authentic Content**: Engineered specifically for an undergraduate Computer Engineering student—strictly zero fake percentages, zero fake metrics, and zero generic AI templates.
 - **Strict Contact Integration**: Exactly 4 direct contact options:
   - 📞 **Phone** (`tel:` link)
@@ -30,9 +30,8 @@ A custom-crafted, production-ready personal developer portfolio engineered with 
 
 - **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
 - **Language**: TypeScript
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) + Custom Glass Tokens
-- **3D Graphics**: [Three.js](https://threejs.org/) + [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber) + [@react-three/drei](https://github.com/pmndrs/drei)
-- **Motion & Interactions**: [Framer Motion](https://www.framer.com/motion/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) + Custom Glass & Indigo Tokens
+- **Motion & Interactions**: [Framer Motion](https://www.framer.com/motion/) + [Lenis](https://lenis.darkroom.engineering/) + [GSAP](https://gsap.com/)
 - **Icons**: [Lucide React](https://lucide.dev/)
 
 ---

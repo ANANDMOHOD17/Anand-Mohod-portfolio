@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Code, Download, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Code, Download } from 'lucide-react';
 import { profileData } from '@/data/profile';
 import { projectsData } from '@/data/projects';
 import { certificatesData } from '@/data/certificates';
@@ -14,15 +14,7 @@ import StatCounter from '@/components/ui/StatCounter';
 import MagneticButton from '@/components/ui/MagneticButton';
 import { TRANSITION_EASE } from '@/lib/motion';
 
-// Dynamic import of 3D Hero Scene with SSR disabled
-const HeroScene = dynamic(() => import('@/components/3d/HeroScene'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-[360px] sm:h-[440px] flex items-center justify-center">
-      <div className="w-40 h-40 rounded-full border border-cyan-500/20 animate-pulse bg-cyan-950/10" />
-    </div>
-  ),
-});
+import HeroProfileCard from '@/components/ui/HeroProfileCard';
 
 const ROLES = [
   'Computer Engineering Student',
@@ -74,8 +66,8 @@ export default function HeroSection() {
       className="relative min-h-[92vh] md:min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden bg-grid-subtle"
     >
       {/* Ambient background glow fields */}
-      <div className="absolute top-1/4 left-1/6 w-96 h-96 rounded-full bg-cyan-500/10 blur-[130px] pointer-events-none -z-10" />
-      <div className="absolute bottom-1/4 right-1/6 w-80 h-80 rounded-full bg-violet-600/10 blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute top-1/4 left-1/6 w-96 h-96 rounded-full bg-accent/5 blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute bottom-1/4 right-1/6 w-80 h-80 rounded-full bg-accent/5 blur-[140px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -116,8 +108,8 @@ export default function HeroSection() {
                   ))}
                 </span>
                 <br />
-                {/* MOHOD with neon gradient */}
-                <span className="inline-flex overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-accent via-sky-400 to-cyan-300">
+                {/* MOHOD with refined indigo gradient */}
+                <span className="inline-flex overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-accent via-indigo-400 to-indigo-300">
                   {lastName.split('').map((char, index) => (
                     <motion.span
                       key={`last-${index}`}
@@ -237,15 +229,10 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right Column: Interactive 3D Centerpiece */}
+          {/* Right Column: Profile Photo with 3D Tilt */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
-            <div className="w-full relative">
-              <HeroScene />
-              {/* Interactive Cue Badge */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-graphite-900/80 border border-white/10 backdrop-blur-md flex items-center gap-1.5 text-[11px] font-mono text-cyan-300 pointer-events-none shadow-md">
-                <Sparkles className="w-3 h-3 text-cyan-400 animate-spin-slow" />
-                <span>3D Interactive Core • Hover & Tilt</span>
-              </div>
+            <div className="w-full relative flex items-center justify-center">
+              <HeroProfileCard />
             </div>
           </div>
         </div>

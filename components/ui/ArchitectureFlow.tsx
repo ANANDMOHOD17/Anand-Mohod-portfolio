@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Monitor,
   Server,
@@ -33,7 +33,7 @@ const STAGES: Stage[] = [
     icon: Monitor,
     description: 'Dynamic vector tile rendering with interactive climate risk choropleth maps.',
     specs: ['60 FPS WebGL Map', 'GeoJSON Layers', 'Responsive Sliders'],
-    color: '#38bdf8', // Cyan
+    color: '#6366f1', // Indigo
   },
   {
     id: 'api',
@@ -43,7 +43,7 @@ const STAGES: Stage[] = [
     icon: Server,
     description: 'High-throughput asynchronous endpoints with query validation and response caching.',
     specs: ['< 45ms Latency', 'Pydantic V2', 'CORS & Rate Limiting'],
-    color: '#0ea5e9', // Sky
+    color: '#818cf8', // Indigo light
   },
   {
     id: 'ml',
@@ -53,7 +53,7 @@ const STAGES: Stage[] = [
     icon: Brain,
     description: 'Trained climate anomaly detection & multi-parameter regression models.',
     specs: ['LSTM Regressor', 'Feature Normalizer', 'Batch Inference'],
-    color: '#a855f7', // Violet
+    color: '#4f46e5', // Indigo dark
   },
   {
     id: 'data',
@@ -67,24 +67,23 @@ const STAGES: Stage[] = [
   },
 ];
 
-export function ArchitectureFlow3D() {
+export function ArchitectureFlow() {
   const [activeStage, setActiveStage] = useState<string>('client');
-  const prefersReducedMotion = useReducedMotion();
 
   const currentStageData = STAGES.find((s) => s.id === activeStage) || STAGES[0];
 
   return (
     <div className="relative rounded-2xl glass-panel p-5 sm:p-7 border border-white/15 overflow-hidden shadow-2xl">
-      {/* Background Neon Conduits Glow */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-violet-600/10 rounded-full blur-[100px] pointer-events-none" />
+      {/* Background Accent Conduits Glow */}
+      <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-white/10">
         <div>
           <div className="flex items-center gap-2">
-            <Activity className="w-4 h-4 text-cyan-400 animate-pulse" />
-            <span className="text-xs font-mono uppercase tracking-widest text-cyan-400 font-bold">
+            <Activity className="w-4 h-4 text-accent animate-pulse" />
+            <span className="text-xs font-mono uppercase tracking-widest text-accent font-bold">
               Interactive System Architecture
             </span>
           </div>
@@ -111,7 +110,7 @@ export function ArchitectureFlow3D() {
                 onClick={() => setActiveStage(stage.id)}
                 className={`relative w-full text-left p-4 rounded-xl border transition-all duration-300 focus:outline-none ${
                   isActive
-                    ? 'bg-graphite-900/95 border-cyan-400 shadow-[0_0_30px_rgba(56,189,248,0.25)] scale-[1.02]'
+                    ? 'bg-graphite-900/95 border-accent shadow-[0_0_30px_rgba(99,102,241,0.25)] scale-[1.02]'
                     : 'bg-graphite-950/60 border-white/10 hover:border-white/25 hover:bg-graphite-900/60'
                 }`}
               >
@@ -145,7 +144,7 @@ export function ArchitectureFlow3D() {
                     <h5 className="text-sm font-bold text-white leading-tight">
                       {stage.name}
                     </h5>
-                    <span className="text-[11px] font-mono text-cyan-300/90 block mt-0.5">
+                    <span className="text-[11px] font-mono text-indigo-300/90 block mt-0.5">
                       {stage.tech}
                     </span>
                   </div>
@@ -159,7 +158,7 @@ export function ArchitectureFlow3D() {
               {/* Connecting Chevron on Desktop */}
               {index < STAGES.length - 1 && (
                 <div className="hidden lg:flex absolute -right-2.5 top-1/2 -translate-y-1/2 z-20 pointer-events-none text-slate-600">
-                  <ArrowRight className="w-4 h-4 text-cyan-400/50" />
+                  <ArrowRight className="w-4 h-4 text-accent/50" />
                 </div>
               )}
             </div>
@@ -177,7 +176,7 @@ export function ArchitectureFlow3D() {
       >
         <div className="space-y-1 max-w-xl">
           <div className="flex items-center gap-2">
-            <Layers className="w-3.5 h-3.5 text-cyan-400" />
+            <Layers className="w-3.5 h-3.5 text-accent" />
             <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
               {currentStageData.name} Specifications
             </span>
@@ -194,7 +193,7 @@ export function ArchitectureFlow3D() {
               key={i}
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-slate-200"
             >
-              <CheckCircle className="w-3 h-3 text-cyan-400" />
+              <CheckCircle className="w-3 h-3 text-accent" />
               <span>{spec}</span>
             </span>
           ))}
@@ -204,4 +203,4 @@ export function ArchitectureFlow3D() {
   );
 }
 
-export default ArchitectureFlow3D;
+export default ArchitectureFlow;

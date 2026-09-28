@@ -8,7 +8,7 @@ const nextConfig = {
     unoptimized: true,
   },
   reactStrictMode: true,
-  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei', 'gsap', 'lenis'],
+  transpilePackages: ['gsap', 'lenis'],
   experimental: {
     webpackBuildWorker: false,
   },

@@ -33,7 +33,7 @@ export default function IntroLoader() {
     setLoading(false);
   };
 
-  // 3D Particle Convergence Canvas
+  // Subtle Particle Convergence Canvas
   useEffect(() => {
     if (!loading) return;
     const canvas = canvasRef.current;
@@ -60,7 +60,7 @@ export default function IntroLoader() {
         targetX: centerX + (Math.random() - 0.5) * 60,
         targetY: centerY + (Math.random() - 0.5) * 60,
         size: Math.random() * 2 + 1,
-        color: Math.random() > 0.4 ? '#38bdf8' : '#a855f7',
+        color: Math.random() > 0.4 ? '#6366f1' : '#818cf8',
         progress: 0,
         speed: 0.02 + Math.random() * 0.03,
       };
@@ -74,16 +74,16 @@ export default function IntroLoader() {
       ctx.save();
       ctx.translate(centerX, centerY);
       ctx.rotate(time);
-      ctx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.25)';
       ctx.lineWidth = 1.5;
       ctx.setLineDash([6, 6]);
       ctx.beginPath();
       ctx.arc(0, 0, 52, 0, Math.PI * 2);
       ctx.stroke();
 
-      // Outer violet ring
+      // Outer accent ring
       ctx.rotate(-time * 1.5);
-      ctx.strokeStyle = 'rgba(168, 85, 247, 0.2)';
+      ctx.strokeStyle = 'rgba(129, 140, 248, 0.2)';
       ctx.beginPath();
       ctx.arc(0, 0, 68, 0, Math.PI * 2);
       ctx.stroke();
@@ -127,10 +127,10 @@ export default function IntroLoader() {
           aria-label="Loading portfolio"
         >
           {/* Ambient center glow */}
-          <div className="absolute w-72 h-72 rounded-full bg-cyan-500/10 blur-[90px] pointer-events-none" />
+          <div className="absolute w-72 h-72 rounded-full bg-accent/10 blur-[90px] pointer-events-none" />
 
           <div className="relative flex flex-col items-center gap-6">
-            {/* 3D Particle Canvas & Monogram */}
+            {/* Subtle Particle Canvas & Monogram */}
             <div className="relative w-44 h-44 flex items-center justify-center">
               <canvas
                 ref={canvasRef}
@@ -141,13 +141,13 @@ export default function IntroLoader() {
                 initial={{ scale: 0.7, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-10 w-20 h-20 rounded-2xl bg-white/[0.04] border border-cyan-500/40 flex items-center justify-center shadow-[0_0_50px_rgba(56,189,248,0.25)] backdrop-blur-md"
+                className="relative z-10 w-20 h-20 rounded-2xl bg-white/[0.04] border border-accent/40 flex items-center justify-center shadow-[0_0_50px_rgba(99,102,241,0.25)] backdrop-blur-md"
               >
-                <span className="font-mono text-3xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-br from-white via-slate-200 to-cyan-400">
+                <span className="font-mono text-3xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-br from-white via-slate-200 to-indigo-300">
                   AM
                 </span>
-                <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-cyan-400 animate-ping" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-cyan-400" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-accent animate-ping" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-accent" />
               </motion.div>
             </div>
 
@@ -158,12 +158,12 @@ export default function IntroLoader() {
                   initial={{ width: '0%' }}
                   animate={{ width: '100%' }}
                   transition={{ duration: 1.15, ease: 'easeInOut' }}
-                  className="h-full bg-gradient-to-r from-cyan-400 via-sky-400 to-violet-500 rounded-full shadow-[0_0_12px_rgba(56,189,248,0.7)]"
+                  className="h-full bg-gradient-to-r from-accent via-indigo-400 to-indigo-300 rounded-full shadow-[0_0_12px_rgba(99,102,241,0.5)]"
                 />
               </div>
               <div className="flex items-center justify-between w-full text-[10px] font-mono text-slate-500 tracking-wider">
                 <span>INITIALIZING</span>
-                <span className="uppercase text-cyan-400/80 hover:text-cyan-300">
+                <span className="uppercase text-accent/80 hover:text-accent">
                   SKIP ➔
                 </span>
               </div>

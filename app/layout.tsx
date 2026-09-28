@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
-import dynamic from 'next/dynamic';
 import Navbar from '@/components/navigation/Navbar';
 import Footer from '@/components/navigation/Footer';
 import CustomCursor from '@/components/ui/CustomCursor';
@@ -11,11 +10,6 @@ import FloatingContactButton from '@/components/ui/FloatingContactButton';
 import { SmoothScrollProvider } from '@/components/ui/SmoothScrollProvider';
 import ReduceMotionToggle from '@/components/ui/ReduceMotionToggle';
 import { profileData } from '@/data/profile';
-
-const GlobalBackground = dynamic(
-  () => import('@/components/3d/GlobalBackground'),
-  { ssr: false }
-);
 
 const inter = Inter({
   subsets: ['latin'],
@@ -105,7 +99,6 @@ export default function RootLayout({
           <a href="#main-content" className="skip-to-content">
             Skip to main content
           </a>
-          <GlobalBackground />
           <IntroLoader />
           <ScrollProgressBar />
           <CustomCursor />

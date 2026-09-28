@@ -57,7 +57,7 @@ export default function ThemeToggle({ className = '' }: { className?: string }) 
       {theme === 'dark' ? (
         <Sun className="w-4 h-4 text-amber-300 transition-transform duration-300 hover:rotate-45" />
       ) : (
-        <Moon className="w-4 h-4 text-sky-600 transition-transform duration-300 hover:-rotate-12" />
+        <Moon className="w-4 h-4 text-indigo-600 transition-transform duration-300 hover:-rotate-12" />
       )}
     </button>
   );
