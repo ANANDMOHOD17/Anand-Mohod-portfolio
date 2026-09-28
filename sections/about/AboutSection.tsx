@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import SectionHeading from '@/components/ui/SectionHeading';
+import AboutHeading from './AboutHeading';
 import { profileData } from '@/data/profile';
 import { Cpu, Lightbulb, CheckCircle2 } from 'lucide-react';
 import HeroProfileCard from '@/components/ui/HeroProfileCard';
@@ -27,12 +27,12 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-24 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
+        <AboutHeading
           number="01"
           label="About"
-          title="Engineering Foundations & Practical Software Craft"
           description="A look into my background, computational interests, and drive to build impactful software."
         />
+
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Main Editorial Text with Masked Staggered Scroll Reveals */}
