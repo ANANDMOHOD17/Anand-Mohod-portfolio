@@ -17,11 +17,11 @@ export const HERO_WORD_PAIRS: WordPair[] = [
   { line1: 'IDEA TO', line2: 'IMPACT' },
 ];
 
-// Resting duration: each word pair stays completely calm and readable for 2.8s
-const DISPLAY_DURATION = 2800;
+// Resting duration: each word pair stays completely calm and readable for 3.1s
+const DISPLAY_DURATION = 3100;
 
-// Full wipe duration budget: Line 1 + Line 2 stagger (~90ms) + buffer = 560ms
-const WIPE_DURATION = 560;
+// Full wipe duration budget: Line 1 + Line 2 stagger (120ms) + 560ms wipe = ~720ms
+const WIPE_DURATION = 720;
 
 type TransitionPhase = 'idle' | 'wiping';
 

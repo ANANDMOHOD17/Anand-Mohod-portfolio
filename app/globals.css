@@ -395,14 +395,14 @@ html:not(.dark) .hero-mask-line2 .hero-mask-text {
 
 /* --- MASK WIPES --- */
 
-/* Line 1 Outgoing: wipe closes from left to right */
+/* Line 1 Outgoing: wipe closes from left to right (520ms) */
 .hero-mask-exit-line1 {
-  animation: maskWipeOut 0.38s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: maskWipeOut 0.52s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
-/* Line 2 Outgoing: wipe closes from left to right with ~90ms stagger */
+/* Line 2 Outgoing: wipe closes from left to right with 120ms stagger */
 .hero-mask-exit-line2 {
-  animation: maskWipeOut 0.38s cubic-bezier(0.65, 0, 0.35, 1) 0.09s forwards;
+  animation: maskWipeOut 0.52s cubic-bezier(0.65, 0, 0.35, 1) 0.12s forwards;
 }
 
 @keyframes maskWipeOut {
@@ -416,16 +416,16 @@ html:not(.dark) .hero-mask-line2 .hero-mask-text {
   }
 }
 
-/* Line 1 Incoming: wipe opens from left to right */
+/* Line 1 Incoming: wipe opens from left to right (560ms, starts at 130ms overlap) */
 .hero-mask-enter-line1 {
   clip-path: inset(0 100% 0 0);
-  animation: maskWipeIn 0.42s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: maskWipeIn 0.56s cubic-bezier(0.65, 0, 0.35, 1) 0.13s forwards;
 }
 
-/* Line 2 Incoming: wipe opens from left to right with ~90ms stagger + subtle reveal glow */
+/* Line 2 Incoming: wipe opens from left to right with 120ms stagger (starts at 250ms overlap) */
 .hero-mask-enter-line2 {
   clip-path: inset(0 100% 0 0);
-  animation: maskWipeInLine2 0.42s cubic-bezier(0.65, 0, 0.35, 1) 0.09s forwards;
+  animation: maskWipeInLine2 0.56s cubic-bezier(0.65, 0, 0.35, 1) 0.25s forwards;
 }
 
 @keyframes maskWipeIn {
@@ -442,11 +442,11 @@ html:not(.dark) .hero-mask-line2 .hero-mask-text {
 @keyframes maskWipeInLine2 {
   0% {
     clip-path: inset(0 100% 0 0);
-    filter: brightness(1.28) drop-shadow(0 0 10px rgba(99, 102, 241, 0.55));
+    filter: brightness(1.25) drop-shadow(0 0 8px rgba(99, 102, 241, 0.45));
     opacity: 1;
   }
   65% {
-    filter: brightness(1.18) drop-shadow(0 0 6px rgba(129, 140, 248, 0.35));
+    filter: brightness(1.12) drop-shadow(0 0 4px rgba(129, 140, 248, 0.25));
   }
   100% {
     clip-path: inset(0 0 0 0);
@@ -457,7 +457,7 @@ html:not(.dark) .hero-mask-line2 .hero-mask-text {
 
 /* --- MASK EDGE GLOW ACCENT BAR ---
    A 2.5px glowing accent beam that travels synchronously with the wipe edge
-   Visible only during the wipe transition (~400ms)
+   Visible only during the wipe transition (~560ms)
 */
 .hero-mask-edge {
   position: absolute;
@@ -467,16 +467,16 @@ html:not(.dark) .hero-mask-line2 .hero-mask-text {
   pointer-events: none;
   border-radius: 9999px;
   background: linear-gradient(180deg, rgba(199, 210, 254, 0.95) 0%, rgba(99, 102, 241, 1) 50%, rgba(129, 140, 248, 0.95) 100%);
-  box-shadow: 0 0 12px 1.5px rgba(99, 102, 241, 0.8), 0 0 24px 3px rgba(129, 140, 248, 0.5);
+  box-shadow: 0 0 10px 1.5px rgba(99, 102, 241, 0.7), 0 0 20px 2.5px rgba(129, 140, 248, 0.4);
   will-change: left, opacity;
 }
 
 .hero-mask-edge-line1 {
-  animation: maskEdgeTravel 0.42s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: maskEdgeTravel 0.56s cubic-bezier(0.65, 0, 0.35, 1) 0.13s forwards;
 }
 
 .hero-mask-edge-line2 {
-  animation: maskEdgeTravel 0.42s cubic-bezier(0.65, 0, 0.35, 1) 0.09s forwards;
+  animation: maskEdgeTravel 0.56s cubic-bezier(0.65, 0, 0.35, 1) 0.25s forwards;
 }
 
 @keyframes maskEdgeTravel {
