@@ -4,6 +4,8 @@ import './globals.css';
 import Navbar from '@/components/navigation/Navbar';
 import Footer from '@/components/navigation/Footer';
 import CustomCursor from '@/components/ui/CustomCursor';
+import ScrollProgressBar from '@/components/ui/ScrollProgressBar';
+import IntroLoader from '@/components/ui/IntroLoader';
 import { profileData } from '@/data/profile';
 
 const inter = Inter({
@@ -68,11 +70,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`}>
-      <body className="bg-graphite-950 text-slate-100 min-h-screen selection:bg-accent/20 selection:text-white relative">
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'light') {
+                  document.documentElement.classList.remove('dark');
+                } else {
+                  document.documentElement.classList.add('dark');
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="bg-graphite-950 dark:bg-graphite-950 text-slate-800 dark:text-slate-100 min-h-screen selection:bg-accent/20 selection:text-white relative transition-colors duration-300">
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
+        <IntroLoader />
+        <ScrollProgressBar />
         <CustomCursor />
         <Navbar />
-        <main className="relative z-10">{children}</main>
+        <main id="main-content" className="relative z-10">{children}</main>
         <Footer />
       </body>
     </html>
