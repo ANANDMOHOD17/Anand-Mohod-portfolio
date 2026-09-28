@@ -9,6 +9,9 @@ const nextConfig = {
   },
   reactStrictMode: true,
   transpilePackages: ['three', '@react-three/fiber', '@react-three/drei', 'gsap', 'lenis'],
+  experimental: {
+    webpackBuildWorker: false,
+  },
 };
 
 export default nextConfig;
