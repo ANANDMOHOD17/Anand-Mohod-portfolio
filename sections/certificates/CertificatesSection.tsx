@@ -63,11 +63,11 @@ export default function CertificatesSection() {
                     >
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
-                          <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent group-hover:scale-105 transition-transform shadow-sm">
-                            <Award className="w-5 h-5" />
+                          <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/25 flex items-center justify-center text-teal-400 group-hover:scale-105 transition-transform shadow-sm">
+                            <Award className="w-5 h-5 text-teal-400" />
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-[#16162A] border border-slate-200 dark:border-[#35356A] text-slate-700 dark:text-[#818CF8] font-medium">
+                            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-300 font-medium">
                               {cert.category}
                             </span>
                             <span className="text-xs font-mono text-[#94A3B8]">
@@ -97,7 +97,7 @@ export default function CertificatesSection() {
                           onClick={() => setSelectedCert(cert)}
                           className="inline-flex items-center gap-1.5 font-semibold text-[#818CF8] hover:text-[#6366F1] hover:underline focus:outline-none"
                         >
-                          <Eye className="w-3.5 h-3.5" />
+                          <Eye className="w-3.5 h-3.5 text-[#818CF8]" />
                           <span>View Certificate</span>
                         </button>
 
@@ -114,8 +114,8 @@ export default function CertificatesSection() {
                               <ExternalLink className="w-3 h-3" />
                             </a>
                           )}
-                          <span className="inline-flex items-center gap-1 text-[#10B981] text-[10px] font-medium bg-[#10B981]/10 px-2 py-0.5 rounded-md border border-[#10B981]/20">
-                            <CheckCircle2 className="w-3 h-3 text-[#10B981]" />
+                          <span className="inline-flex items-center gap-1 text-teal-400 text-[10px] font-medium bg-teal-500/10 px-2 py-0.5 rounded-md border border-teal-500/20">
+                            <CheckCircle2 className="w-3 h-3 text-teal-400" />
                             <span>{cert.credentialId ? `#${cert.credentialId.slice(0, 6)}` : 'Verified'}</span>
                           </span>
                         </div>

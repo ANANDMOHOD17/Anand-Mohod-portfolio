@@ -267,6 +267,18 @@ body {
   line-height: 1.15;
 }
 
+.about-heading__line {
+  display: inline-flex !important;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.22em;
+  row-gap: 0.1em;
+}
+
+.about-heading__line > span {
+  display: inline-block;
+}
+
 .about-heading__accent {
   background: linear-gradient(
     90deg,

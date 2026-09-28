@@ -79,14 +79,14 @@ export default function CertificatesPage() {
                   >
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent group-hover:scale-105 transition-transform">
-                          <Award className="w-5 h-5" />
+                        <div className="w-9 h-9 rounded-lg bg-teal-500/10 border border-teal-500/25 flex items-center justify-center text-teal-400 group-hover:scale-105 transition-transform">
+                          <Award className="w-5 h-5 text-teal-400" />
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300">
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-300 font-medium">
                             {cert.category}
                           </span>
-                          <span className="text-xs font-mono text-slate-500">
+                          <span className="text-xs font-mono text-[#94A3B8]">
                             {cert.date}
                           </span>
                         </div>

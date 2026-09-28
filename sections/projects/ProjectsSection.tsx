@@ -94,7 +94,7 @@ export default function ProjectsSection() {
                 <div className="relative w-full h-56 sm:h-72 overflow-hidden bg-slate-100 dark:bg-graphite-950">
                   <Image
                     src={featuredProject.image}
-                    alt={`Screenshot preview of ${featuredProject.title} dashboard`}
+                    alt={`Screenshot of ${featuredProject.title} project`}
                     fill
                     sizes="(max-width: 1024px) 100vw, 66vw"
                     className="object-cover object-top"
@@ -260,7 +260,7 @@ export default function ProjectsSection() {
                     <div className="relative w-full aspect-video overflow-hidden bg-slate-100 dark:bg-[#0A0A0F] flex-shrink-0">
                       <Image
                         src={project.image}
-                        alt={`Screenshot preview of ${project.title}`}
+                        alt={`Screenshot of ${project.title} project`}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
@@ -328,34 +328,34 @@ export default function ProjectsSection() {
                         href={`/projects/${project.slug}`}
                         className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline transition-colors"
                       >
-                        <span>Read Case Study</span>
+                        <span>Case Study</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </Link>
 
-                      {/* Space reserved for Live Demo & GitHub links */}
-                      <div className="flex items-center gap-2">
-                        {project.liveUrl && (
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-slate-500 hover:text-accent p-1"
-                            aria-label={`View live demo of ${project.title}`}
-                            title="Live Demo"
-                          >
-                            <ExternalLink className="w-4 h-4" />
-                          </a>
-                        )}
+                      {/* Real Live Demo & GitHub links */}
+                      <div className="flex items-center gap-2.5">
                         {project.githubUrl && (
                           <a
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-slate-500 hover:text-white p-1"
-                            aria-label={`View ${project.title} on GitHub`}
-                            title="Source Code"
+                            className="inline-flex items-center gap-1 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+                            aria-label={`View source code of ${project.title} on GitHub`}
                           >
-                            <Github className="w-4 h-4" />
+                            <Github className="w-3.5 h-3.5" />
+                            <span>GitHub</span>
+                          </a>
+                        )}
+                        {project.liveUrl && (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-xs font-mono text-accent hover:text-accent-hover transition-colors font-medium"
+                            aria-label={`Open live demo of ${project.title}`}
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                            <span>Live Demo</span>
                           </a>
                         )}
                       </div>

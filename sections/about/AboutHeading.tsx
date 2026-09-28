@@ -68,14 +68,15 @@ export default function AboutHeading({
         <span className="uppercase font-medium tracking-wide">{label}</span>
       </div>
 
-      {/* 2. Main Title: "WHO IS ANAND?" - Single line slide-up + fade-in + gradient color sweep */}
+      {/* 2. Main Title: "WHO IS ANAND?" - Single line slide-up + fade-in + gradient color sweep with natural word spacing */}
       <h2
         className="section-heading__title about-heading-title font-extrabold tracking-tight text-slate-900 dark:text-white"
         aria-label="WHO IS ANAND?"
       >
         <span className="section-heading__line-wrapper block overflow-hidden">
-          <span className="section-heading__line section-heading__line-1 inline-flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <span>WHO IS</span>
+          <span className="section-heading__line section-heading__line-1 about-heading__line">
+            <span>WHO</span>
+            <span>IS</span>
             <span className="about-heading__accent font-extrabold tracking-tight">
               ANAND?
             </span>
