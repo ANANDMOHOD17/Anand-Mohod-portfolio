@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Code, Download } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowDown, ArrowUpRight, Download } from 'lucide-react';
 import { profileData } from '@/data/profile';
 import { projectsData } from '@/data/projects';
 import { certificatesData } from '@/data/certificates';
@@ -15,50 +14,17 @@ import MagneticButton from '@/components/ui/MagneticButton';
 import { TRANSITION_EASE } from '@/lib/motion';
 
 import HeroProfileCard from '@/components/ui/HeroProfileCard';
-
-const ROLES = [
-  'Computer Engineering Student',
-  'Python & Full-Stack Developer',
-  'AI & Machine Learning Enthusiast',
-];
+import RotatingHeadline from '@/components/ui/RotatingHeadline';
 
 export default function HeroSection() {
-  const prefersReducedMotion = useReducedMotion();
   const basePath = process.env.NODE_ENV === 'production' ? '/Anand-Mohod-portfolio' : '';
   const resumePdfPath = `${basePath}/resume/Anand_Mohod_Resume.pdf`;
-
-  // Typewriter / rotating role index
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-
-  useEffect(() => {
-    if (prefersReducedMotion) return;
-    const interval = setInterval(() => {
-      setCurrentRoleIndex((prev) => (prev + 1) % ROLES.length);
-    }, 3200);
-    return () => clearInterval(interval);
-  }, [prefersReducedMotion]);
 
   // Verified facts directly from real data
   const projectCount = projectsData.length;
   const certCount = certificatesData.length;
   const achievementCount = achievementsData.length;
   const techCount = skillsData.length;
-
-  const letterVariants = {
-    hidden: { opacity: 0, y: 35 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.55,
-        ease: TRANSITION_EASE.smoothOut,
-        delay: 0.15 + i * 0.04,
-      },
-    }),
-  };
-
-  const firstName = 'ANAND';
-  const lastName = 'MOHOD';
 
   return (
     <section
@@ -71,8 +37,8 @@ export default function HeroSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Typography, Identity & Split-Text */}
-          <div className="lg:col-span-7 flex flex-col space-y-6 text-left">
+          {/* Left Column: Typography, Identity & Rotating Headline */}
+          <div className="lg:col-span-7 flex flex-col space-y-5 text-left">
             {/* "Open to Internships" badge with soft pulse */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -89,54 +55,14 @@ export default function HeroSection() {
               </span>
             </motion.div>
 
-            {/* Split-Text Animated Headline */}
-            <div className="overflow-hidden">
-              <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.08]">
-                {/* ANAND */}
-                <span className="inline-flex overflow-hidden">
-                  {firstName.split('').map((char, index) => (
-                    <motion.span
-                      key={`first-${index}`}
-                      custom={index}
-                      variants={letterVariants}
-                      initial="hidden"
-                      animate="visible"
-                      className="inline-block"
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
-                </span>
-                <br />
-                {/* MOHOD with refined indigo gradient */}
-                <span className="inline-flex overflow-hidden text-transparent bg-clip-text bg-gradient-to-r from-accent via-indigo-400 to-indigo-300">
-                  {lastName.split('').map((char, index) => (
-                    <motion.span
-                      key={`last-${index}`}
-                      custom={index + firstName.length}
-                      variants={letterVariants}
-                      initial="hidden"
-                      animate="visible"
-                      className="inline-block"
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
-                </span>
-              </h1>
-            </div>
-
-            {/* Dynamic Rotating Role Line */}
+            {/* Rotating Hero Headline Animation */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex items-center gap-3 text-lg sm:text-xl md:text-2xl font-medium text-accent h-8"
+              transition={{ duration: 0.55, ease: TRANSITION_EASE.smoothOut, delay: 0.1 }}
+              className="w-full"
             >
-              <Code className="w-5 h-5 text-accent shrink-0" />
-              <span className="font-mono text-base sm:text-xl text-slate-800 dark:text-slate-200">
-                {ROLES[currentRoleIndex]}
-              </span>
+              <RotatingHeadline />
             </motion.div>
 
             {/* Profile Tagline */}

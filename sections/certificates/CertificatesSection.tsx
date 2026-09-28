@@ -63,11 +63,11 @@ export default function CertificatesSection() {
                     >
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
-                          <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent group-hover:scale-105 transition-transform shadow-sm">
+                          <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/25 flex items-center justify-center text-teal-500 dark:text-teal-400 group-hover:scale-105 transition-transform shadow-sm">
                             <Award className="w-5 h-5" />
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300">
+                            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-600 dark:text-teal-400 font-medium">
                               {cert.category}
                             </span>
                             <span className="text-xs font-mono text-slate-500">
@@ -77,7 +77,7 @@ export default function CertificatesSection() {
                         </div>
 
                         <div>
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-accent font-semibold block mb-1">
+                          <span className="text-[10px] font-mono uppercase tracking-wider text-teal-600 dark:text-teal-400 font-semibold block mb-1">
                             {cert.issuer}
                           </span>
                           <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-accent transition-colors line-clamp-2 leading-snug">
@@ -107,15 +107,15 @@ export default function CertificatesSection() {
                               href={cert.verificationUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-[11px] text-slate-500 hover:text-accent transition-colors"
+                              className="inline-flex items-center gap-1 text-[11px] text-teal-600 dark:text-teal-400 hover:underline transition-colors"
                               title="Verify on Credly / Issuer Portal"
                             >
                               <span>Verify</span>
                               <ExternalLink className="w-3 h-3" />
                             </a>
                           )}
-                          <span className="inline-flex items-center gap-1 text-emerald-400 text-[10px]">
-                            <CheckCircle2 className="w-3 h-3" />
+                          <span className="inline-flex items-center gap-1 text-teal-600 dark:text-teal-400 text-[10px] font-medium bg-teal-500/10 px-2 py-0.5 rounded-md border border-teal-500/20">
+                            <CheckCircle2 className="w-3 h-3 text-teal-500" />
                             <span>{cert.credentialId ? `#${cert.credentialId.slice(0, 6)}` : 'Verified'}</span>
                           </span>
                         </div>

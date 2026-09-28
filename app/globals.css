@@ -9,12 +9,27 @@
   --bg-surface-elevated: #16161b;
   --bg-surface-card: rgba(17, 17, 21, 0.75);
   --bg-surface-card-hover: rgba(25, 25, 32, 0.85);
+  
+  /* Primary Accent: Indigo (#6366f1) — Main CTAs, Rotating Headline, Core Titles */
   --accent: #6366f1;
   --accent-rgb: 99, 102, 241;
   --accent-hover: #818cf8;
   --accent-active: #4338ca;
   --accent-subtle: rgba(99, 102, 241, 0.10);
   --accent-border: rgba(99, 102, 241, 0.28);
+  
+  /* Secondary Accent: Muted Teal/Emerald (#14b8a6) — Verified credentials, certificates, status badges */
+  --accent-teal: #14b8a6;
+  --accent-teal-rgb: 20, 184, 166;
+  --accent-teal-subtle: rgba(20, 184, 166, 0.12);
+  --accent-teal-border: rgba(20, 184, 166, 0.30);
+  
+  /* Tertiary Accent: Warm Amber/Gold (#f59e0b) — Achievements, trophies, honors */
+  --accent-amber: #f59e0b;
+  --accent-amber-rgb: 245, 158, 11;
+  --accent-amber-subtle: rgba(245, 158, 11, 0.12);
+  --accent-amber-border: rgba(245, 158, 11, 0.30);
+  
   --border-glass: rgba(255, 255, 255, 0.08);
   --border-glass-hover: rgba(255, 255, 255, 0.16);
   --glass-highlight: rgba(255, 255, 255, 0.04);
@@ -32,12 +47,27 @@ html:not(.dark) {
   --bg-surface-elevated: #f1f0f5;
   --bg-surface-card: rgba(255, 255, 255, 0.88);
   --bg-surface-card-hover: rgba(255, 255, 255, 0.98);
+  
+  /* Primary Accent (Light) */
   --accent: #4f46e5;
   --accent-rgb: 79, 70, 229;
   --accent-hover: #4338ca;
   --accent-active: #3730a3;
   --accent-subtle: rgba(79, 70, 229, 0.08);
   --accent-border: rgba(79, 70, 229, 0.24);
+  
+  /* Secondary Accent (Light): Teal */
+  --accent-teal: #0d9488;
+  --accent-teal-rgb: 13, 148, 136;
+  --accent-teal-subtle: rgba(13, 148, 136, 0.10);
+  --accent-teal-border: rgba(13, 148, 136, 0.26);
+  
+  /* Tertiary Accent (Light): Amber */
+  --accent-amber: #d97706;
+  --accent-amber-rgb: 217, 119, 6;
+  --accent-amber-subtle: rgba(217, 119, 6, 0.10);
+  --accent-amber-border: rgba(217, 119, 6, 0.26);
+  
   --border-glass: rgba(15, 12, 42, 0.08);
   --border-glass-hover: rgba(15, 12, 42, 0.16);
   --glass-highlight: rgba(15, 12, 42, 0.02);
@@ -220,61 +250,448 @@ body {
   }
 }
 
-/* Scoped styles for About Section Title (WHO IS ANAND?) */
-.about-anand-highlight {
-  background: linear-gradient(135deg, #6366f1 0%, #818cf8 50%, #6366f1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Scoped styles for About Section Title (WHO IS ANAND?) and draw-in underline */
+.about-heading-title {
+  font-size: clamp(2rem, 5vw + 0.5rem, 3.25rem);
+  line-height: 1.15;
 }
 
-html:not(.dark) .about-anand-highlight {
-  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #4338ca 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.about-anand-shimmer {
+.about-heading__accent {
   background: linear-gradient(
     90deg,
-    #6366f1 0%,
-    #818cf8 25%,
+    #818cf8 0%,
+    #a5b4fc 35%,
     #c7d2fe 50%,
-    #818cf8 75%,
+    #818cf8 65%,
     #6366f1 100%
   );
-  background-size: 200% auto;
+  background-size: 250% 100%;
+  background-position: 100% center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: aboutShimmerLoop 4s linear infinite;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
 }
 
-html:not(.dark) .about-anand-shimmer {
+html:not(.dark) .about-heading__accent {
   background: linear-gradient(
     90deg,
     #4f46e5 0%,
-    #6366f1 25%,
+    #6366f1 35%,
     #818cf8 50%,
-    #6366f1 75%,
-    #4f46e5 100%
+    #4f46e5 65%,
+    #4338ca 100%
   );
-  background-size: 200% auto;
+  background-size: 250% 100%;
+  background-position: 100% center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: aboutShimmerLoop 4s linear infinite;
 }
 
-@keyframes aboutShimmerLoop {
-  0% {
-    background-position: 0% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
+.section-heading--active .about-heading__accent {
+  animation: headingColorSweep 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.18s forwards;
+}
+
+.section-heading__divider--about {
+  width: 140px;
+  max-width: 140px;
+}
+
+.section-heading--reduced-motion .about-heading__accent {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  animation: none !important;
+  transition: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-anand-shimmer {
+  .about-heading__accent {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
     animation: none !important;
+    transition: none !important;
   }
 }
+
+/* ==========================================================================
+   Hero Mask Reveal Headline Component Styles (.hero-mask-title)
+   Replaces previous 3D flip / glitch implementations entirely.
+   Uses clip-path: inset() curtain wipe with moving glowing accent edge line.
+   Scoped to hero section only — no conflicts with .section-heading.
+   ========================================================================== */
+
+/* Container */
+.hero-mask-title {
+  width: 100%;
+}
+
+.hero-mask-static-label {
+  user-select: none;
+}
+
+/* Stage container holding the two text rows */
+.hero-mask-stage {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Each line row */
+.hero-mask-row {
+  position: relative;
+  display: block;
+  line-height: 1.05;
+  width: 100%;
+}
+
+/* Base text element */
+.hero-mask-text {
+  display: block;
+  font-family: inherit;
+  font-weight: 900;
+  font-size: clamp(2.15rem, 6.4vw, 4.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+  will-change: clip-path, opacity, filter;
+}
+
+/* Line 1: bold white (dark slate in light theme) */
+.hero-mask-line1 .hero-mask-text {
+  color: #ffffff;
+}
+
+html:not(.dark) .hero-mask-line1 .hero-mask-text {
+  color: #0f172a;
+}
+
+/* Line 2: blue-to-lavender gradient fill */
+.hero-mask-line2 .hero-mask-text {
+  background: linear-gradient(135deg, #6366f1 0%, #818cf8 45%, #c7d2fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html:not(.dark) .hero-mask-line2 .hero-mask-text {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #4338ca 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Resting State: fully unmasked, quiet and calm */
+.hero-mask-rest {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+/* --- MASK WIPES --- */
+
+/* Line 1 Outgoing: wipe closes from left to right */
+.hero-mask-exit-line1 {
+  animation: maskWipeOut 0.38s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+/* Line 2 Outgoing: wipe closes from left to right with ~90ms stagger */
+.hero-mask-exit-line2 {
+  animation: maskWipeOut 0.38s cubic-bezier(0.65, 0, 0.35, 1) 0.09s forwards;
+}
+
+@keyframes maskWipeOut {
+  0% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0.95;
+  }
+}
+
+/* Line 1 Incoming: wipe opens from left to right */
+.hero-mask-enter-line1 {
+  clip-path: inset(0 100% 0 0);
+  animation: maskWipeIn 0.42s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+/* Line 2 Incoming: wipe opens from left to right with ~90ms stagger + subtle reveal glow */
+.hero-mask-enter-line2 {
+  clip-path: inset(0 100% 0 0);
+  animation: maskWipeInLine2 0.42s cubic-bezier(0.65, 0, 0.35, 1) 0.09s forwards;
+}
+
+@keyframes maskWipeIn {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes maskWipeInLine2 {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    filter: brightness(1.28) drop-shadow(0 0 10px rgba(99, 102, 241, 0.55));
+    opacity: 1;
+  }
+  65% {
+    filter: brightness(1.18) drop-shadow(0 0 6px rgba(129, 140, 248, 0.35));
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    filter: brightness(1) drop-shadow(0 0 0px transparent);
+    opacity: 1;
+  }
+}
+
+/* --- MASK EDGE GLOW ACCENT BAR ---
+   A 2.5px glowing accent beam that travels synchronously with the wipe edge
+   Visible only during the wipe transition (~400ms)
+*/
+.hero-mask-edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2.5px;
+  pointer-events: none;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(199, 210, 254, 0.95) 0%, rgba(99, 102, 241, 1) 50%, rgba(129, 140, 248, 0.95) 100%);
+  box-shadow: 0 0 12px 1.5px rgba(99, 102, 241, 0.8), 0 0 24px 3px rgba(129, 140, 248, 0.5);
+  will-change: left, opacity;
+}
+
+.hero-mask-edge-line1 {
+  animation: maskEdgeTravel 0.42s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.hero-mask-edge-line2 {
+  animation: maskEdgeTravel 0.42s cubic-bezier(0.65, 0, 0.35, 1) 0.09s forwards;
+}
+
+@keyframes maskEdgeTravel {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* --- Reduced Motion Fallback --- */
+.hero-mask-fade-out {
+  animation: heroMaskFadeOut 0.22s ease-out forwards;
+}
+
+.hero-mask-fade-in {
+  animation: heroMaskFadeIn 0.28s ease-in forwards;
+}
+
+@keyframes heroMaskFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes heroMaskFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mask-exit-line1,
+  .hero-mask-exit-line2 {
+    animation: heroMaskFadeOut 0.18s ease-out forwards !important;
+    clip-path: inset(0 0 0 0) !important;
+  }
+  .hero-mask-enter-line1,
+  .hero-mask-enter-line2 {
+    animation: heroMaskFadeIn 0.22s ease-in forwards !important;
+    clip-path: inset(0 0 0 0) !important;
+    filter: none !important;
+  }
+  .hero-mask-edge {
+    display: none !important;
+  }
+  .hero-mask-text {
+    filter: none !important;
+    clip-path: inset(0 0 0 0) !important;
+  }
+}
+
+
+/* ==========================================================================
+   Shared Section Heading Animation System (.section-heading)
+   Applied consistently across all major section headings
+   ========================================================================== */
+
+.section-heading {
+  position: relative;
+}
+
+/* 1. Pill Label */
+.section-heading__label {
+  opacity: 0;
+  transform: translateX(-16px) scale(0.96);
+  transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* 2. Title Line wrappers & lines */
+.section-heading__line-wrapper {
+  overflow: hidden;
+}
+
+.section-heading__line {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(22px);
+  filter: blur(5px);
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #818cf8 35%,
+    #c7d2fe 50%,
+    #ffffff 65%,
+    #ffffff 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+html:not(.dark) .section-heading__line {
+  background: linear-gradient(
+    90deg,
+    #0f172a 0%,
+    #4f46e5 35%,
+    #818cf8 50%,
+    #0f172a 65%,
+    #0f172a 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 3. Underline Accent Divider */
+.section-heading__divider {
+  width: 48px;
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  background: linear-gradient(90deg, #6366f1 0%, #818cf8 60%, transparent 100%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.38s,
+              opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.38s;
+  will-change: transform, opacity;
+}
+
+.section-heading.text-center .section-heading__divider,
+.section-heading .mx-auto.section-heading__divider {
+  transform-origin: center;
+}
+
+/* 4. Subtitle Description */
+.section-heading__subtitle {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.48s,
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.48s;
+  will-change: opacity, transform;
+}
+
+/* Active State (Triggered once via IntersectionObserver) */
+.section-heading--active .section-heading__label {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.section-heading--active .section-heading__line-1 {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition-delay: 0.12s;
+  animation: headingColorSweep 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
+}
+
+.section-heading--active .section-heading__line-2 {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition-delay: 0.24s;
+  animation: headingColorSweep 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.24s forwards;
+}
+
+.section-heading--active .section-heading__divider {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.section-heading--active .section-heading__subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle One-Time Color Sweep Keyframes */
+@keyframes headingColorSweep {
+  0% {
+    background-position: 100% center;
+  }
+  45% {
+    background-position: 45% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+/* Reduced Motion Fallback */
+.section-heading--reduced-motion .section-heading__label,
+.section-heading--reduced-motion .section-heading__line,
+.section-heading--reduced-motion .section-heading__divider,
+.section-heading--reduced-motion .section-heading__subtitle {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-heading__label,
+  .section-heading__line,
+  .section-heading__divider,
+  .section-heading__subtitle {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 
