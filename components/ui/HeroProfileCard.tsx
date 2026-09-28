@@ -102,10 +102,10 @@ export default function HeroProfileCard() {
             ? undefined
             : { scale: 1.02 }
         }
-        className="relative w-[280px] sm:w-[320px] md:w-[340px] max-w-full rounded-3xl p-3 sm:p-3.5 border border-white/15 bg-graphite-900/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(56,189,248,0.08)] transition-shadow duration-300 hover:shadow-[0_25px_60px_rgba(0,0,0,0.6),0_0_35px_rgba(56,189,248,0.18)] hover:border-accent/40 group"
+        className="relative w-[280px] sm:w-[320px] md:w-[340px] max-w-full rounded-3xl p-3 sm:p-3.5 border border-slate-200 dark:border-white/15 bg-white/80 dark:bg-graphite-900/80 backdrop-blur-xl shadow-xl dark:shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(56,189,248,0.08)] transition-all duration-300 hover:border-accent/50 group"
       >
         {/* Profile Card Main Body */}
-        <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-graphite-950 border border-white/10 shadow-inner">
+        <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-900 dark:bg-graphite-950 border border-slate-200/50 dark:border-white/10 shadow-inner">
           {/* Profile Photo */}
           <Image
             src={profileData.avatar}
