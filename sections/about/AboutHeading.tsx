@@ -68,17 +68,26 @@ export default function AboutHeading({
         <span className="uppercase font-medium tracking-wide">{label}</span>
       </div>
 
-      {/* 2. Main Title: "WHO IS ANAND?" - Single line slide-up + fade-in + gradient color sweep with natural word spacing */}
+      {/* 2. Main Title: "WHO IS ANAND?" - Slide-up + fade-in + gradient color sweep. 
+             word-spacing is applied inline to guarantee natural separation between all words.
+             The three words are plain text inside the gradient span so spacing is always rendered. */}
       <h2
         className="section-heading__title about-heading-title font-extrabold tracking-tight text-slate-900 dark:text-white"
         aria-label="WHO IS ANAND?"
       >
         <span className="section-heading__line-wrapper block overflow-hidden">
-          <span className="section-heading__line section-heading__line-1 about-heading__line">
-            <span>WHO</span>
-            <span>IS</span>
+          {/* We use TWO child spans:
+              1. "WHO IS" — inherits the parent gradient white-to-indigo
+              2. "ANAND?" — the dedicated accent span with its own deeper indigo gradient
+              A zero-width non-joiner + explicit space character between them guarantees visual separation
+              that is not affected by background-clip: text */}
+          <span
+            className="section-heading__line section-heading__line-1"
+            style={{ wordSpacing: '0.18em' }}
+          >
+            {'WHO IS '}
             <span className="about-heading__accent font-extrabold tracking-tight">
-              ANAND?
+              {'ANAND?'}
             </span>
           </span>
         </span>
