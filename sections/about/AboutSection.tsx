@@ -1,14 +1,28 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { profileData } from '@/data/profile';
-import { Cpu, Lightbulb } from 'lucide-react';
+import { Cpu, Lightbulb, CheckCircle2 } from 'lucide-react';
+import HeroProfileCard from '@/components/ui/HeroProfileCard';
+import { TRANSITION_EASE } from '@/lib/motion';
 
 export default function AboutSection() {
   const prefersReducedMotion = useReducedMotion();
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 25 },
+    visible: (custom = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.55,
+        ease: TRANSITION_EASE.smoothOut,
+        delay: prefersReducedMotion ? 0 : custom * 0.1,
+      },
+    }),
+  };
 
   return (
     <section id="about" className="py-24 md:py-32 relative">
@@ -21,83 +35,84 @@ export default function AboutSection() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Main Editorial Text */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-8 space-y-6 text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed"
-          >
-            <p className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white leading-relaxed">
+          {/* Main Editorial Text with Masked Staggered Scroll Reveals */}
+          <div className="lg:col-span-7 space-y-6 text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed">
+            <motion.p
+              custom={0}
+              variants={textVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
+              className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white leading-relaxed"
+            >
               {profileData.about.lead}
-            </p>
+            </motion.p>
 
             {profileData.about.paragraphs.map((para, index) => (
-              <p key={index} className="text-slate-600 dark:text-slate-400 font-normal leading-relaxed">
+              <motion.p
+                key={index}
+                custom={index + 1}
+                variants={textVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-50px' }}
+                className="text-slate-600 dark:text-slate-400 font-normal leading-relaxed"
+              >
                 {para}
-              </p>
+              </motion.p>
             ))}
 
             {/* Core Values / Philosophy */}
-            <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="border-l-2 border-accent pl-4 py-1.5 bg-slate-50/50 dark:bg-white/[0.02] rounded-r-xl p-3">
-                <h4 className="text-slate-900 dark:text-white font-bold text-sm">Systematic Problem Solving</h4>
-                <p className="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-normal">
+            <motion.div
+              custom={profileData.about.paragraphs.length + 1}
+              variants={textVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6"
+            >
+              <div className="border-l-2 border-accent pl-4 py-2 bg-slate-50/60 dark:bg-white/[0.02] rounded-r-xl p-3 border border-slate-200/50 dark:border-white/5 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                  <h4 className="text-slate-900 dark:text-white font-bold text-sm">Systematic Problem Solving</h4>
+                </div>
+                <p className="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-normal pl-6">
                   Deconstructing complex problems down to core data structures and algorithmic efficiency.
                 </p>
               </div>
-              <div className="border-l-2 border-slate-300 dark:border-white/20 pl-4 py-1.5 bg-slate-50/50 dark:bg-white/[0.02] rounded-r-xl p-3">
-                <h4 className="text-slate-900 dark:text-white font-bold text-sm">Pragmatic Execution</h4>
-                <p className="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-normal">
+              <div className="border-l-2 border-violet-500 pl-4 py-2 bg-slate-50/60 dark:bg-white/[0.02] rounded-r-xl p-3 border border-slate-200/50 dark:border-white/5 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-violet-400" />
+                  <h4 className="text-slate-900 dark:text-white font-bold text-sm">Pragmatic Execution</h4>
+                </div>
+                <p className="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-normal pl-6">
                   Writing clean, readable code and testing edge cases rather than over-engineering abstractions.
                 </p>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
-          {/* Right Column: Featured Portrait & Structured Highlights Panel */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.15 }}
-            className="lg:col-span-4 space-y-6"
-          >
-            {/* Portrait Card */}
-            <div className="glass-panel rounded-2xl p-3 border border-slate-200 dark:border-white/15 shadow-glass-md group transition-all duration-300 hover:border-accent/40">
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-slate-200/50 dark:border-white/10 bg-slate-900 dark:bg-graphite-900">
-                <Image
-                  src={profileData.avatar}
-                  alt={profileData.name}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 350px"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-graphite-950/90 via-graphite-950/20 to-transparent pointer-events-none" />
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs">
-                  <div>
-                    <span className="font-bold text-white block text-sm">Anand Mohod</span>
-                    <span className="text-[11px] text-slate-300 font-mono">Computer Engineering</span>
-                  </div>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono backdrop-blur-md">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Available
-                  </span>
-                </div>
-              </div>
-            </div>
+          {/* Right Column: 3D Tilt Profile Card & Profile Snapshot */}
+          <div className="lg:col-span-5 flex flex-col items-center gap-6">
+            {/* 3D Tilt Profile Card */}
+            <HeroProfileCard />
 
-            {/* Profile Snapshot */}
-            <div className="glass-panel rounded-2xl p-6 border border-slate-200 dark:border-white/10 space-y-6">
-              <div className="flex items-center gap-2 pb-4 border-b border-slate-200 dark:border-white/10">
+            {/* Profile Snapshot Panel */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="glass-panel w-full rounded-2xl p-6 border border-slate-200 dark:border-white/10 space-y-5 shadow-glass-sm"
+            >
+              <div className="flex items-center gap-2 pb-3 border-b border-slate-200 dark:border-white/10">
                 <Cpu className="w-4 h-4 text-accent" />
                 <span className="text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 font-semibold">
                   Profile Snapshot
                 </span>
               </div>
 
-              <dl className="space-y-4">
+              <dl className="grid grid-cols-2 gap-4">
                 {profileData.about.highlights.map((item, index) => (
                   <div key={index} className="flex flex-col">
                     <dt className="text-xs text-slate-500 dark:text-slate-400 font-mono">{item.label}</dt>
@@ -106,14 +121,14 @@ export default function AboutSection() {
                 ))}
               </dl>
 
-              <div className="pt-4 border-t border-slate-200 dark:border-white/10">
+              <div className="pt-3 border-t border-slate-200 dark:border-white/10">
                 <div className="flex items-center gap-2 text-xs text-accent font-medium">
                   <Lightbulb className="w-3.5 h-3.5" />
-                  <span>Always seeking challenging technical opportunities</span>
+                  <span>Seeking software & full-stack internship opportunities</span>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
