@@ -8,7 +8,7 @@ import ScrollProgressBar from '@/components/ui/ScrollProgressBar';
 import IntroLoader from '@/components/ui/IntroLoader';
 import FloatingContactButton from '@/components/ui/FloatingContactButton';
 import { SmoothScrollProvider } from '@/components/ui/SmoothScrollProvider';
-import ReduceMotionToggle from '@/components/ui/ReduceMotionToggle';
+
 import { profileData } from '@/data/profile';
 
 const inter = Inter({
@@ -85,10 +85,6 @@ export default function RootLayout({
                 } else {
                   document.documentElement.classList.add('dark');
                 }
-                const savedMotion = localStorage.getItem('am_reduce_motion');
-                if (savedMotion === 'true') {
-                  document.documentElement.classList.add('reduced-motion');
-                }
               } catch (_) {}
             `,
           }}
@@ -106,7 +102,7 @@ export default function RootLayout({
           <main id="main-content" className="relative z-10">{children}</main>
           <Footer />
           <FloatingContactButton />
-          <ReduceMotionToggle />
+
         </SmoothScrollProvider>
       </body>
     </html>

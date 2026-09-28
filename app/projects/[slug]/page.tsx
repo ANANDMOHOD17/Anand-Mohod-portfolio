@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { projectsData } from '@/data/projects';
 import GlassCard from '@/components/ui/GlassCard';
@@ -55,7 +56,7 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
   ];
 
   return (
-    <div className="pt-32 pb-24 md:py-36 min-h-screen">
+    <div className="pt-28 pb-24 md:pt-32 md:pb-36 min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Navigation back */}
         <Link
@@ -65,6 +66,21 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
           <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
           <span>Back to All Projects</span>
         </Link>
+
+        {/* Hero Banner Image — shown FIRST, before title */}
+        {project.image && (
+          <div className="relative w-full h-56 sm:h-72 md:h-96 rounded-2xl overflow-hidden mb-10 shadow-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-graphite-950">
+            <Image
+              src={project.image}
+              alt={`Screenshot preview of ${project.title}`}
+              fill
+              sizes="(max-width: 1280px) 100vw, 1152px"
+              className="object-cover object-top"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent pointer-events-none" />
+          </div>
+        )}
 
         {/* Header Area */}
         <header className="space-y-6 mb-12 border-b border-slate-200 dark:border-white/10 pb-10">
@@ -156,7 +172,7 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
             <section id="tech-stack" className="scroll-mt-32 space-y-4">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <span className="text-accent font-mono text-sm">02.</span>
-                Tech Stack & Toolchain
+                Tech Stack &amp; Toolchain
               </h2>
               <div className="flex flex-wrap gap-2.5">
                 {project.technologies.map((tech) => (
@@ -174,7 +190,7 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
             <section id="features" className="scroll-mt-32 space-y-4">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <span className="text-accent font-mono text-sm">03.</span>
-                Key Capabilities & Features
+                Key Capabilities &amp; Features
               </h2>
               <ul className="space-y-3">
                 {project.features.map((feature, idx) => (
@@ -220,7 +236,7 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
                   <span className="text-accent font-mono text-sm">
                     {project.architecture ? '05.' : '04.'}
                   </span>
-                  What I Did & Key Contributions
+                  What I Did &amp; Key Contributions
                 </h2>
                 <div className="space-y-3">
                   {contributionsList.map((item, idx) => (
@@ -243,7 +259,7 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
                 <span className="text-accent font-mono text-sm">
                   {project.architecture ? (contributionsList.length > 0 ? '06.' : '05.') : (contributionsList.length > 0 ? '05.' : '04.')}
                 </span>
-                What I Learned & Engineering Takeaways
+                What I Learned &amp; Engineering Takeaways
               </h2>
               <ul className="space-y-3">
                 {project.learnings.map((learning, idx) => (
