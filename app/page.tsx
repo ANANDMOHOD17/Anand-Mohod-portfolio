@@ -1,6 +1,7 @@
 import HeroSection from '@/sections/hero/HeroSection';
 import AboutSection from '@/sections/about/AboutSection';
 import SkillsSection from '@/sections/skills/SkillsSection';
+import ProcessSection from '@/sections/process/ProcessSection';
 import ProjectsSection from '@/sections/projects/ProjectsSection';
 import AchievementsSection from '@/sections/achievements/AchievementsSection';
 import CertificatesSection from '@/sections/certificates/CertificatesSection';
@@ -15,6 +16,7 @@ export default function HomePage() {
       <HeroSection />
       <AboutSection />
       <SkillsSection />
+      <ProcessSection />
       <ProjectsSection />
       <AchievementsSection />
       <CertificatesSection />

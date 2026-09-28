@@ -59,7 +59,7 @@ export default function CertificatesPage() {
           </div>
         )}
 
-        {/* Certificates Grid or Empty State */}
+        {/* Certificates Grid */}
         {filteredCerts.length > 0 ? (
           <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence>
@@ -73,17 +73,19 @@ export default function CertificatesPage() {
                   transition={{ duration: 0.2 }}
                 >
                   <GlassCard
-                    className="p-6 h-full flex flex-col justify-between hover:border-accent/40 transition-all cursor-pointer group"
+                    className="p-6 h-full flex flex-col justify-between hover:border-[#6366F1]/40 transition-all cursor-pointer group border-slate-200 dark:border-[#27272F] bg-white/80 dark:bg-[#111116] shadow-glass-sm hover:shadow-[0_15px_35px_rgba(99,102,241,0.12)]"
                     onClick={() => setSelectedCert(cert)}
                     tilt={true}
                   >
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <div className="w-9 h-9 rounded-lg bg-teal-500/10 border border-teal-500/25 flex items-center justify-center text-teal-400 group-hover:scale-105 transition-transform">
-                          <Award className="w-5 h-5 text-teal-400" />
+                        {/* Icon — neutral idle */}
+                        <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-[#2E2E3A] flex items-center justify-center group-hover:scale-105 transition-transform">
+                          <Award className="w-5 h-5 text-[#8B8F9F]" />
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-300 font-medium">
+                          {/* Category badge — neutral */}
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.03] border border-[#2A2A36] text-[#9A9DAC] font-medium">
                             {cert.category}
                           </span>
                           <span className="text-xs font-mono text-[#94A3B8]">
@@ -96,7 +98,7 @@ export default function CertificatesPage() {
                         <span className="text-[10px] font-mono uppercase tracking-wider text-accent/90 block mb-1">
                           {cert.issuer}
                         </span>
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-accent transition-colors line-clamp-2">
+                        <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#A5B4FC] transition-colors line-clamp-2">
                           {cert.name}
                         </h3>
                       </div>
@@ -133,7 +135,7 @@ export default function CertificatesPage() {
             </AnimatePresence>
           </motion.div>
         ) : (
-          <GlassCard className="p-12 text-center max-w-2xl mx-auto">
+          <GlassCard className="p-12 text-center max-w-2xl mx-auto border-slate-200 dark:border-[#27272F] bg-white dark:bg-[#111116]">
             <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mx-auto mb-4">
               <ShieldCheck className="w-6 h-6" />
             </div>
@@ -147,7 +149,7 @@ export default function CertificatesPage() {
         )}
       </div>
 
-      {/* Full-Screen Liquid Glass Certificate Viewer */}
+      {/* Full-Screen Certificate Viewer */}
       <CertificateViewer
         certificate={selectedCert}
         onClose={() => setSelectedCert(null)}

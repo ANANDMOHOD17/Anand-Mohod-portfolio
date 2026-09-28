@@ -22,11 +22,20 @@ interface ContactMethod {
 export default function ContactSection() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [copiedLabel, setCopiedLabel] = useState<string | null>(null);
+  const toastTimerRef = React.useRef<NodeJS.Timeout | null>(null);
+  const copiedTimerRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  React.useEffect(() => {
+    return () => {
+      if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+      if (copiedTimerRef.current) clearTimeout(copiedTimerRef.current);
+    };
+  }, []);
 
   const showToast = useCallback((msg: string) => {
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
     setToastMessage(msg);
-    const t = setTimeout(() => setToastMessage(null), 2500);
-    return () => clearTimeout(t);
+    toastTimerRef.current = setTimeout(() => setToastMessage(null), 2500);
   }, []);
 
   const handleCopy = async (
@@ -40,7 +49,8 @@ export default function ContactSection() {
       await navigator.clipboard.writeText(copyValue);
       setCopiedLabel(label);
       showToast(`${label} copied to clipboard!`);
-      setTimeout(() => setCopiedLabel(null), 2000);
+      if (copiedTimerRef.current) clearTimeout(copiedTimerRef.current);
+      copiedTimerRef.current = setTimeout(() => setCopiedLabel(null), 2000);
     } catch {
       // Fallback: open href via parent anchor
     }
@@ -51,7 +61,7 @@ export default function ContactSection() {
       label: 'PHONE',
       value: profileData.contact.phone.display,
       href: profileData.contact.phone.value,
-      icon: <Phone className="w-6 h-6 text-accent" />,
+      icon: <Phone className="w-6 h-6 text-[#8B8F9F]" />,
       subtext: 'Tap to call directly',
       external: false,
       copyable: true,
@@ -61,7 +71,7 @@ export default function ContactSection() {
       label: 'EMAIL',
       value: profileData.contact.email.display,
       href: profileData.contact.email.value,
-      icon: <Mail className="w-6 h-6 text-accent" />,
+      icon: <Mail className="w-6 h-6 text-[#8B8F9F]" />,
       subtext: 'Inquiries & collaboration',
       external: false,
       copyable: true,
@@ -71,7 +81,7 @@ export default function ContactSection() {
       label: 'LINKEDIN',
       value: profileData.contact.linkedin.display,
       href: profileData.contact.linkedin.url,
-      icon: <Linkedin className="w-6 h-6 text-accent" />,
+      icon: <Linkedin className="w-6 h-6 text-[#8B8F9F]" />,
       subtext: 'Professional network',
       external: true,
       copyable: true,
@@ -81,7 +91,7 @@ export default function ContactSection() {
       label: 'GITHUB',
       value: profileData.contact.github.display,
       href: profileData.contact.github.url,
-      icon: <Github className="w-6 h-6 text-accent" />,
+      icon: <Github className="w-6 h-6 text-[#8B8F9F]" />,
       subtext: 'Code repositories & activity',
       external: true,
       copyable: true,
@@ -118,8 +128,8 @@ export default function ContactSection() {
                     tilt={true}
                   >
                     <div>
-                      {/* Icon */}
-                      <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-4 group-hover:scale-105 group-hover:border-accent/40 transition-transform shadow-sm">
+                      {/* Icon container — neutral idle, accent on hover */}
+                      <div className="w-12 h-12 rounded-xl bg-white/[0.04] border border-[#2E2E3A] flex items-center justify-center mb-4 group-hover:scale-105 group-hover:border-[#6366F1]/40 transition-transform">
                         {method.icon}
                       </div>
 

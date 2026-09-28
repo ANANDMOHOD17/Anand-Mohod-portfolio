@@ -15,7 +15,6 @@ export default function CertificatesSection() {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
   const [showAll, setShowAll] = useState(false);
 
-  // Initial view shows first 6; toggle reveals all 9
   const INITIAL_COUNT = 6;
   const displayCertificates = showAll ? certificatesData : certificatesData.slice(0, INITIAL_COUNT);
   const remainingCount = certificatesData.length - INITIAL_COUNT;
@@ -42,7 +41,6 @@ export default function CertificatesSection() {
           )}
         </div>
 
-        {/* Certificates Grid with Subtle Card Depth */}
         {displayCertificates.length > 0 ? (
           <>
             <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -58,16 +56,18 @@ export default function CertificatesSection() {
                     className="h-full"
                   >
                     <GlassCard
-                      className="p-6 h-full flex flex-col justify-between hover:border-accent/40 transition-all border-slate-200 dark:border-white/10 bg-white/80 dark:bg-graphite-900/80 group shadow-glass-sm hover:shadow-[0_15px_35px_rgba(99,102,241,0.12)]"
+                      className="p-6 h-full flex flex-col justify-between hover:border-[#6366F1]/40 transition-all border-slate-200 dark:border-[#27272F] bg-white/80 dark:bg-[#111116] group shadow-glass-sm hover:shadow-[0_15px_35px_rgba(99,102,241,0.12)]"
                       tilt={true}
                     >
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
-                          <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/25 flex items-center justify-center text-teal-400 group-hover:scale-105 transition-transform shadow-sm">
-                            <Award className="w-5 h-5 text-teal-400" />
+                          {/* Icon container — neutral idle */}
+                          <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-[#2E2E3A] flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
+                            <Award className="w-5 h-5 text-[#8B8F9F]" />
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-300 font-medium">
+                            {/* Category badge — neutral */}
+                            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.03] border border-[#2A2A36] text-[#9A9DAC] font-medium">
                               {cert.category}
                             </span>
                             <span className="text-xs font-mono text-[#94A3B8]">
@@ -80,7 +80,7 @@ export default function CertificatesSection() {
                           <span className="text-[10px] font-mono uppercase tracking-wider text-[#94A3B8] font-semibold block mb-1">
                             {cert.issuer}
                           </span>
-                          <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-[#F8FAFC] group-hover:text-accent transition-colors line-clamp-2 leading-snug">
+                          <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-[#F8FAFC] group-hover:text-[#A5B4FC] transition-colors line-clamp-2 leading-snug">
                             {cert.name}
                           </h3>
                         </div>
@@ -95,7 +95,7 @@ export default function CertificatesSection() {
                         <button
                           type="button"
                           onClick={() => setSelectedCert(cert)}
-                          className="inline-flex items-center gap-1.5 font-semibold text-[#818CF8] hover:text-[#6366F1] hover:underline focus:outline-none"
+                          className="inline-flex items-center gap-1.5 font-semibold text-[#818CF8] hover:text-[#A5B4FC] hover:underline focus:outline-none"
                         >
                           <Eye className="w-3.5 h-3.5 text-[#818CF8]" />
                           <span>View Certificate</span>
@@ -107,15 +107,16 @@ export default function CertificatesSection() {
                               href={cert.verificationUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-[11px] text-[#818CF8] hover:text-[#6366F1] hover:underline transition-colors"
+                              className="inline-flex items-center gap-1 text-[11px] text-[#818CF8] hover:text-[#A5B4FC] hover:underline transition-colors"
                               title="Verify on Credly / Issuer Portal"
                             >
                               <span>Verify</span>
                               <ExternalLink className="w-3 h-3" />
                             </a>
                           )}
-                          <span className="inline-flex items-center gap-1 text-teal-400 text-[10px] font-medium bg-teal-500/10 px-2 py-0.5 rounded-md border border-teal-500/20">
-                            <CheckCircle2 className="w-3 h-3 text-teal-400" />
+                          {/* Credential ID badge — neutral, not purple */}
+                          <span className="inline-flex items-center gap-1 text-[#9A9DAC] text-[10px] font-medium bg-white/[0.03] px-2 py-0.5 rounded-md border border-[#2A2A36]">
+                            <CheckCircle2 className="w-3 h-3 text-[#8B8F9F]" />
                             <span>{cert.credentialId ? `#${cert.credentialId.slice(0, 6)}` : 'Verified'}</span>
                           </span>
                         </div>
@@ -126,7 +127,7 @@ export default function CertificatesSection() {
               </AnimatePresence>
             </motion.div>
 
-            {/* "Show More" / "Show Less" Toggle Button */}
+            {/* Show More / Show Less toggle */}
             {certificatesData.length > INITIAL_COUNT && (
               <div className="mt-12 flex justify-center">
                 <button
@@ -147,7 +148,7 @@ export default function CertificatesSection() {
             )}
           </>
         ) : (
-          <GlassCard className="p-10 text-center max-w-2xl mx-auto border-slate-200 dark:border-white/10 bg-white dark:bg-graphite-900/60">
+          <GlassCard className="p-10 text-center max-w-2xl mx-auto border-slate-200 dark:border-white/10 bg-white dark:bg-[#111116]">
             <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mx-auto mb-4">
               <ShieldCheck className="w-6 h-6" />
             </div>

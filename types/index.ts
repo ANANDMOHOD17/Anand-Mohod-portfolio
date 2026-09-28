@@ -35,8 +35,8 @@ export interface Skill {
   name: string;
   category: SkillCategory;
   iconName: string;
-  description: string;
-  relatedProjects: string[]; // project slugs
+  description?: string;          // kept in data but no longer rendered
+  relatedProjects?: string[];    // kept in data but no longer rendered
 }
 
 export type ProjectStatus = 'Completed' | 'In Progress' | 'Prototype' | 'Archived' | 'Hackathon Project' | string;

@@ -118,7 +118,7 @@ export default function ProjectsSection() {
                           {featuredProject.year}
                         </span>
                       )}
-                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20">
+                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono text-[#A5B4FC] bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.30)]">
                         {featuredProject.status}
                       </span>
                       <span className="text-xs font-mono text-slate-400">
@@ -222,9 +222,9 @@ export default function ProjectsSection() {
                           <span className="text-[10px] text-indigo-300">LSTM Regression</span>
                         </div>
                         <div className="w-0.5 h-2.5 bg-accent/40 mx-auto" />
-                        <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between">
+                        <div className="p-3 rounded-xl bg-[rgba(99,102,241,0.08)] border border-[rgba(99,102,241,0.25)] flex items-center justify-between">
                           <span className="text-white font-bold">4. NASA &amp; IMD Feeds</span>
-                          <span className="text-[10px] text-emerald-300">Historical ETL</span>
+                          <span className="text-[10px] text-[#A5B4FC]">Historical ETL</span>
                         </div>
                       </div>
                     </div>

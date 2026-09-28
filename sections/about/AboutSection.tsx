@@ -71,18 +71,18 @@ export default function AboutSection() {
               viewport={{ once: true }}
               className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6"
             >
-              <div className="border-l-2 border-accent pl-4 py-2 bg-slate-50/60 dark:bg-white/[0.02] rounded-r-xl p-3 border border-slate-200/50 dark:border-white/5 shadow-sm">
+              <div className="border-l-2 border-[#30303A] pl-4 py-2 bg-slate-50/60 dark:bg-white/[0.02] rounded-r-xl p-3 border border-slate-200/50 dark:border-white/5 shadow-sm">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-accent" />
+                  <CheckCircle2 className="w-4 h-4 text-[#8B8F9F]" />
                   <h4 className="text-slate-900 dark:text-white font-bold text-sm">Systematic Problem Solving</h4>
                 </div>
                 <p className="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-normal pl-6">
                   Deconstructing complex problems down to core data structures and algorithmic efficiency.
                 </p>
               </div>
-              <div className="border-l-2 border-accent/60 pl-4 py-2 bg-slate-50/60 dark:bg-white/[0.02] rounded-r-xl p-3 border border-slate-200/50 dark:border-white/5 shadow-sm">
+              <div className="border-l-2 border-[#272733] pl-4 py-2 bg-slate-50/60 dark:bg-white/[0.02] rounded-r-xl p-3 border border-slate-200/50 dark:border-white/5 shadow-sm">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-accent/80" />
+                  <CheckCircle2 className="w-4 h-4 text-[#7F8496]" />
                   <h4 className="text-slate-900 dark:text-white font-bold text-sm">Pragmatic Execution</h4>
                 </div>
                 <p className="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-normal pl-6">
