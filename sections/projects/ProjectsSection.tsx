@@ -7,7 +7,8 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
 import GlassButton from '@/components/ui/GlassButton';
 import { projectsData } from '@/data/projects';
-import { ArrowUpRight, Github, Sparkles, ExternalLink, ArrowRight, Server, Brain, Monitor, Database } from 'lucide-react';
+import { ArrowUpRight, Github, Sparkles, ExternalLink, Activity } from 'lucide-react';
+import ArchitectureFlow3D from '@/components/3d/ArchitectureFlow3D';
 
 const projectFilters = ['All', 'AI / ML', 'Web', 'Hackathon'] as const;
 type ProjectFilter = (typeof projectFilters)[number];
@@ -21,9 +22,12 @@ export default function ProjectsSection() {
     .filter((p) => p.slug !== featuredProject.slug)
     .filter((p) => {
       if (selectedFilter === 'All') return true;
-      if (selectedFilter === 'AI / ML') return p.category.includes('AI') || p.category.includes('Machine Learning');
-      if (selectedFilter === 'Web') return p.category.includes('Web') || p.category.includes('Database');
-      if (selectedFilter === 'Hackathon') return p.category.includes('Hackathon') || p.status.includes('Hackathon');
+      if (selectedFilter === 'AI / ML')
+        return p.category.includes('AI') || p.category.includes('Machine Learning');
+      if (selectedFilter === 'Web')
+        return p.category.includes('Web') || p.category.includes('Database');
+      if (selectedFilter === 'Hackathon')
+        return p.category.includes('Hackathon') || p.status.includes('Hackathon');
       return true;
     });
 
@@ -49,7 +53,7 @@ export default function ProjectsSection() {
           </Link>
         </div>
 
-        {/* Filter Bar */}
+        {/* Filter Bar with Animated Active State */}
         <div className="flex flex-wrap items-center gap-2 mb-12">
           {projectFilters.map((filter) => {
             const isSelected = selectedFilter === filter;
@@ -58,42 +62,49 @@ export default function ProjectsSection() {
                 key={filter}
                 type="button"
                 onClick={() => setSelectedFilter(filter)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all ${
+                className={`relative px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all ${
                   isSelected
-                    ? 'bg-accent/15 text-accent border border-accent/40 shadow-sm'
+                    ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-400/40 shadow-sm'
                     : 'glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 border border-slate-200 dark:border-white/10'
                 }`}
               >
-                {filter === 'All' ? `All Projects (${projectsData.length})` : filter}
+                <span>{filter === 'All' ? `All Projects (${projectsData.length})` : filter}</span>
+                {isSelected && (
+                  <motion.div
+                    layoutId="activeProjectFilter"
+                    className="absolute bottom-0 left-2 right-2 h-0.5 bg-cyan-400 rounded-full shadow-[0_0_8px_rgba(56,189,248,0.6)]"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
               </button>
             );
           })}
         </div>
 
-        {/* 1. Prominent Flagship Featured Project (AI Climate Twin India) */}
+        {/* 1. Flagship Featured Project (AI Climate Twin India) with 3D Architecture Pipeline */}
         {isFlagshipMatching && (
-          <div className="mb-14">
+          <div className="mb-14 space-y-8">
             <GlassCard
-              className="border-slate-200 dark:border-white/15 bg-white/90 dark:bg-graphite-900/90 shadow-glass-md hover:border-accent/40 transition-all p-6 md:p-8 lg:p-10"
+              className="border-slate-200 dark:border-white/15 bg-white/90 dark:bg-graphite-900/90 shadow-glass-md hover:border-cyan-400/40 transition-all p-6 md:p-8 lg:p-10"
               tilt={true}
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 {/* Left: Project Details */}
                 <div className="lg:col-span-7 space-y-5">
                   <div className="flex flex-wrap items-center gap-2.5">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold text-accent bg-accent/10 border border-accent/30">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold text-cyan-400 bg-cyan-500/10 border border-cyan-400/30">
                       <Sparkles className="w-3.5 h-3.5" />
                       FLAGSHIP ARCHITECTURE
                     </span>
                     {featuredProject.year && (
-                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono text-accent bg-accent/5 border border-accent/20">
+                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono text-cyan-400 bg-cyan-500/5 border border-cyan-400/20">
                         {featuredProject.year}
                       </span>
                     )}
-                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono text-emerald-500 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20">
+                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20">
                       {featuredProject.status}
                     </span>
-                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                    <span className="text-xs font-mono text-slate-400">
                       {featuredProject.category}
                     </span>
                   </div>
@@ -103,7 +114,7 @@ export default function ProjectsSection() {
                       {featuredProject.title}
                     </h3>
                     {featuredProject.subtitle && (
-                      <p className="text-sm sm:text-base font-mono text-accent font-medium mt-1">
+                      <p className="text-sm sm:text-base font-mono text-cyan-400 font-medium mt-1">
                         {featuredProject.subtitle}
                       </p>
                     )}
@@ -113,7 +124,7 @@ export default function ProjectsSection() {
                     {featuredProject.shortDescription}
                   </p>
 
-                  {/* Tech Stack Chips (max 4 + count) */}
+                  {/* Tech Stack Chips */}
                   <div className="flex flex-wrap gap-2 pt-1">
                     {featuredProject.technologies.slice(0, 5).map((tech) => (
                       <span
@@ -124,7 +135,7 @@ export default function ProjectsSection() {
                       </span>
                     ))}
                     {featuredProject.technologies.length > 5 && (
-                      <span className="px-2.5 py-1 rounded-md text-xs font-mono text-accent bg-accent/10 border border-accent/25">
+                      <span className="px-2.5 py-1 rounded-md text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-400/25">
                         +{featuredProject.technologies.length - 5} More
                       </span>
                     )}
@@ -139,7 +150,7 @@ export default function ProjectsSection() {
                       </GlassButton>
                     </Link>
 
-                    {/* Reserved spaces for real URLs without inventing links */}
+                    {/* Reserved spaces for real URLs */}
                     {featuredProject.githubUrl && (
                       <GlassButton
                         variant="secondary"
@@ -163,99 +174,53 @@ export default function ProjectsSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <ExternalLink className="w-4 h-4 text-accent" />
+                        <ExternalLink className="w-4 h-4 text-cyan-400" />
                         <span>Live Demo</span>
                       </GlassButton>
                     )}
                   </div>
                 </div>
 
-                {/* Right: Clean Visual Architecture Flow Diagram */}
-                <div className="lg:col-span-5 relative">
-                  <div className="relative rounded-2xl bg-slate-900 dark:bg-graphite-950 border border-slate-700 dark:border-white/10 p-5 sm:p-6 shadow-inner text-white">
-                    {/* Header */}
-                    <div className="flex items-center justify-between pb-3 border-b border-white/10 text-xs font-mono text-slate-400">
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-400/80" />
-                      </div>
-                      <span className="text-[11px] text-accent">Architecture Topology</span>
+                {/* Right: Flagship Interactive Architecture Pipeline */}
+                <div className="lg:col-span-5">
+                  <div className="relative rounded-2xl overflow-hidden bg-graphite-950 border border-white/10 p-5 shadow-2xl">
+                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10 text-xs font-mono text-cyan-400">
+                      <Activity className="w-3.5 h-3.5 animate-pulse" />
+                      <span>End-to-End System Pipeline</span>
                     </div>
 
-                    {/* Flowchart Nodes */}
-                    <div className="py-4 space-y-3">
-                      {/* Node 1: Client */}
-                      <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-between hover:border-accent/40 transition-colors">
-                        <div className="flex items-center gap-2.5">
-                          <div className="p-1.5 rounded-lg bg-sky-500/10 text-accent">
-                            <Monitor className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <span className="text-xs font-mono font-bold block text-white">Client Interface</span>
-                            <span className="text-[10px] text-slate-400">React.js & Mapbox Geospatial</span>
-                          </div>
-                        </div>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-accent/15 text-accent border border-accent/30">
-                          UI Layer
-                        </span>
+                    <div className="space-y-3 font-mono text-xs">
+                      <div className="p-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-between">
+                        <span className="text-white font-bold">1. React + Mapbox GL</span>
+                        <span className="text-[10px] text-cyan-300">Geospatial UI</span>
                       </div>
-
-                      {/* Connection Flow Arrow */}
-                      <div className="flex items-center justify-center gap-1 text-slate-500 py-0.5">
-                        <div className="w-0.5 h-3 bg-accent/40" />
+                      <div className="w-0.5 h-2.5 bg-cyan-400/50 mx-auto" />
+                      <div className="p-3 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-between">
+                        <span className="text-white font-bold">2. FastAPI Backend</span>
+                        <span className="text-[10px] text-sky-300">&lt; 45ms Async API</span>
                       </div>
-
-                      {/* Node 2: FastAPI */}
-                      <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-between hover:border-accent/40 transition-colors">
-                        <div className="flex items-center gap-2.5">
-                          <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">
-                            <Server className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <span className="text-xs font-mono font-bold block text-white">API Server</span>
-                            <span className="text-[10px] text-slate-400">FastAPI Asynchronous Backend</span>
-                          </div>
-                        </div>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-                          REST API
-                        </span>
+                      <div className="w-0.5 h-2.5 bg-cyan-400/50 mx-auto" />
+                      <div className="p-3 rounded-xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-between">
+                        <span className="text-white font-bold">3. TensorFlow Engine</span>
+                        <span className="text-[10px] text-violet-300">LSTM Regression</span>
                       </div>
-
-                      {/* Connection Flow Arrow */}
-                      <div className="flex items-center justify-center gap-1 text-slate-500 py-0.5">
-                        <div className="w-0.5 h-3 bg-accent/40" />
+                      <div className="w-0.5 h-2.5 bg-cyan-400/50 mx-auto" />
+                      <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between">
+                        <span className="text-white font-bold">4. NASA & IMD Feeds</span>
+                        <span className="text-[10px] text-emerald-300">Historical ETL</span>
                       </div>
-
-                      {/* Node 3: TensorFlow & Datasets */}
-                      <div className="p-3 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-between hover:border-accent/40 transition-colors">
-                        <div className="flex items-center gap-2.5">
-                          <div className="p-1.5 rounded-lg bg-purple-500/10 text-purple-400">
-                            <Brain className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <span className="text-xs font-mono font-bold block text-white">ML Inference Engine</span>
-                            <span className="text-[10px] text-slate-400">TensorFlow + IMD, NASA, ERA5, ISRO</span>
-                          </div>
-                        </div>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-500/15 text-purple-400 border border-purple-500/30">
-                          AI Engine
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="pt-2 border-t border-white/10 text-[11px] font-mono text-slate-400 text-center flex items-center justify-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>End-to-End Pipeline Verified</span>
                     </div>
                   </div>
                 </div>
               </div>
             </GlassCard>
+
+            {/* Interactive Architecture Flow Explorer */}
+            <ArchitectureFlow3D />
           </div>
         )}
 
-        {/* 2. Additional Project Cards Responsive Grid (3 / 2 / 1 columns) */}
+        {/* 2. Additional Project Cards with 3D Depth & Tilt */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence>
             {filteredSecondary.map((project) => (
@@ -269,7 +234,7 @@ export default function ProjectsSection() {
                 className="h-full"
               >
                 <GlassCard
-                  className="p-6 md:p-7 h-full flex flex-col justify-between hover:border-accent/40 transition-all group border-slate-200 dark:border-white/10 bg-white/80 dark:bg-graphite-900/80"
+                  className="p-6 md:p-7 h-full flex flex-col justify-between hover:border-cyan-400/40 transition-all group border-slate-200 dark:border-white/10 bg-white/80 dark:bg-graphite-900/80 shadow-glass-sm hover:shadow-[0_15px_35px_rgba(56,189,248,0.12)]"
                   tilt={true}
                 >
                   <div className="space-y-4">
@@ -279,7 +244,7 @@ export default function ProjectsSection() {
                       </span>
                       <div className="flex items-center gap-2 shrink-0">
                         {project.year && (
-                          <span className="text-xs font-mono text-accent font-semibold">
+                          <span className="text-xs font-mono text-cyan-400 font-semibold">
                             {project.year}
                           </span>
                         )}
@@ -290,7 +255,7 @@ export default function ProjectsSection() {
                     </div>
 
                     <div>
-                      <h4 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-accent transition-colors leading-tight">
+                      <h4 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-400 transition-colors leading-tight">
                         {project.title}
                       </h4>
                       {project.subtitle && (
@@ -304,7 +269,7 @@ export default function ProjectsSection() {
                       {project.shortDescription}
                     </p>
 
-                    {/* Tech Chips (max 4 plus count) */}
+                    {/* Tech Chips */}
                     <div className="flex flex-wrap gap-1.5 pt-2">
                       {project.technologies.slice(0, 4).map((tech) => (
                         <span
@@ -315,7 +280,7 @@ export default function ProjectsSection() {
                         </span>
                       ))}
                       {project.technologies.length > 4 && (
-                        <span className="px-2 py-0.5 rounded text-[11px] font-mono text-accent bg-accent/10 border border-accent/20">
+                        <span className="px-2 py-0.5 rounded text-[11px] font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-400/20">
                           +{project.technologies.length - 4}
                         </span>
                       )}
@@ -326,20 +291,20 @@ export default function ProjectsSection() {
                   <div className="mt-8 pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:underline transition-colors"
                     >
                       <span>Read Case Study</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </Link>
 
-                    {/* Space reserved for Live Demo & GitHub links (hidden if null) */}
+                    {/* Space reserved for Live Demo & GitHub links */}
                     <div className="flex items-center gap-2">
                       {project.liveUrl && (
                         <a
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-slate-500 hover:text-accent p-1"
+                          className="text-slate-500 hover:text-cyan-400 p-1"
                           aria-label={`View live demo of ${project.title}`}
                           title="Live Demo"
                         >
@@ -369,4 +334,3 @@ export default function ProjectsSection() {
     </section>
   );
 }
-

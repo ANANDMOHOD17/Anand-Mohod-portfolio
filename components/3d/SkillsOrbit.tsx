@@ -197,12 +197,12 @@ function OrbitSphere({
     }
   });
 
-  const handlePointerDown = (e: React.PointerEvent) => {
+  const handlePointerDown = (e: any) => {
     isDraggingRef.current = true;
     prevPointerRef.current = { x: e.clientX, y: e.clientY };
   };
 
-  const handlePointerMove = (e: React.PointerEvent) => {
+  const handlePointerMove = (e: any) => {
     if (!isDraggingRef.current || !groupRef.current) return;
 
     const deltaX = e.clientX - prevPointerRef.current.x;
