@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
 import { projectsData } from '@/data/projects';
-import { ArrowLeft, ArrowUpRight, Github } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Github, ExternalLink } from 'lucide-react';
 
 const categories = ['All', 'Web Development', 'Full Stack', 'AI / ML', 'Database'] as const;
 type FilterCategory = (typeof categories)[number];
@@ -29,7 +29,7 @@ export default function ProjectsPage() {
         {/* Back link */}
         <Link
           href="/#projects"
-          className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-accent transition-colors mb-8 group"
+          className="inline-flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-accent transition-colors mb-8 group"
         >
           <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
           <span>Back to Home</span>
@@ -49,10 +49,10 @@ export default function ProjectsPage() {
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-medium tracking-wide transition-all ${
+              className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all ${
                 selectedCategory === cat
                   ? 'bg-accent/15 text-accent border border-accent/40 shadow-sm'
-                  : 'glass-panel text-slate-400 hover:text-white hover:bg-white/5'
+                  : 'glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 border border-slate-200 dark:border-white/10'
               }`}
             >
               {cat}
@@ -71,75 +71,94 @@ export default function ProjectsPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.25 }}
+                className="h-full"
               >
                 <GlassCard
-                  className="p-6 h-full flex flex-col justify-between hover:border-accent/40 transition-all group"
+                  className="p-6 md:p-7 h-full flex flex-col justify-between hover:border-accent/40 transition-all group border-slate-200 dark:border-white/10 bg-white/80 dark:bg-graphite-900/80"
                   tilt={true}
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-mono text-slate-500 truncate">
+                      <span className="text-xs font-mono text-slate-500 dark:text-slate-400 truncate">
                         {project.category}
                       </span>
                       <div className="flex items-center gap-2 shrink-0">
                         {project.year && (
-                          <span className="text-xs font-mono text-accent/80">
+                          <span className="text-xs font-mono text-accent font-semibold">
                             {project.year}
                           </span>
                         )}
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-mono text-slate-400 bg-white/5 border border-white/10">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-mono text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10">
                           {project.status}
                         </span>
                       </div>
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors">
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-accent transition-colors leading-tight">
                         {project.title}
                       </h3>
                       {project.subtitle && (
-                        <span className="block text-xs font-normal text-slate-400 mt-1 font-mono">
+                        <span className="block text-xs font-normal text-slate-500 dark:text-slate-400 mt-1 font-mono">
                           {project.subtitle}
                         </span>
                       )}
                     </div>
 
-                    <p className="text-slate-400 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                    <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed line-clamp-3">
                       {project.shortDescription}
                     </p>
 
                     <div className="flex flex-wrap gap-1.5 pt-2">
-                      {project.technologies.map((tech) => (
+                      {project.technologies.slice(0, 4).map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-0.5 rounded text-[10px] font-mono text-slate-300 bg-white/5 border border-white/10"
+                          className="px-2 py-0.5 rounded text-[10px] font-mono text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10"
                         >
                           {tech}
                         </span>
                       ))}
+                      {project.technologies.length > 4 && (
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono text-accent bg-accent/10 border border-accent/20">
+                          +{project.technologies.length - 4}
+                        </span>
+                      )}
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                  <div className="mt-8 pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline transition-colors"
                     >
                       <span>Read Case Study</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </Link>
 
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-slate-400 hover:text-white transition-colors p-1"
-                        aria-label={`Source code for ${project.title}`}
-                      >
-                        <Github className="w-4 h-4" />
-                      </a>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-slate-500 hover:text-accent p-1"
+                          aria-label={`Live demo for ${project.title}`}
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors p-1"
+                          aria-label={`Source code for ${project.title}`}
+                        >
+                          <Github className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </GlassCard>
               </motion.div>
@@ -150,3 +169,4 @@ export default function ProjectsPage() {
     </div>
   );
 }
+
