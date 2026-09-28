@@ -2,12 +2,14 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { profileData } from '@/data/profile';
-import { Terminal, Cpu, Lightbulb, Compass } from 'lucide-react';
+import { Cpu, Lightbulb } from 'lucide-react';
 
 export default function AboutSection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section id="about" className="py-24 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,40 +21,52 @@ export default function AboutSection() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Main Editorial Text (Not trapped in multiple cards) */}
-          <div className="lg:col-span-8 space-y-6 text-slate-300 text-base md:text-lg leading-relaxed">
-            <p className="text-xl md:text-2xl font-medium text-white leading-relaxed">
+          {/* Main Editorial Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-8 space-y-6 text-slate-700 dark:text-slate-300 text-base md:text-lg leading-relaxed"
+          >
+            <p className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white leading-relaxed">
               {profileData.about.lead}
             </p>
 
             {profileData.about.paragraphs.map((para, index) => (
-              <p key={index} className="text-slate-400 font-normal">
+              <p key={index} className="text-slate-600 dark:text-slate-400 font-normal leading-relaxed">
                 {para}
               </p>
             ))}
 
             {/* Core Values / Philosophy */}
             <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="border-l-2 border-accent/40 pl-4 py-1">
-                <h4 className="text-white font-semibold text-sm">Systematic Problem Solving</h4>
-                <p className="text-slate-400 text-xs mt-1 leading-normal">
+              <div className="border-l-2 border-accent pl-4 py-1.5 bg-slate-50/50 dark:bg-white/[0.02] rounded-r-xl p-3">
+                <h4 className="text-slate-900 dark:text-white font-bold text-sm">Systematic Problem Solving</h4>
+                <p className="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-normal">
                   Deconstructing complex problems down to core data structures and algorithmic efficiency.
                 </p>
               </div>
-              <div className="border-l-2 border-white/20 pl-4 py-1">
-                <h4 className="text-white font-semibold text-sm">Pragmatic Execution</h4>
-                <p className="text-slate-400 text-xs mt-1 leading-normal">
+              <div className="border-l-2 border-slate-300 dark:border-white/20 pl-4 py-1.5 bg-slate-50/50 dark:bg-white/[0.02] rounded-r-xl p-3">
+                <h4 className="text-slate-900 dark:text-white font-bold text-sm">Pragmatic Execution</h4>
+                <p className="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-normal">
                   Writing clean, readable code and testing edge cases rather than over-engineering abstractions.
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Featured Portrait & Structured Highlights Panel */}
-          <div className="lg:col-span-4 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.15 }}
+            className="lg:col-span-4 space-y-6"
+          >
             {/* Portrait Card */}
-            <div className="glass-panel rounded-2xl p-3 border border-white/15 shadow-glass-md group transition-all duration-300 hover:border-accent/30">
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10 bg-graphite-900">
+            <div className="glass-panel rounded-2xl p-3 border border-slate-200 dark:border-white/15 shadow-glass-md group transition-all duration-300 hover:border-accent/40">
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-slate-200/50 dark:border-white/10 bg-slate-900 dark:bg-graphite-900">
                 <Image
                   src={profileData.avatar}
                   alt={profileData.name}
@@ -75,10 +89,10 @@ export default function AboutSection() {
             </div>
 
             {/* Profile Snapshot */}
-            <div className="glass-panel rounded-2xl p-6 border border-white/10 space-y-6">
-              <div className="flex items-center gap-2 pb-4 border-b border-white/10">
+            <div className="glass-panel rounded-2xl p-6 border border-slate-200 dark:border-white/10 space-y-6">
+              <div className="flex items-center gap-2 pb-4 border-b border-slate-200 dark:border-white/10">
                 <Cpu className="w-4 h-4 text-accent" />
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-300">
+                <span className="text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 font-semibold">
                   Profile Snapshot
                 </span>
               </div>
@@ -86,20 +100,20 @@ export default function AboutSection() {
               <dl className="space-y-4">
                 {profileData.about.highlights.map((item, index) => (
                   <div key={index} className="flex flex-col">
-                    <dt className="text-xs text-slate-500 font-mono">{item.label}</dt>
-                    <dd className="text-sm font-medium text-slate-200 mt-0.5">{item.value}</dd>
+                    <dt className="text-xs text-slate-500 dark:text-slate-400 font-mono">{item.label}</dt>
+                    <dd className="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-0.5">{item.value}</dd>
                   </div>
                 ))}
               </dl>
 
-              <div className="pt-4 border-t border-white/10">
-                <div className="flex items-center gap-2 text-xs text-accent">
+              <div className="pt-4 border-t border-slate-200 dark:border-white/10">
+                <div className="flex items-center gap-2 text-xs text-accent font-medium">
                   <Lightbulb className="w-3.5 h-3.5" />
                   <span>Always seeking challenging technical opportunities</span>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

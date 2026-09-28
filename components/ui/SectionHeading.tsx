@@ -29,23 +29,23 @@ export default function SectionHeading({
       {/* Section index and label */}
       <div
         className={cn(
-          'inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-mono tracking-wider text-accent border border-accent/20 bg-accent/5 mb-4',
+          'inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono tracking-wider text-accent border border-accent/30 bg-accent/10 mb-4 shadow-sm',
           align === 'center' && 'justify-center'
         )}
       >
-        <span className="text-accent/60">{number}</span>
-        <span>//</span>
-        <span className="uppercase">{label}</span>
+        <span className="font-semibold text-accent">{number}</span>
+        <span className="text-accent/60">/</span>
+        <span className="uppercase font-medium">{label}</span>
       </div>
 
       {/* Main Section Title */}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
         {title}
       </h2>
 
       {/* Optional Editorial Subtitle */}
       {description && (
-        <p className="mt-4 text-base md:text-lg text-slate-400 leading-relaxed font-normal">
+        <p className="mt-3.5 text-base md:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
           {description}
         </p>
       )}
