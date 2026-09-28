@@ -6,6 +6,7 @@ import Footer from '@/components/navigation/Footer';
 import CustomCursor from '@/components/ui/CustomCursor';
 import ScrollProgressBar from '@/components/ui/ScrollProgressBar';
 import IntroLoader from '@/components/ui/IntroLoader';
+import FloatingContactButton from '@/components/ui/FloatingContactButton';
 import { profileData } from '@/data/profile';
 
 const inter = Inter({
@@ -97,6 +98,7 @@ export default function RootLayout({
         <Navbar />
         <main id="main-content" className="relative z-10">{children}</main>
         <Footer />
+        <FloatingContactButton />
       </body>
     </html>
   );
