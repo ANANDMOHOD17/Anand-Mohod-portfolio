@@ -12,24 +12,24 @@ const config: Config = {
     extend: {
       colors: {
         graphite: {
-          950: '#0d0d10',
-          900: '#111115',
-          850: '#16161b',
-          800: '#1c1c24',
-          750: '#23232e',
-          700: '#2c2c3b',
-          600: '#3d3d52',
-          500: '#52526e',
-          400: '#757596',
-          300: '#9898b0',
-          200: '#c8c8d8',
-          100: '#ededf2',
-          50: '#f7f7f8',
+          950: '#0A0A0F', // Primary Background
+          900: '#111116', // Cards / Primary Surface
+          850: '#16161D', // Elevated Surface
+          800: '#1A1A24',
+          750: '#27272F', // Default Border
+          700: '#3F3F52', // Border Hover
+          600: '#4F4F6A',
+          500: '#64748B', // Very Muted
+          400: '#94A3B8', // Muted
+          300: '#CBD5E1', // Secondary Text
+          200: '#E2E8F0',
+          100: '#F1F5F9',
+          50: '#F8FAFC',  // Primary Text
         },
         accent: {
-          DEFAULT: '#6366f1', // Indigo 500
-          hover: '#818cf8',
-          active: '#4338ca',
+          DEFAULT: '#6366F1', // Primary Accent (Indigo 500)
+          hover: '#818CF8',   // Secondary Accent (Indigo 400)
+          active: '#4F46E5',  // Deep Accent (Indigo 600)
           dim: 'rgba(99, 102, 241, 0.12)',
           glow: 'rgba(99, 102, 241, 0.20)',
         },

@@ -163,21 +163,21 @@ export default function SkillsSection() {
                   transition={{ duration: 0.2 }}
                   className={`glass-panel rounded-2xl p-4 sm:p-5 border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
                     isExpanded
-                      ? 'border-accent shadow-accent-glow bg-white dark:bg-graphite-800/90'
-                      : 'border-slate-200 dark:border-white/10 hover:border-accent/40 bg-white/80 dark:bg-graphite-900/80'
+                      ? 'border-[#6366F1] shadow-accent-glow bg-white dark:bg-[#16161D]'
+                      : 'border-slate-200 dark:border-[#27272F] hover:border-[#6366F1] bg-white/80 dark:bg-[#111116] hover:bg-white dark:hover:bg-[#16161D]'
                   }`}
                 >
                   {/* Card Header */}
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent shrink-0 shadow-sm">
+                      <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-[#6366F1] shrink-0 shadow-sm">
                         {getSkillIcon(skill.iconName)}
                       </div>
                       <div>
-                        <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">
+                        <h3 className="text-base font-bold text-slate-900 dark:text-[#F8FAFC] leading-tight">
                           {skill.name}
                         </h3>
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mt-0.5 block">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-[#94A3B8] mt-0.5 block">
                           {skill.category}
                         </span>
                       </div>
@@ -201,15 +201,15 @@ export default function SkillsSection() {
                   {/* Badges Row: "Used in N projects" */}
                   <div className="mt-3.5 flex items-center justify-between gap-2 pt-3 border-t border-slate-200/60 dark:border-white/5 text-[11px] font-mono">
                     {skill.relatedProjects.length > 0 ? (
-                      <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent/10 border border-accent/25 text-accent font-semibold">
-                        <Briefcase className="w-3 h-3" />
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#16162A] border border-[#35356A] text-[#818CF8] font-semibold">
+                        <Briefcase className="w-3 h-3 text-[#818CF8]" />
                         <span>
                           Used in {skill.relatedProjects.length}{' '}
                           {skill.relatedProjects.length === 1 ? 'Project' : 'Projects'}
                         </span>
                       </span>
                     ) : (
-                      <span className="text-slate-400 dark:text-slate-500">
+                      <span className="text-slate-400 dark:text-[#94A3B8]">
                         Core Competency
                       </span>
                     )}
@@ -217,7 +217,7 @@ export default function SkillsSection() {
                     <button
                       type="button"
                       onClick={() => toggleSkillExpand(skill.name)}
-                      className="text-[11px] text-accent font-semibold hover:underline"
+                      className="text-[11px] text-[#818CF8] hover:text-[#6366F1] font-semibold hover:underline"
                     >
                       {isExpanded ? 'Less' : 'Details'}
                     </button>

@@ -252,12 +252,12 @@ export default function ProjectsSection() {
                 className="h-full"
               >
                 <GlassCard
-                  className="h-full flex flex-col overflow-hidden hover:border-accent/40 transition-all group border-slate-200 dark:border-white/10 bg-white/80 dark:bg-graphite-900/80 shadow-glass-sm hover:shadow-[0_15px_35px_rgba(99,102,241,0.12)]"
+                  className="h-full flex flex-col overflow-hidden hover:border-[#6366F1] transition-all group border-slate-200 dark:border-[#27272F] bg-white/80 dark:bg-[#111116] hover:bg-white dark:hover:bg-[#16161D] shadow-glass-sm hover:shadow-[0_15px_35px_rgba(99,102,241,0.12)]"
                   tilt={true}
                 >
                   {/* Project Preview Image — shown ABOVE all text */}
                   {project.image && (
-                    <div className="relative w-full aspect-video overflow-hidden bg-slate-100 dark:bg-graphite-950 flex-shrink-0">
+                    <div className="relative w-full aspect-video overflow-hidden bg-slate-100 dark:bg-[#0A0A0F] flex-shrink-0">
                       <Image
                         src={project.image}
                         alt={`Screenshot preview of ${project.title}`}
@@ -274,33 +274,33 @@ export default function ProjectsSection() {
                   <div className="p-6 md:p-7 flex flex-col flex-1 justify-between">
                     <div className="space-y-4">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400 truncate">
+                        <span className="text-xs font-mono text-slate-500 dark:text-[#94A3B8] truncate">
                           {project.category}
                         </span>
                         <div className="flex items-center gap-2 shrink-0">
                           {project.year && (
-                            <span className="text-xs font-mono text-accent font-semibold">
+                            <span className="text-xs font-mono text-[#6366F1] font-semibold">
                               {project.year}
                             </span>
                           )}
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-mono text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-mono text-slate-600 dark:text-[#94A3B8] bg-slate-100 dark:bg-[#16162A] border border-slate-200 dark:border-[#35356A]">
                             {project.status}
                           </span>
                         </div>
                       </div>
 
                       <div>
-                        <h4 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-accent transition-colors leading-tight">
+                        <h4 className="text-xl font-bold text-slate-900 dark:text-[#F8FAFC] group-hover:text-accent transition-colors leading-tight">
                           {project.title}
                         </h4>
                         {project.subtitle && (
-                          <span className="block text-xs font-normal text-slate-500 dark:text-slate-400 mt-1 font-mono">
+                          <span className="block text-xs font-normal text-slate-500 dark:text-[#94A3B8] mt-1 font-mono">
                             {project.subtitle}
                           </span>
                         )}
                       </div>
 
-                      <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed line-clamp-3">
+                      <p className="text-slate-600 dark:text-[#CBD5E1] text-sm leading-relaxed line-clamp-3">
                         {project.shortDescription}
                       </p>
 
@@ -309,13 +309,13 @@ export default function ProjectsSection() {
                         {project.technologies.slice(0, 4).map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-0.5 rounded text-[11px] font-mono text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10"
+                            className="px-2 py-0.5 rounded text-[11px] font-mono text-slate-700 dark:text-[#818CF8] bg-slate-100 dark:bg-[#16162A] border border-slate-200 dark:border-[#35356A]"
                           >
                             {tech}
                           </span>
                         ))}
                         {project.technologies.length > 4 && (
-                          <span className="px-2 py-0.5 rounded text-[11px] font-mono text-accent bg-accent/10 border border-accent/20">
+                          <span className="px-2 py-0.5 rounded text-[11px] font-mono text-[#818CF8] bg-[#16162A] border border-[#35356A]">
                             +{project.technologies.length - 4}
                           </span>
                         )}
