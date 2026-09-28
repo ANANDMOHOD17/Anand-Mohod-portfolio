@@ -1,13 +1,21 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/navigation/Navbar';
 import Footer from '@/components/navigation/Footer';
 import CustomCursor from '@/components/ui/CustomCursor';
 import ScrollProgressBar from '@/components/ui/ScrollProgressBar';
 import IntroLoader from '@/components/ui/IntroLoader';
 import FloatingContactButton from '@/components/ui/FloatingContactButton';
+import { SmoothScrollProvider } from '@/components/ui/SmoothScrollProvider';
+import ReduceMotionToggle from '@/components/ui/ReduceMotionToggle';
 import { profileData } from '@/data/profile';
+
+const GlobalBackground = dynamic(
+  () => import('@/components/3d/GlobalBackground'),
+  { ssr: false }
+);
 
 const inter = Inter({
   subsets: ['latin'],
@@ -83,22 +91,30 @@ export default function RootLayout({
                 } else {
                   document.documentElement.classList.add('dark');
                 }
+                const savedMotion = localStorage.getItem('am_reduce_motion');
+                if (savedMotion === 'true') {
+                  document.documentElement.classList.add('reduced-motion');
+                }
               } catch (_) {}
             `,
           }}
         />
       </head>
       <body className="bg-graphite-950 dark:bg-graphite-950 text-slate-800 dark:text-slate-100 min-h-screen selection:bg-accent/20 selection:text-white relative transition-colors duration-300">
-        <a href="#main-content" className="skip-to-content">
-          Skip to main content
-        </a>
-        <IntroLoader />
-        <ScrollProgressBar />
-        <CustomCursor />
-        <Navbar />
-        <main id="main-content" className="relative z-10">{children}</main>
-        <Footer />
-        <FloatingContactButton />
+        <SmoothScrollProvider>
+          <a href="#main-content" className="skip-to-content">
+            Skip to main content
+          </a>
+          <GlobalBackground />
+          <IntroLoader />
+          <ScrollProgressBar />
+          <CustomCursor />
+          <Navbar />
+          <main id="main-content" className="relative z-10">{children}</main>
+          <Footer />
+          <FloatingContactButton />
+          <ReduceMotionToggle />
+        </SmoothScrollProvider>
       </body>
     </html>
   );
