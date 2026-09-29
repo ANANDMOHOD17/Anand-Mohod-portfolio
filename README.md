@@ -5,14 +5,15 @@
 
 [![Deploy Portfolio to GitHub Pages](https://github.com/ANANDMOHOD17/Anand-Mohod-portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/ANANDMOHOD17/Anand-Mohod-portfolio/actions/workflows/deploy.yml)
 
-A custom-crafted, production-ready personal developer portfolio engineered with a **Charcoal & Deep Indigo** aesthetic, **Liquid Glass UI**, interactive **CSS 3D perspective tilt photo effect**, editorial typography, and high-performance micro-interactions.
+A custom-crafted, production-ready personal developer portfolio engineered with a **Charcoal & Deep Indigo** aesthetic, **Liquid Glass UI**, interactive components, editorial typography, and high-performance micro-interactions.
 
 ---
 
 ## 💎 Features
 
-- **Charcoal & Deep Indigo System**: Bespoke design language with calibrated backdrop blur, subtle borders (`rgba(255, 255, 255, 0.08)`), soft highlights, and dynamic cursor specular reflections.
-- **Tasteful 3D Photo Motion**: Smooth CSS 3D perspective tilt tied to cursor coordinates with spring physics and subtle ambient sheen.
+- **Charcoal & Deep Indigo System**: Minimalist, high-end developer design language with calibrated backdrop blur, subtle borders (`#272733`), soft highlights, and dynamic cursor reflections.
+- **Process Methodology**: Dedicated *"HOW I BUILD — FROM IDEA TO ITERATION"* interactive connected timeline.
+- **Engineering Growth Architecture**: Asymmetric milestone roadmap representing progression and core competencies.
 - **Truthful & Authentic Content**: Engineered specifically for an undergraduate Computer Engineering student—strictly zero fake percentages, zero fake metrics, and zero generic AI templates.
 - **Strict Contact Integration**: Exactly 4 direct contact options:
   - 📞 **Phone** (`tel:` link)
@@ -39,7 +40,7 @@ A custom-crafted, production-ready personal developer portfolio engineered with 
 ## 📁 Directory Structure
 
 ```
-anand-mohod-portfolio/
+Anand-Mohod-portfolio/
 ├── app/
 │   ├── layout.tsx              # Root layout with SEO metadata & custom cursor
 │   ├── page.tsx                # Homepage with continuous narrative flow
@@ -55,10 +56,10 @@ anand-mohod-portfolio/
 │   └── resume/
 │       └── page.tsx            # Dedicated CV preview & download
 ├── components/
-│   ├── 3d/                     # Three.js canvas, materials, & WebGL fallback
 │   ├── navigation/             # Liquid Glass Navbar & Minimal Footer
-│   ├── ui/                     # GlassCard, GlassButton, CustomCursor, SectionHeading
+│   ├── ui/                     # GlassCard, GlassButton, CustomCursor, SectionHeading, etc.
 │   └── viewer/                 # Full-screen CertificateViewer modal
+├── sections/                   # Modular portfolio sections (Hero, About, Skills, Process, Projects, etc.)
 ├── data/
 │   ├── profile.ts              # Profile details & contact links
 │   ├── skills.ts               # Categorized skills (no fake percentages)
@@ -69,7 +70,9 @@ anand-mohod-portfolio/
 │   └── education.ts            # Academic credentials
 ├── public/
 │   ├── favicon.svg             # AM monogram favicon
-│   └── resume/                 # Replaceable resume PDF file
+│   ├── certificates/           # Verified certificate PDFs
+│   ├── images/                 # Project screenshots & profile assets
+│   └── resume/                 # Replaceable resume PDF files
 ```
 
 ---
@@ -77,14 +80,14 @@ anand-mohod-portfolio/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18.x or later
-- npm or pnpm or yarn
+- Node.js 18.x or 20.x
+- npm
 
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/anand-mohod/anand-mohod-portfolio.git
-cd anand-mohod-portfolio
+git clone https://github.com/ANANDMOHOD17/Anand-Mohod-portfolio.git
+cd Anand-Mohod-portfolio
 
 # Install dependencies
 npm install
@@ -99,35 +102,30 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ### Building for Production
 ```bash
 npm run build
-npm run start
 ```
 
 ---
 
-## ✏️ Customizing Your Content
+## 🔐 Environment Variables
 
-All data is structured in `/data` for quick updates without touching layout code:
-- **Update Contact Info**: Edit `/data/profile.ts` (Phone, Email, LinkedIn, GitHub URLs).
-- **Add Projects**: Edit `/data/projects.ts` (Title, description, slug, features, challenges).
-- **Add Certificates**: Edit `/data/certificates.ts` (Name, issuer, date, credential ID, verification URL).
-- **Update Resume PDF**: Replace the file at `/public/resume/anand-mohod-resume.pdf`.
+This static portfolio requires no runtime secret keys or database credentials.
+If you integrate third-party services in the future, copy `.env.example` to `.env.local`:
+
+```bash
+cp .env.example .env.local
+```
 
 ---
 
-## 🌐 Deployment to Vercel
+## 🌐 Deployment
 
-1. Push your repository to GitHub:
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: complete developer portfolio for Anand Mohod"
-   git branch -M main
-   git remote add origin https://github.com/anand-mohod/anand-mohod-portfolio.git
-   git push -u origin main
-   ```
-2. Import the project in [Vercel](https://vercel.com/new).
-3. Framework preset will automatically detect **Next.js**.
-4. Click **Deploy**.
+### GitHub Pages (Automated via GitHub Actions)
+A pre-configured GitHub Actions workflow (`.github/workflows/deploy.yml`) builds and deploys static export artifacts to the `gh-pages` branch on push to `main`.
+
+### Vercel
+1. Import `https://github.com/ANANDMOHOD17/Anand-Mohod-portfolio` in [Vercel](https://vercel.com/new).
+2. Framework preset will automatically detect **Next.js**.
+3. Click **Deploy**.
 
 ---
 
