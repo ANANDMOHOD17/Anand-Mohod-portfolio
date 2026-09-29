@@ -1,4 +1,5 @@
 import { Project } from '@/types';
+import { getAssetPath } from '@/lib/utils';
 
 export const projectsData: Project[] = [
   {
@@ -11,7 +12,7 @@ export const projectsData: Project[] = [
     shortDescription: 'A web-based voting portal designed to digitize and simplify the student voting process.',
     fullDescription: 'Developed a web-based voting portal to digitize and simplify the student voting process. The system provides separate functionality for users and administrators, allowing voting activities, vote records, and results to be managed through a structured digital platform. The project focuses on creating a simple and user-friendly voting experience while applying practical database and software development concepts.',
     technologies: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'Express.js', 'SQL'],
-    image: '/images/projects/voting-portal.webp',
+    image: getAssetPath('/images/projects/voting-portal.webp'),
     githubUrl: null,
     liveUrl: null,
     features: [
@@ -54,7 +55,7 @@ export const projectsData: Project[] = [
     shortDescription: 'A rental discovery platform for finding homes and rooms available for rent.',
     fullDescription: 'Developed Rentogo as a practical rental discovery platform focused on helping users explore homes and rooms available for rent. The platform provides structured property listings with interfaces for browsing available properties and viewing detailed property information. The project focuses on making rental discovery simpler, more organized, and user-friendly.',
     technologies: ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Node.js', 'Express.js'],
-    image: '/images/projects/rentogo.webp',
+    image: getAssetPath('/images/projects/rentogo.webp'),
     githubUrl: null,
     liveUrl: null,
     features: [
@@ -93,7 +94,7 @@ export const projectsData: Project[] = [
     shortDescription: 'A store management application for organizing products, inventory, and customer records.',
     fullDescription: 'Developed a Smart Store Management System to organize and manage essential store information including products, inventory, and customer records. The system applies practical database concepts to store, retrieve, and manage information efficiently. The project demonstrates the use of software and database management principles to solve a real-world store-management problem.',
     technologies: ['SQL', 'HTML5', 'CSS3', 'JavaScript', 'Node.js'],
-    image: '/images/projects/smart-store-management.webp',
+    image: getAssetPath('/images/projects/smart-store-management.webp'),
     githubUrl: null,
     liveUrl: null,
     features: [
@@ -136,7 +137,7 @@ export const projectsData: Project[] = [
     shortDescription: 'A full-stack climate risk prediction platform for rainfall, heatwave, and flood risk across India.',
     fullDescription: 'Built AI Climate Twin India, a full-stack climate risk prediction platform designed to predict rainfall, heatwave, and flood-related risks using multiple climate and environmental datasets. The platform integrates data from IMD, NASA POWER, ERA5, and ISRO datasets and uses TensorFlow-based prediction models with a FastAPI backend and React frontend. Mapbox is used to provide interactive geospatial visualization, allowing climate-related information and predicted risks to be presented through an interactive map-based interface. The project covers the complete workflow from data sourcing and processing to machine learning prediction, backend API development, frontend visualization, and deployment.',
     technologies: ['Python', 'TensorFlow', 'FastAPI', 'React.js', 'Mapbox', 'IMD Datasets', 'NASA POWER', 'ERA5', 'ISRO Datasets'],
-    image: '/images/projects/ai-climate-twin-india.webp',
+    image: getAssetPath('/images/projects/ai-climate-twin-india.webp'),
     githubUrl: null,
     liveUrl: null,
     architecture: {
@@ -200,7 +201,7 @@ export const projectsData: Project[] = [
     shortDescription: 'An agriculture-focused digital platform providing crop information, farming guidance, market information, and important alerts through a simple interface.',
     fullDescription: 'Developed KrushiScan as an agriculture-focused digital platform designed to provide useful crop information and farming guidance through an accessible digital interface. The platform also includes market information and important alerts, with a focus on presenting agricultural information in a simple and understandable way. The project is designed around improving digital access to useful agricultural information and creating a practical technology solution for the farming domain.',
     technologies: ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Node.js', 'Express.js'],
-    image: '/images/projects/krushiscan.webp',
+    image: getAssetPath('/images/projects/krushiscan.webp'),
     githubUrl: null,
     liveUrl: null,
     features: [
@@ -242,7 +243,7 @@ export const projectsData: Project[] = [
     shortDescription: 'A formal–informal recycling chain platform connecting households, waste collectors, and authorized recyclers.',
     fullDescription: 'Developed Kabadiwala Connect as a digital platform designed to formalize and connect the recycling chain between households, waste collectors, and authorized recyclers. The platform introduces a structured pickup marketplace with transparent pricing, digital payment support, collector identity, and traceability to create a more organized recycling ecosystem. The project was developed in the context of Smart India Hackathon 2026 Software Edition and included preparation of a six-slide solution pitch deck for the evaluation round.',
     technologies: ['React.js', 'JavaScript', 'Node.js', 'Express.js', 'SQL', 'REST APIs'],
-    image: '/images/projects/kabadiwala-connect.webp',
+    image: getAssetPath('/images/projects/kabadiwala-connect.webp'),
     githubUrl: null,
     liveUrl: null,
     features: [

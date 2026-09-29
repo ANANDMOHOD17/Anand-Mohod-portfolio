@@ -5,7 +5,6 @@ import { motion, useReducedMotion } from 'framer-motion';
 import AboutHeading from './AboutHeading';
 import { profileData } from '@/data/profile';
 import { Cpu, Lightbulb, CheckCircle2 } from 'lucide-react';
-import HeroProfileCard from '@/components/ui/HeroProfileCard';
 import { TRANSITION_EASE } from '@/lib/motion';
 
 export default function AboutSection() {
@@ -92,11 +91,8 @@ export default function AboutSection() {
             </motion.div>
           </div>
 
-          {/* Right Column: 3D Tilt Profile Card & Profile Snapshot */}
+          {/* Right Column: Profile Snapshot */}
           <div className="lg:col-span-5 flex flex-col items-center gap-6">
-            {/* 3D Tilt Profile Card */}
-            <HeroProfileCard />
-
             {/* Profile Snapshot Panel */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -124,7 +120,7 @@ export default function AboutSection() {
               <div className="pt-3 border-t border-slate-200 dark:border-white/10">
                 <div className="flex items-center gap-2 text-xs text-accent font-medium">
                   <Lightbulb className="w-3.5 h-3.5" />
-                  <span>Seeking software & full-stack internship opportunities</span>
+                  <span>Seeking software &amp; full-stack internship opportunities</span>
                 </div>
               </div>
             </motion.div>

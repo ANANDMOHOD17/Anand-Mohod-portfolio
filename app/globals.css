@@ -280,6 +280,7 @@ body {
   background-size: 250% 100%;
   background-position: 100% center;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -299,6 +300,7 @@ html:not(.dark) .about-heading__accent {
   background-size: 250% 100%;
   background-position: 100% center;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -588,6 +590,7 @@ html:not(.dark) .hero-mask-line2 .hero-mask-text {
   background-size: 250% 100%;
   background-position: 100% center;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -607,6 +610,7 @@ html:not(.dark) .section-heading__line {
   background-size: 250% 100%;
   background-position: 100% center;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

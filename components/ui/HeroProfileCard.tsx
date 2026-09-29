@@ -112,7 +112,7 @@ export default function HeroProfileCard() {
             alt={profileData.name}
             fill
             sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 340px"
-            className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             priority
           />
 
