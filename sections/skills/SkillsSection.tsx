@@ -59,12 +59,9 @@ function getSkillIcon(iconName: string) {
 
 // ─── Main component ──────────────────────────────────────────────────────────
 export default function SkillsSection() {
-  const [selectedCategory, setSelectedCategory] = useState<SkillCategory | 'All'>('All');
+  const [selectedCategory, setSelectedCategory] = useState<SkillCategory>('Programming');
 
-  const filteredSkills =
-    selectedCategory === 'All'
-      ? skillsData
-      : skillsData.filter((s) => s.category === selectedCategory);
+  const filteredSkills = skillsData.filter((s) => s.category === selectedCategory);
 
   return (
     <section id="skills" className="py-24 md:py-32 relative">
@@ -76,28 +73,8 @@ export default function SkillsSection() {
           description="A comprehensive, structured directory of programming languages, full-stack frameworks, databases, and engineering tools."
         />
 
-        {/* ── Category Filter Tabs ── */}
+        {/* ── Category Filter Tabs — Individual categories only ── */}
         <div className="flex items-center justify-start gap-2 mb-8 pb-3 border-b border-slate-200 dark:border-white/10 overflow-x-auto scrollbar-none">
-          {/* All */}
-          <button
-            type="button"
-            onClick={() => setSelectedCategory('All')}
-            className={`relative px-3.5 py-1.5 rounded-xl text-xs font-semibold tracking-wide transition-all shrink-0 ${
-              selectedCategory === 'All'
-                ? 'text-accent'
-                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-            }`}
-          >
-            <span>All ({skillsData.length})</span>
-            {selectedCategory === 'All' && (
-              <motion.div
-                layoutId="activeCategoryTab"
-                className="absolute bottom-0 left-2 right-2 h-0.5 bg-accent rounded-full"
-                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-              />
-            )}
-          </button>
-
           {/* Per-category tabs */}
           {categories.map((cat) => {
             const isSelected = selectedCategory === cat.label;

@@ -9,14 +9,13 @@ import GlassCard from '@/components/ui/GlassCard';
 import { projectsData } from '@/data/projects';
 import { ArrowLeft, ArrowUpRight, Github, ExternalLink } from 'lucide-react';
 
-const categories = ['All', 'Web Development', 'Full Stack', 'AI / ML', 'Database'] as const;
+const categories = ['Web Development', 'Full Stack', 'AI / ML', 'Database'] as const;
 type FilterCategory = (typeof categories)[number];
 
 export default function ProjectsPage() {
-  const [selectedCategory, setSelectedCategory] = useState<FilterCategory>('All');
+  const [selectedCategory, setSelectedCategory] = useState<FilterCategory>('Web Development');
 
   const filteredProjects = projectsData.filter((p) => {
-    if (selectedCategory === 'All') return true;
     if (selectedCategory === 'Web Development') return p.category.includes('Web Development');
     if (selectedCategory === 'Full Stack') return p.category.includes('Full Stack');
     if (selectedCategory === 'AI / ML') return p.category.includes('AI') || p.category.includes('Machine Learning');
@@ -39,7 +38,7 @@ export default function ProjectsPage() {
         <SectionHeading
           number="INDEX"
           label="PROJECTS"
-          title="All Engineering Projects"
+          title="Engineering Projects Directory"
           description="A complete directory of software systems, web platforms, and machine learning architectures I have built."
         />
 
