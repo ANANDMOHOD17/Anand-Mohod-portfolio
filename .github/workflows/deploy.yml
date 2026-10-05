@@ -7,15 +7,14 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
+    name: Build & Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code
@@ -33,10 +32,9 @@ jobs:
       - name: Build Next.js Static Export
         run: npm run build
 
-      - name: Disable Jekyll
+      - name: Disable Jekyll (create .nojekyll)
         run: touch ./out/.nojekyll
 
-      # 1. Deploy to gh-pages branch (universal, works if Pages source is "Deploy from a branch")
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -44,15 +42,3 @@ jobs:
           publish_dir: ./out
           publish_branch: gh-pages
           force_orphan: true
-
-      # 2. Deploy to GitHub Pages environment (works if Pages source is "GitHub Actions")
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
-        continue-on-error: true
-        with:
-          path: ./out
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        continue-on-error: true
