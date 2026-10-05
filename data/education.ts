@@ -3,7 +3,7 @@ import { Education } from '@/types';
 export const educationData: Education = [
   {
     id: 'btech-computer-engineering',
-    institution: 'Jagdamba College of Engineering and Technology, Yavatmal',
+    institution: 'Jagadambha College of Engineering & Technology, Yavatmal',
     degree: 'B.Tech – Computer Engineering',
     field: 'Computer Engineering',
     duration: '2024–2028',

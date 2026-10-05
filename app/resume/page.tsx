@@ -6,10 +6,6 @@ import Link from 'next/link';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassButton from '@/components/ui/GlassButton';
 import { profileData } from '@/data/profile';
-import { educationData } from '@/data/education';
-import { projectsData } from '@/data/projects';
-import { achievementsData } from '@/data/achievements';
-import { certificatesData } from '@/data/certificates';
 import {
   ArrowLeft,
   Download,
@@ -18,14 +14,85 @@ import {
   Phone,
   MapPin,
   Award,
-  Trophy,
   GraduationCap,
   Code2,
   FolderGit2,
-  UserCheck,
+  Compass,
+  Briefcase,
+  FileText,
+  Clock,
+  Globe,
+  Sparkles,
+  CheckCircle2,
 } from 'lucide-react';
 
+const technicalSkills = [
+  { category: 'Programming', skills: 'Python, C, C++, Java' },
+  { category: 'Web Technologies', skills: 'HTML, CSS, JavaScript, React' },
+  { category: 'Database', skills: 'MySQL' },
+  { category: 'Frameworks / AI', skills: 'FastAPI, TensorFlow' },
+  { category: 'Tools / Platforms', skills: 'Git, GitHub, VS Code, Mapbox' },
+];
+
+const projects = [
+  {
+    title: 'Voting Portal',
+    year: '2025',
+    bullet:
+      'Web-based student voting portal with user and administrator functions to manage voting, vote records and results, built on practical database concepts.',
+  },
+  {
+    title: 'Rentogo',
+    year: '2026',
+    bullet:
+      'Rental platform for discovering homes and rooms, with structured property listings and interfaces for browsing and viewing property details.',
+  },
+  {
+    title: 'Smart Store Management System',
+    year: '2026',
+    bullet:
+      'Store management application for organizing products, inventory and customer records, applying database concepts to store, retrieve and manage data.',
+  },
+  {
+    title: 'AI Climate Twin India — Climate Risk Prediction Platform',
+    year: '2026',
+    bullet:
+      'Full-stack platform predicting rainfall, heatwave and flood risk using IMD, NASA POWER, ERA5 and ISRO datasets; TensorFlow models, FastAPI backend, React frontend and Mapbox geospatial visualization; owned from data sourcing to deployment.',
+  },
+  {
+    title: 'KrushiScan',
+    year: '2026',
+    bullet:
+      'Agriculture-focused digital platform providing crop information, farming guidance, market information and important alerts through a simple, accessible interface for farmers.',
+  },
+  {
+    title: 'Kabadiwala Connect (SIH26229)',
+    year: '2026',
+    bullet:
+      'Formal–informal recycling chain platform connecting households, waste collectors and authorized recyclers, with a pickup marketplace featuring transparent pricing, digital payments, collector identity and traceability; prepared a 6-slide pitch deck for the Smart India Hackathon 2026 Software Edition evaluation round.',
+  },
+];
+
+const certifications = [
+  { name: 'IBM SkillsBuild', program: 'Technical Certification' },
+  { name: 'ISRO', program: 'Space Technology Program' },
+  { name: 'OpenAI', program: 'AI Development Certification' },
+  { name: 'TCS', program: 'Professional Certification' },
+  { name: 'Deloitte', program: 'Career Readiness Program' },
+  { name: 'Google Ads', program: 'Platform Certification' },
+  { name: 'AI Bootcamp', program: 'Applied AI Certification' },
+  { name: 'Multiple Programs', program: 'Hackathon & Entrepreneurship Program Certificates (15+ total)' },
+];
+
+const careerInterests = [
+  'Python Development',
+  'Software Development',
+  'Web Development',
+  'Full-Stack Development',
+];
+
 export default function ResumePage() {
+  const [activeTab, setActiveTab] = useState<'document' | 'pdf'>('document');
   const basePath = process.env.NODE_ENV === 'production' ? '/Anand-Mohod-portfolio' : '';
   const resumePdfPath = `${basePath}/resume/Anand_Mohod_Resume.pdf`;
   const resumeDownloadName = 'Anand_Mohod_Resume.pdf';
@@ -44,6 +111,32 @@ export default function ResumePage() {
           </Link>
 
           <div className="flex items-center gap-3 w-full sm:w-auto">
+            {/* View Mode Toggle */}
+            <div className="inline-flex p-1 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-medium">
+              <button
+                type="button"
+                onClick={() => setActiveTab('document')}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  activeTab === 'document'
+                    ? 'bg-accent text-white shadow-sm'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                Interactive View
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab('pdf')}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  activeTab === 'pdf'
+                    ? 'bg-accent text-white shadow-sm'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                PDF Preview
+              </button>
+            </div>
+
             <a
               href={resumePdfPath}
               target="_blank"
@@ -52,7 +145,7 @@ export default function ResumePage() {
             >
               <GlassButton variant="secondary" size="sm" className="w-full sm:w-auto">
                 <ExternalLink className="w-3.5 h-3.5 text-accent" />
-                <span>View PDF</span>
+                <span className="hidden sm:inline">Open PDF</span>
               </GlassButton>
             </a>
 
@@ -63,7 +156,7 @@ export default function ResumePage() {
             >
               <GlassButton variant="primary" size="sm" className="w-full sm:w-auto">
                 <Download className="w-3.5 h-3.5" />
-                <span>Download Resume</span>
+                <span>Download</span>
               </GlassButton>
             </a>
           </div>
@@ -73,298 +166,311 @@ export default function ResumePage() {
           number="DOCUMENT"
           label="CURRICULUM VITAE"
           title="Resume / CV"
-          description="A complete academic and technical curriculum vitae detailing core computer engineering competencies, verified projects, and achievements."
+          description="Official single-page curriculum vitae detailing software engineering competencies, verified projects, academic background, and credentials."
         />
 
-        {/* Structured Resume Document Preview Sheet */}
-        <div className="glass-panel rounded-2xl border border-white/15 bg-graphite-900/95 shadow-glass-lg p-6 sm:p-10 md:p-12 space-y-10 relative overflow-hidden">
-          {/* Header */}
-          <div className="border-b border-white/10 pb-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="flex items-center gap-5">
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border border-accent/40 bg-graphite-950 flex-shrink-0 shadow-glass-md">
-                <Image
-                  src={profileData.avatar}
-                  alt={profileData.name}
-                  fill
-                  sizes="96px"
-                  className="object-cover object-top"
-                />
-              </div>
-              <div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-                  ANAND S. MOHOD
-                </h1>
-                <p className="text-sm sm:text-base text-accent font-medium mt-0.5">
-                  Python Developer | Software Developer
-                </p>
-                <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1">
-                  <MapPin className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Amravati, Maharashtra</span>
+        {/* View Switch: PDF Frame or Structured Document Sheet */}
+        {activeTab === 'pdf' ? (
+          <div className="glass-panel rounded-2xl border border-white/15 bg-graphite-900/95 shadow-glass-lg p-3 sm:p-4 overflow-hidden">
+            <div className="flex items-center justify-between px-3 py-2 border-b border-white/10 mb-3 text-xs text-slate-400 font-mono">
+              <span className="flex items-center gap-1.5 text-slate-300">
+                <FileText className="w-3.5 h-3.5 text-accent" />
+                Anand_Mohod_Resume.pdf (1 Page)
+              </span>
+              <a
+                href={resumePdfPath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:underline flex items-center gap-1"
+              >
+                Full screen <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+            <iframe
+              src={resumePdfPath}
+              title="Anand Mohod Resume PDF"
+              className="w-full h-[850px] md:h-[1050px] rounded-xl border border-white/10 bg-white"
+            />
+          </div>
+        ) : (
+          /* Structured Resume Document Sheet */
+          <div className="glass-panel rounded-2xl border border-white/15 bg-graphite-900/95 shadow-glass-lg p-6 sm:p-10 md:p-12 space-y-9 relative overflow-hidden">
+            {/* Header */}
+            <div className="border-b border-white/10 pb-7 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="flex items-center gap-5">
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border border-accent/40 bg-graphite-950 flex-shrink-0 shadow-glass-md">
+                  <Image
+                    src={profileData.avatar}
+                    alt={profileData.name}
+                    fill
+                    sizes="96px"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+                    Anand S. Mohod
+                  </h1>
+                  <p className="text-sm sm:text-base text-accent font-medium mt-0.5">
+                    Python Developer | Software Developer
+                  </p>
+                  <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1">
+                    <MapPin className="w-3.5 h-3.5 text-slate-500" />
+                    <span>Amravati, Maharashtra</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Contact Details */}
-            <div className="space-y-2 text-xs text-slate-300 font-mono">
-              <a
-                href={profileData.contact.email.value}
-                className="flex items-center gap-2 hover:text-accent transition-colors"
-              >
-                <Mail className="w-3.5 h-3.5 text-accent" />
-                <span>{profileData.contact.email.display}</span>
-              </a>
-              <a
-                href={profileData.contact.phone.value}
-                className="flex items-center gap-2 hover:text-accent transition-colors"
-              >
-                <Phone className="w-3.5 h-3.5 text-accent" />
-                <span>{profileData.contact.phone.display}</span>
-              </a>
-              <a
-                href={profileData.contact.linkedin.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-accent transition-colors"
-              >
-                <ExternalLink className="w-3.5 h-3.5 text-accent" />
-                <span>{profileData.contact.linkedin.display}</span>
-              </a>
-              <a
-                href={profileData.contact.github.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-accent transition-colors"
-              >
-                <ExternalLink className="w-3.5 h-3.5 text-accent" />
-                <span>{profileData.contact.github.display}</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Professional Summary */}
-          <div className="space-y-3">
-            <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold border-b border-accent/20 pb-1">
-              Professional Summary
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Computer Engineering undergraduate (B.Tech) with practical experience in Python,
-              software development, relational databases, AI, and full-stack web applications.
-              Demonstrated ability to take projects from concept, data sourcing, and architecture
-              to deployment across civic, environmental, and commercial domains. Seeking an
-              internship to contribute technical problem-solving and gain industry experience.
-            </p>
-          </div>
-
-          {/* Technical Skills */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-              <Code2 className="w-3.5 h-3.5 text-accent" />
-              <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
-                Technical Skills
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="p-3 rounded-lg bg-white/5 border border-white/5">
-                <span className="text-slate-400 font-semibold block mb-1">Programming Languages:</span>
-                <span className="text-slate-200">Python, C, C++, Java</span>
-              </div>
-              <div className="p-3 rounded-lg bg-white/5 border border-white/5">
-                <span className="text-slate-400 font-semibold block mb-1">Web Technologies:</span>
-                <span className="text-slate-200">HTML5, CSS3, JavaScript, React</span>
-              </div>
-              <div className="p-3 rounded-lg bg-white/5 border border-white/5">
-                <span className="text-slate-400 font-semibold block mb-1">Frameworks & AI:</span>
-                <span className="text-slate-200">FastAPI, TensorFlow</span>
-              </div>
-              <div className="p-3 rounded-lg bg-white/5 border border-white/5">
-                <span className="text-slate-400 font-semibold block mb-1">Databases:</span>
-                <span className="text-slate-200">MySQL</span>
-              </div>
-              <div className="p-3 rounded-lg bg-white/5 border border-white/5 sm:col-span-2">
-                <span className="text-slate-400 font-semibold block mb-1">Tools & Platforms:</span>
-                <span className="text-slate-200">Git, GitHub, VS Code, Mapbox</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Education */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-              <GraduationCap className="w-3.5 h-3.5 text-accent" />
-              <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
-                Education
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {educationData.map((edu) => (
-                <div
-                  key={edu.id}
-                  className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 pb-3 border-b border-white/5 last:border-0 last:pb-0"
+              {/* Contact Details */}
+              <div className="space-y-2 text-xs text-slate-300 font-mono">
+                <a
+                  href={profileData.contact.phone.value}
+                  className="flex items-center gap-2 hover:text-accent transition-colors"
                 >
-                  <div>
-                    <h3 className="text-sm sm:text-base font-bold text-white">
-                      {edu.degree} {edu.field && !edu.degree.includes(edu.field) ? `— ${edu.field}` : ''}
-                    </h3>
-                    <p className="text-xs text-slate-300">{edu.institution}</p>
-                  </div>
-                  <div className="text-xs font-mono text-slate-400 sm:text-right flex flex-col items-start sm:items-end">
-                    {edu.duration && <span>{edu.duration}</span>}
-                    {edu.status && <span className="text-emerald-400 text-[11px]">{edu.status}</span>}
-                    {edu.score && <span className="text-accent text-[11px] font-medium">{edu.score}</span>}
-                  </div>
-                </div>
-              ))}
+                  <Phone className="w-3.5 h-3.5 text-accent" />
+                  <span>+91 7028393036</span>
+                </a>
+                <a
+                  href={profileData.contact.email.value}
+                  className="flex items-center gap-2 hover:text-accent transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5 text-accent" />
+                  <span>officialanandmohod@gmail.com</span>
+                </a>
+                <a
+                  href="https://linkedin.com/in/anand-mohod-ab2a88428"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-accent transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5 text-accent" />
+                  <span>linkedin.com/in/anand-mohod-ab2a88428</span>
+                </a>
+                <a
+                  href="https://github.com/ANANDMOHOD17"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-accent transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5 text-accent" />
+                  <span>github.com/ANANDMOHOD17</span>
+                </a>
+              </div>
             </div>
-          </div>
 
-          {/* Projects */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-              <FolderGit2 className="w-3.5 h-3.5 text-accent" />
-              <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
-                Projects
+            {/* 1. PROFESSIONAL SUMMARY */}
+            <div className="space-y-2.5">
+              <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold border-b border-accent/20 pb-1">
+                PROFESSIONAL SUMMARY
               </h2>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Computer Engineering student (B.Tech) with hands-on experience in Python, software
+                development, databases, AI and full-stack project development. Built practical
+                applications across voting, rental, retail, agriculture, climate-risk prediction and
+                recycling domains, taking projects from concept and data sourcing through
+                implementation and deployment. Seeking an internship to apply technical skills and gain
+                industry experience.
+              </p>
             </div>
-            <div className="space-y-6">
-              {projectsData.map((proj) => (
-                <div key={proj.slug} className="space-y-1.5 pb-4 border-b border-white/5 last:border-0 last:pb-0">
+
+            {/* 2. EDUCATION */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
+                <GraduationCap className="w-3.5 h-3.5 text-accent" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+                  EDUCATION
+                </h2>
+              </div>
+              <div className="space-y-3 text-xs">
+                {/* College */}
+                <div className="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-1">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                     <h3 className="text-sm font-bold text-white">
-                      {proj.title} {proj.year ? `| ${proj.year}` : ''}
+                      Jagadambha College of Engineering & Technology, Yavatmal
                     </h3>
-                    <span className="text-[11px] font-mono text-accent">
-                      {proj.technologies.join(' • ')}
-                    </span>
+                    <span className="font-mono text-accent text-xs">2024–2028</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    {proj.shortDescription}
+                  <p className="text-slate-300">
+                    B.Tech – Computer Engineering | 3rd Year, 5th Semester |{' '}
+                    <span className="text-accent font-medium">CGPA: 7.9 (2nd Year)</span>
                   </p>
-                  <ul className="list-disc list-inside text-xs text-slate-400 space-y-1">
-                    {proj.features.slice(0, 2).map((f, idx) => (
-                      <li key={idx}>{f}</li>
-                    ))}
-                  </ul>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Certifications & Programs */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-              <Award className="w-3.5 h-3.5 text-accent" />
-              <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
-                Certifications & Programs
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
-              <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                <span className="font-medium text-white">• IBM SkillsBuild</span> — Technical Certification
-              </div>
-              <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                <span className="font-medium text-white">• ISRO</span> — Space Technology Program
-              </div>
-              <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                <span className="font-medium text-white">• OpenAI</span> — AI Development Certification
-              </div>
-              <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                <span className="font-medium text-white">• TCS</span> — Professional Certification
-              </div>
-              <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                <span className="font-medium text-white">• Deloitte</span> — Career Readiness Program
-              </div>
-              <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                <span className="font-medium text-white">• Google Ads</span> — Platform Certification
-              </div>
-              <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                <span className="font-medium text-white">• AI Bootcamp</span> — Applied AI Certification
-              </div>
-              <div className="p-2.5 rounded-lg bg-white/5 border border-white/5">
-                <span className="font-medium text-white">• Multiple Programs</span> — 15+ Total Hackathon & Entrepreneurship Certificates
+                {/* HSC & SSC */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-0.5">
+                    <span className="font-semibold text-white">HSC – Rural Institute, Amravati</span>
+                    <p className="text-slate-300 font-mono text-[11px]">
+                      12th Percentage:{' '}
+                      <span className="text-accent font-medium">60.33%</span>
+                    </p>
+                  </div>
+                  <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-0.5">
+                    <span className="font-semibold text-white">SSC – Shri Ganeshdas Rathi Vidyalaya, Amravati</span>
+                    <p className="text-slate-300 font-mono text-[11px]">
+                      10th Percentage:{' '}
+                      <span className="text-accent font-medium">73.60%</span>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Achievements / Honors */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-              <Trophy className="w-3.5 h-3.5 text-accent" />
-              <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
-                Achievements & Honors
-              </h2>
-            </div>
+            {/* 3. TECHNICAL SKILLS */}
             <div className="space-y-3">
-              {achievementsData.map((ach) => (
-                <div key={ach.id} className="p-3 rounded-lg bg-white/5 border border-white/5 text-xs space-y-1">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                    <span className="font-bold text-white text-sm">
-                      {ach.title} ({ach.date})
+              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
+                <Code2 className="w-3.5 h-3.5 text-accent" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+                  TECHNICAL SKILLS
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                {technicalSkills.map((item, index) => (
+                  <div
+                    key={item.category}
+                    className={`p-3 rounded-lg bg-white/5 border border-white/5 ${
+                      index === technicalSkills.length - 1 ? 'sm:col-span-2' : ''
+                    }`}
+                  >
+                    <span className="text-slate-400 font-semibold block mb-0.5">
+                      {item.category}:
                     </span>
-                    <span className="text-[11px] font-mono text-accent">
-                      {ach.role} • {ach.organization}
+                    <span className="text-slate-100 font-medium">{item.skills}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 4. PROJECTS */}
+            <div className="space-y-3.5">
+              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
+                <FolderGit2 className="w-3.5 h-3.5 text-accent" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+                  PROJECTS
+                </h2>
+              </div>
+              <div className="space-y-3.5">
+                {projects.map((proj) => (
+                  <div
+                    key={proj.title}
+                    className="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-1.5"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                      <h3 className="text-sm font-bold text-white tracking-tight">
+                        {proj.title}
+                      </h3>
+                      <span className="font-mono text-accent text-xs">{proj.year}</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-slate-300 leading-relaxed">
+                      <span className="text-accent select-none mt-0.5">•</span>
+                      <p>{proj.bullet}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 5. CERTIFICATIONS & PROGRAMS */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
+                <Award className="w-3.5 h-3.5 text-accent" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+                  CERTIFICATIONS & PROGRAMS
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                {certifications.map((cert) => (
+                  <div
+                    key={cert.name}
+                    className="p-2.5 rounded-lg bg-white/5 border border-white/5 flex items-start gap-2"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>
+                      <strong className="text-white font-semibold">{cert.name}</strong> –{' '}
+                      {cert.program}
                     </span>
                   </div>
-                  <p className="text-slate-300 leading-relaxed">
-                    {ach.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Leadership & Experience */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-              <UserCheck className="w-3.5 h-3.5 text-accent" />
-              <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
-                Leadership & Experience
-              </h2>
-            </div>
-            <div className="p-4 rounded-lg bg-white/5 border border-white/5 text-xs space-y-2">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                <h3 className="font-bold text-white text-sm">
-                  Event Coordinator & Discipline Committee Member
-                </h3>
-                <span className="font-mono text-accent text-[11px]">
-                  Startup Carnival | 2026
-                </span>
+                ))}
               </div>
-              <p className="text-slate-400 font-mono text-[11px]">
-                Jagdamba College of Engineering and Technology, Yavatmal
-              </p>
-              <ul className="list-disc list-inside text-slate-300 space-y-1 pt-1">
-                <li>Coordinated campus venue planning and event decoration for student startup exhibits.</li>
-                <li>Managed discipline operations and protocol enforcement throughout the symposium.</li>
-                <li>Awarded official Certificate of Participation for leadership and organizational contributions.</li>
-              </ul>
             </div>
-          </div>
 
-          {/* Bottom Download Bar */}
-          <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-mono">
-            <span>Asset: {resumePdfPath}</span>
-            <div className="flex items-center gap-3">
-              <a
-                href={resumePdfPath}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-300 hover:text-accent flex items-center gap-1.5 transition-colors"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-                <span>View Raw PDF</span>
-              </a>
-              <span className="text-slate-600">•</span>
-              <a
-                href={resumePdfPath}
-                download={resumeDownloadName}
-                className="text-accent hover:underline flex items-center gap-1.5"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download Official Copy</span>
-              </a>
+            {/* 6. CAREER INTERESTS */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
+                <Compass className="w-3.5 h-3.5 text-accent" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+                  CAREER INTERESTS
+                </h2>
+              </div>
+              <div className="flex flex-wrap gap-2 text-xs">
+                {careerInterests.map((interest) => (
+                  <span
+                    key={interest}
+                    className="px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200 font-medium font-mono"
+                  >
+                    {interest}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* 7. ADDITIONAL INFORMATION */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
+                <Briefcase className="w-3.5 h-3.5 text-accent" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+                  ADDITIONAL INFORMATION
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-0.5">
+                  <span className="text-slate-400 font-semibold block">Internship Availability:</span>
+                  <span className="text-slate-100">Open to paid or unpaid opportunities</span>
+                </div>
+                <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-0.5">
+                  <span className="text-slate-400 font-semibold block">Work Preference:</span>
+                  <span className="text-slate-100 flex items-center gap-1.5">
+                    <Globe className="w-3 h-3 text-accent" /> Remote or Offline
+                  </span>
+                </div>
+                <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-0.5">
+                  <span className="text-slate-400 font-semibold block">Duration:</span>
+                  <span className="text-slate-100 flex items-center gap-1.5">
+                    <Clock className="w-3 h-3 text-accent" /> Flexible (1–6 months)
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Download Bar */}
+            <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-mono">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                Verified Single-Page PDF Asset
+              </span>
+              <div className="flex items-center gap-3">
+                <a
+                  href={resumePdfPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-300 hover:text-accent flex items-center gap-1.5 transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>View Raw PDF</span>
+                </a>
+                <span className="text-slate-600">•</span>
+                <a
+                  href={resumePdfPath}
+                  download={resumeDownloadName}
+                  className="text-accent hover:underline flex items-center gap-1.5 font-medium"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download PDF (Direct)</span>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

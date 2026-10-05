@@ -710,4 +710,26 @@ html:not(.dark) .section-heading__line {
   }
 }
 
+/* ==========================================================================
+   Zero-Flash Preloader Architecture
+   ========================================================================== */
+html.is-loading,
+body.is-loading {
+  overflow: hidden !important;
+  background-color: #050505 !important;
+}
+
+html.is-loading #portfolio-main-wrapper {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+
+#portfolio-main-wrapper {
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s;
+}
+
+
 

@@ -35,6 +35,14 @@ const config: Config = {
         },
       },
       fontFamily: {
+        grotesk: [
+          'var(--font-grotesk)',
+          'Space Grotesk',
+          'Inter Tight',
+          'Inter',
+          '-apple-system',
+          'sans-serif',
+        ],
         sans: [
           'Inter',
           '-apple-system',

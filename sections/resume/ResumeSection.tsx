@@ -10,18 +10,18 @@ import { profileData } from '@/data/profile';
 import { FileText, Download, ExternalLink, CheckCircle2, Code2, Layers } from 'lucide-react';
 
 const skills = [
-  { group: 'Languages', items: 'Python, C, C++, Java' },
-  { group: 'Web', items: 'HTML5, CSS3, JavaScript, React' },
-  { group: 'Backend & AI', items: 'FastAPI, TensorFlow, Node.js' },
-  { group: 'Databases', items: 'MySQL, SQL' },
-  { group: 'Tools', items: 'Git, GitHub, VS Code, Mapbox' },
+  { group: 'Programming', items: 'Python, C, C++, Java' },
+  { group: 'Web Technologies', items: 'HTML, CSS, JavaScript, React' },
+  { group: 'Database', items: 'MySQL' },
+  { group: 'Frameworks / AI', items: 'FastAPI, TensorFlow' },
+  { group: 'Tools / Platforms', items: 'Git, GitHub, VS Code, Mapbox' },
 ];
 
 const highlights = [
-  '6+ real-world projects across AI, full-stack, civic & commercial domains',
-  '9+ verified technical certifications from ISRO, IBM, TCS, OpenAI & more',
-  '4+ hackathon recognitions and event leadership roles',
-  '16 core technologies across languages, frameworks, and tooling',
+  '6 practical applications across climate-risk AI, recycling, rental, and store management',
+  '15+ technical program & hackathon certificates (IBM, ISRO, OpenAI, TCS, Deloitte, Google Ads)',
+  'Internship availability: Open to paid/unpaid roles | Remote or Offline (1–6 months)',
+  'Specialized in Python Development, Software Development & Full-Stack Development',
 ];
 
 export default function ResumeSection() {
@@ -59,11 +59,11 @@ export default function ResumeSection() {
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
                     <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                      Anand Mohod — Resume / CV
+                      Anand S. Mohod — Resume / CV
                     </h3>
                   </div>
                   <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-sm">
-                    Python Developer · Software Developer · Full-Stack Engineer
+                    Python Developer | Software Developer
                   </p>
                   <div className="flex items-center gap-3 text-xs font-mono text-slate-400 pt-0.5">
                     <span className="flex items-center gap-1.5 text-accent">

@@ -7,10 +7,10 @@ export const profileData: Profile = {
   tagline: 'Passionate About Building, Learning & Solving with Technology.',
   avatar: getAssetPath('/images/profile.png'),
   about: {
-    lead: 'Computer Engineering student pursuing B.Tech with hands-on experience in Python, software development, databases, AI, and full-stack project development.',
+    lead: 'Computer Engineering student (B.Tech) with hands-on experience in Python, software development, databases, AI and full-stack project development.',
     paragraphs: [
-      'Built practical applications across voting, rental, retail, agriculture, climate-risk prediction, and recycling domains.',
-      'Strong interest in Python and software development, with experience taking projects from concept and data sourcing through implementation and deployment. Seeking an internship to apply technical skills and gain industry experience.',
+      'Built practical applications across voting, rental, retail, agriculture, climate-risk prediction and recycling domains, taking projects from concept and data sourcing through implementation and deployment.',
+      'Seeking an internship to apply technical skills and gain industry experience.',
     ],
     highlights: [
       { label: 'Degree & Program', value: 'B.Tech – Computer Engineering' },

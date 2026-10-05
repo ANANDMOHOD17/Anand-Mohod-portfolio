@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navigation/Navbar';
 import Footer from '@/components/navigation/Footer';
 import CustomCursor from '@/components/ui/CustomCursor';
 import ScrollProgressBar from '@/components/ui/ScrollProgressBar';
-import IntroLoader from '@/components/ui/IntroLoader';
 import FloatingContactButton from '@/components/ui/FloatingContactButton';
 import { SmoothScrollProvider } from '@/components/ui/SmoothScrollProvider';
+import NameFillPreloader from '@/components/ui/NameFillPreloader';
 
 import { profileData } from '@/data/profile';
 
@@ -20,6 +20,12 @@ const inter = Inter({
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
+  display: 'swap',
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-grotesk',
   display: 'swap',
 });
 
@@ -73,8 +79,51 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} dark scroll-smooth is-loading`}
+      suppressHydrationWarning
+    >
       <head>
+        {/* Anti-flash inline style: prevents any 1-second reveal of the site before JS mounts */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              html, body {
+                background-color: #050505 !important;
+              }
+              html.is-loading,
+              body.is-loading {
+                overflow: hidden !important;
+              }
+              html.is-loading #portfolio-main-wrapper {
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+                height: 100vh !important;
+                overflow: hidden !important;
+              }
+            `,
+          }}
+        />
+        <noscript>
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
+                html.is-loading #portfolio-main-wrapper {
+                  visibility: visible !important;
+                  opacity: 1 !important;
+                  height: auto !important;
+                  overflow: visible !important;
+                  pointer-events: auto !important;
+                }
+                #portfolio-preloader-root {
+                  display: none !important;
+                }
+              `,
+            }}
+          />
+        </noscript>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -86,24 +135,35 @@ export default function RootLayout({
                   document.documentElement.classList.add('dark');
                 }
               } catch (_) {}
+              // Failsafe watchdog: guarantees content is never permanently locked
+              setTimeout(function() {
+                try {
+                  document.documentElement.classList.remove('is-loading');
+                  if (document.body) document.body.classList.remove('is-loading');
+                } catch (_) {}
+              }, 4000);
             `,
           }}
         />
       </head>
-      <body className="bg-graphite-950 dark:bg-graphite-950 text-slate-800 dark:text-slate-100 min-h-screen selection:bg-accent/20 selection:text-white relative transition-colors duration-300">
-        <SmoothScrollProvider>
-          <a href="#main-content" className="skip-to-content">
-            Skip to main content
-          </a>
-          <IntroLoader />
-          <ScrollProgressBar />
-          <CustomCursor />
-          <Navbar />
-          <main id="main-content" className="relative z-10">{children}</main>
-          <Footer />
-          <FloatingContactButton />
+      <body className="bg-[#050505] text-slate-800 dark:text-slate-100 min-h-screen selection:bg-accent/20 selection:text-white relative transition-colors duration-300 is-loading">
+        {/* Unique Name Fill Preloader */}
+        <NameFillPreloader name="ANAND MOHOD" />
 
-        </SmoothScrollProvider>
+        {/* Main Portfolio Content — hidden until curtain exit begins */}
+        <div id="portfolio-main-wrapper">
+          <SmoothScrollProvider>
+            <a href="#main-content" className="skip-to-content">
+              Skip to main content
+            </a>
+            <ScrollProgressBar />
+            <CustomCursor />
+            <Navbar />
+            <main id="main-content" className="relative z-10">{children}</main>
+            <Footer />
+            <FloatingContactButton />
+          </SmoothScrollProvider>
+        </div>
       </body>
     </html>
   );

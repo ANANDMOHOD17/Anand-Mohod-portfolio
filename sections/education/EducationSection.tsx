@@ -4,7 +4,7 @@ import React from 'react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GlassCard from '@/components/ui/GlassCard';
 import { educationData } from '@/data/education';
-import { GraduationCap, BookOpen, Layers, Award, School, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, BookOpen, Layers, School, CheckCircle2 } from 'lucide-react';
 
 export default function EducationSection() {
   const primaryEdu = educationData.find((edu) => edu.isPrimary) || educationData[0];

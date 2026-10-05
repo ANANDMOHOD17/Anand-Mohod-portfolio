@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { projectsData } from '@/data/projects';
 import GlassCard from '@/components/ui/GlassCard';
 import GlassButton from '@/components/ui/GlassButton';
-import { ArrowLeft, Github, ExternalLink, CheckCircle2, Sparkles, BookOpen, Layers, Cpu, Award } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, CheckCircle2, Sparkles, BookOpen } from 'lucide-react';
 import type { Metadata } from 'next';
 
 interface CaseStudyProps {
