@@ -58,7 +58,19 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     gsap.ticker.add(updateTicker);
     gsap.ticker.lagSmoothing(0);
 
+    const handleProgrammaticStart = () => {
+      lenis.stop();
+    };
+    const handleProgrammaticEnd = () => {
+      lenis.start();
+    };
+
+    window.addEventListener('programmatic-scroll-start', handleProgrammaticStart);
+    window.addEventListener('scrollend', handleProgrammaticEnd);
+
     return () => {
+      window.removeEventListener('programmatic-scroll-start', handleProgrammaticStart);
+      window.removeEventListener('scrollend', handleProgrammaticEnd);
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
       lenisRef.current = null;

@@ -61,7 +61,7 @@ export default function ContactSection() {
       label: 'PHONE',
       value: profileData.contact.phone.display,
       href: profileData.contact.phone.value,
-      icon: <Phone className="w-6 h-6 text-[#8B8F9F]" />,
+      icon: <Phone className="w-6 h-6 text-[var(--accent)]" />,
       subtext: 'Tap to call directly',
       external: false,
       copyable: true,
@@ -71,7 +71,7 @@ export default function ContactSection() {
       label: 'EMAIL',
       value: profileData.contact.email.display,
       href: profileData.contact.email.value,
-      icon: <Mail className="w-6 h-6 text-[#8B8F9F]" />,
+      icon: <Mail className="w-6 h-6 text-[var(--accent)]" />,
       subtext: 'Inquiries & collaboration',
       external: false,
       copyable: true,
@@ -81,7 +81,7 @@ export default function ContactSection() {
       label: 'LINKEDIN',
       value: profileData.contact.linkedin.display,
       href: profileData.contact.linkedin.url,
-      icon: <Linkedin className="w-6 h-6 text-[#8B8F9F]" />,
+      icon: <Linkedin className="w-6 h-6 text-[var(--accent)]" />,
       subtext: 'Professional network',
       external: true,
       copyable: true,
@@ -91,7 +91,7 @@ export default function ContactSection() {
       label: 'GITHUB',
       value: profileData.contact.github.display,
       href: profileData.contact.github.url,
-      icon: <Github className="w-6 h-6 text-[#8B8F9F]" />,
+      icon: <Github className="w-6 h-6 text-[var(--accent)]" />,
       subtext: 'Code repositories & activity',
       external: true,
       copyable: true,
@@ -121,37 +121,37 @@ export default function ContactSection() {
                   href={method.href}
                   target={method.external ? '_blank' : undefined}
                   rel={method.external ? 'noopener noreferrer' : undefined}
-                  className="block h-full group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-2xl"
+                  className="block h-full group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-2xl"
                 >
                   <GlassCard
-                    className="p-6 h-full flex flex-col justify-between hover:border-accent/50 transition-all duration-300 shadow-glass-sm hover:shadow-[0_15px_35px_rgba(99,102,241,0.12)]"
+                    className="p-6 h-full flex flex-col justify-between border border-[var(--border)] bg-[var(--bg-elevated)] hover:border-[var(--accent)]/50 transition-all duration-300 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)]"
                     tilt={true}
                   >
                     <div>
                       {/* Icon container — neutral idle, accent on hover */}
-                      <div className="w-12 h-12 rounded-xl bg-white/[0.04] border border-[#2E2E3A] flex items-center justify-center mb-4 group-hover:scale-105 group-hover:border-[#6366F1]/40 transition-transform">
+                      <div className="w-12 h-12 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] flex items-center justify-center mb-4 group-hover:scale-105 group-hover:border-[var(--accent)]/40 group-hover:bg-[var(--accent-soft)] transition-all">
                         {method.icon}
                       </div>
 
-                      <span className="text-[10px] font-mono tracking-widest text-slate-500 dark:text-slate-500 block uppercase mb-1">
+                      <span className="text-[10px] font-mono tracking-widest text-[var(--text-faint)] block uppercase mb-1">
                         {method.label}
                       </span>
 
                       <h3
-                        className="text-sm font-bold text-slate-900 dark:text-white mt-1 group-hover:text-accent transition-colors break-all leading-snug"
+                        className="text-sm font-bold text-[var(--text)] mt-1 group-hover:text-[var(--accent)] transition-colors break-all leading-snug"
                         title={method.value}
                       >
                         {method.value}
                       </h3>
 
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                      <p className="text-xs text-[var(--text-muted)] mt-2">
                         {method.subtext}
                       </p>
                     </div>
 
                     {/* Card footer: Open link + 1-click Copy */}
-                    <div className="mt-5 pt-3 border-t border-slate-200/60 dark:border-white/5 flex items-center justify-between text-xs font-mono">
-                      <span className="text-slate-500 dark:text-slate-500 group-hover:text-accent transition-colors flex items-center gap-1">
+                    <div className="mt-5 pt-3 border-t border-[var(--border)] flex items-center justify-between text-xs font-mono">
+                      <span className="text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors flex items-center gap-1">
                         {method.external ? 'Open' : 'Connect'}
                         <ArrowUpRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </span>
@@ -163,10 +163,10 @@ export default function ContactSection() {
                           onClick={(e) =>
                             handleCopy(e, method.copyValue!, method.label)
                           }
-                          className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] transition-all border ${
+                          className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] transition-all ${
                             isCopied
-                              ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-400'
-                              : 'bg-slate-100 dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:text-accent hover:border-accent/40'
+                              ? 'bg-[var(--success)]/15 border border-[var(--success)]/40 text-[var(--success)]'
+                              : 'btn-outline'
                           }`}
                           aria-label={`Copy ${method.label}`}
                           title={`Copy ${method.label}`}

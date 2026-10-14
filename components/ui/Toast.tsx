@@ -18,11 +18,11 @@ export default function Toast({ message, onClose }: ToastProps) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 10, scale: 0.95 }}
           transition={{ duration: 0.2 }}
-          className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-graphite-900/95 dark:bg-graphite-900/95 bg-white text-slate-900 dark:text-white border border-accent/40 shadow-xl backdrop-blur-md font-mono text-xs"
+          className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-[var(--bg-elevated)] text-[var(--text)] border border-[var(--accent)]/40 shadow-[var(--shadow-md)] backdrop-blur-md font-mono text-xs"
           role="status"
           aria-live="polite"
         >
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <CheckCircle2 className="w-4 h-4 text-[var(--success)] shrink-0" />
           <span>{message}</span>
         </motion.div>
       )}

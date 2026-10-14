@@ -63,10 +63,10 @@ export default function FloatingContactButton() {
                 href={opt.href}
                 target={opt.external ? '_blank' : undefined}
                 rel={opt.external ? 'noopener noreferrer' : undefined}
-                className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-white dark:bg-graphite-900 border border-slate-200 dark:border-white/15 text-slate-800 dark:text-white text-xs font-mono font-medium shadow-lg hover:border-accent/50 hover:text-accent transition-all"
+                className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-[var(--bg-elevated)] border border-[var(--border)] text-[var(--text)] text-xs font-mono font-medium shadow-[var(--shadow-md)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all"
                 onClick={() => setIsOpen(false)}
               >
-                <span className="text-accent">{opt.icon}</span>
+                <span className="text-[var(--accent)]">{opt.icon}</span>
                 <span>{opt.label}</span>
               </a>
             ))}
@@ -79,10 +79,10 @@ export default function FloatingContactButton() {
           onClick={() => setIsOpen((prev) => !prev)}
           aria-label={isOpen ? 'Close contact menu' : 'Open contact menu'}
           aria-expanded={isOpen}
-          className={`w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent border ${
+          className={`w-14 h-14 rounded-full flex items-center justify-center shadow-[var(--shadow-md)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] border ${
             isOpen
-              ? 'bg-graphite-950 dark:bg-white/10 border-white/20 text-white rotate-90'
-              : 'bg-accent text-graphite-950 border-accent hover:scale-105'
+              ? 'bg-[var(--bg-elevated)] border-[var(--border-strong)] text-[var(--text)] rotate-90'
+              : 'bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)] text-[var(--accent-contrast)] border-[var(--accent)] hover:scale-105'
           }`}
         >
           {isOpen ? (

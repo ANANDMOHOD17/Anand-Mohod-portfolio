@@ -74,13 +74,13 @@ export default function GlassCard({
         <div
           className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
           style={{
-            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.05), transparent 70%)`,
+            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, var(--accent-soft), transparent 70%)`,
           }}
         />
       )}
 
       {/* Subtle top rim light */}
-      <div className="pointer-events-none absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="pointer-events-none absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--border-strong)] to-transparent" />
 
       <div className="relative z-20 h-full">{children}</div>
     </motion.div>

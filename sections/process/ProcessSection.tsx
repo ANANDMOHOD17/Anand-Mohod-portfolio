@@ -98,9 +98,9 @@ export default function ProcessSection() {
         {/* Header Block */}
         <div className="mb-14 md:mb-20">
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono tracking-widest text-[#7F8496] dark:text-[#A7A9B7] border border-[#272733] bg-[#111116]/80 mb-4 shadow-sm backdrop-blur-sm uppercase">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono tracking-widest text-[var(--accent)] border border-[var(--border)] bg-[var(--accent-soft)] mb-4 shadow-[var(--shadow-sm)] backdrop-blur-sm uppercase">
             <span
-              className="w-1.5 h-1.5 rounded-full bg-[#6366F1] shadow-[0_0_8px_rgba(99,102,241,0.5)] shrink-0"
+              className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shrink-0"
               aria-hidden="true"
             />
             <span>HOW I BUILD</span>
@@ -109,21 +109,21 @@ export default function ProcessSection() {
           {/* Large Two-Line Heading */}
           <h2
             id="process-title"
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]"
+            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[var(--text)] leading-[1.12]"
           >
             <span className="block">FROM IDEA</span>
-            <span className="block mt-1 sm:mt-1.5 text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 dark:from-white dark:via-white dark:to-[#A5B4FC]/80">
+            <span className="block mt-1 sm:mt-1.5 text-transparent bg-clip-text bg-[var(--gradient-heading)]">
               TO ITERATION.
             </span>
           </h2>
 
           {/* Underline Divider */}
           <div
-            className="w-12 h-0.5 mt-4 rounded-full bg-gradient-to-r from-[#6366F1] to-[#818CF8]"
+            className="w-12 h-0.5 mt-4 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-2)]"
             aria-hidden="true"
           />
 
-          <p className="mt-4 text-base md:text-lg text-slate-600 dark:text-[#8B8F9F] max-w-2xl font-normal leading-relaxed">
+          <p className="mt-4 text-base md:text-lg text-[var(--text-muted)] max-w-2xl font-normal leading-relaxed">
             A structured, engineering-first development lifecycle translating concepts into resilient, scalable systems.
           </p>
         </div>
@@ -134,12 +134,12 @@ export default function ProcessSection() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: true, margin: '0px 0px -10% 0px', amount: 0.1 }}
             className="relative pt-6 pb-8"
           >
             {/* Horizontal Connecting Line */}
             <div
-              className="absolute top-[35px] left-[5%] right-[5%] h-[2px] bg-[#272733] dark:bg-[#272733] -z-0"
+              className="absolute top-[35px] left-[5%] right-[5%] h-[2px] bg-[var(--border)] -z-0"
               aria-hidden="true"
             />
 
@@ -167,8 +167,8 @@ export default function ProcessSection() {
                       <div
                         className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] ${
                           isHovered
-                            ? 'scale-125 bg-[#818CF8] shadow-[0_0_16px_rgba(129,140,248,0.55)]'
-                            : 'bg-[#6366F1] shadow-[0_0_12px_rgba(99,102,241,0.25)]'
+                            ? 'scale-125 bg-[var(--accent-2)] shadow-[var(--shadow-md)]'
+                            : 'bg-[var(--accent)] shadow-sm'
                         }`}
                         aria-hidden="true"
                       />
@@ -178,32 +178,32 @@ export default function ProcessSection() {
                     <span
                       className={`text-xs sm:text-sm font-bold tracking-wider transition-colors duration-200 uppercase ${
                         isHovered
-                          ? 'text-slate-900 dark:text-[#F5F5F7]'
-                          : 'text-slate-600 dark:text-[#7F8496]'
+                          ? 'text-[var(--text)]'
+                          : 'text-[var(--text-muted)]'
                       }`}
                     >
                       {step.name}
                     </span>
 
                     {/* Step Number */}
-                    <span className="text-[10px] font-mono text-slate-400 dark:text-[#525260] mt-1">
+                    <span className="text-[10px] font-mono text-[var(--text-faint)] mt-1">
                       {step.number}
                     </span>
 
                     {/* Hover/Focus Tooltip */}
                     <div
-                      className={`absolute top-full mt-3 w-48 p-3 rounded-xl bg-[#111116] border border-[#272733] shadow-xl text-left pointer-events-none transition-all duration-200 z-30 ${
+                      className={`absolute top-full mt-3 w-48 p-3 rounded-xl bg-[var(--bg-elevated)] border border-[var(--border-strong)] shadow-[var(--shadow-md)] text-left pointer-events-none transition-all duration-200 z-30 ${
                         isHovered
                           ? 'opacity-100 translate-y-0 visible'
                           : 'opacity-0 translate-y-1 invisible'
                       }`}
                       aria-hidden="true"
                     >
-                      <div className="flex items-center justify-between gap-1 mb-1 pb-1 border-b border-[#272733]/60">
-                        <span className="text-[10px] font-mono font-bold text-[#818CF8]">{step.number}</span>
-                        <span className="text-[10px] font-bold text-[#F5F5F7] tracking-wider">{step.name}</span>
+                      <div className="flex items-center justify-between gap-1 mb-1 pb-1 border-b border-[var(--border)]">
+                        <span className="text-[10px] font-mono font-bold text-[var(--accent)]">{step.number}</span>
+                        <span className="text-[10px] font-bold text-[var(--text)] tracking-wider">{step.name}</span>
                       </div>
-                      <p className="text-xs text-[#A7A9B7] leading-snug">
+                      <p className="text-xs text-[var(--text-muted)] leading-snug">
                         {step.description}
                       </p>
                     </div>
@@ -214,16 +214,16 @@ export default function ProcessSection() {
           </motion.div>
 
           {/* Active Detail Display Bar for subtle persistent reading */}
-          <div className="mt-8 pt-4 border-t border-[#272733]/40 min-h-[48px] flex items-center justify-center text-center">
+          <div className="mt-8 pt-4 border-t border-[var(--border)] min-h-[48px] flex items-center justify-center text-center">
             {activeStep !== null ? (
-              <p className="text-sm text-[#A7A9B7] transition-all duration-200">
-                <span className="font-mono font-semibold text-[#818CF8] mr-2">
+              <p className="text-sm text-[var(--text-muted)] transition-all duration-200">
+                <span className="font-mono font-semibold text-[var(--accent)] mr-2">
                   {processSteps[activeStep].number} / {processSteps[activeStep].name}:
                 </span>
                 {processSteps[activeStep].description}
               </p>
             ) : (
-              <p className="text-xs text-[#525260] font-mono">
+              <p className="text-xs text-[var(--text-faint)] font-mono">
                 Hover or focus on any stage to inspect methodology details.
               </p>
             )}
@@ -236,13 +236,13 @@ export default function ProcessSection() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-30px' }}
+            viewport={{ once: true, margin: '0px 0px -10% 0px', amount: 0.1 }}
             className="relative pl-6 space-y-6"
             role="list"
           >
             {/* Vertical Connecting Line */}
             <div
-              className="absolute top-3 bottom-3 left-[11px] w-[2px] bg-[#272733] dark:bg-[#272733]"
+              className="absolute top-3 bottom-3 left-[11px] w-[2px] bg-[var(--border)]"
               aria-hidden="true"
             />
 
@@ -255,21 +255,21 @@ export default function ProcessSection() {
               >
                 {/* Node Dot */}
                 <div
-                  className="absolute -left-[19px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#6366F1] shadow-[0_0_10px_rgba(99,102,241,0.3)] transition-all duration-300 group-hover:scale-125 group-hover:bg-[#818CF8]"
+                  className="absolute -left-[19px] top-1.5 w-2.5 h-2.5 rounded-full bg-[var(--accent)] transition-all duration-300 group-hover:scale-125 group-hover:bg-[var(--accent-2)]"
                   aria-hidden="true"
                 />
 
                 {/* Content Card */}
-                <div className="flex-1 p-3.5 rounded-xl bg-[#111116]/60 border border-[#272733] transition-colors duration-200 group-hover:border-[#3A3A4A]">
+                <div className="flex-1 p-3.5 rounded-xl bg-[var(--bg-elevated)] border border-[var(--border)] shadow-[var(--shadow-sm)] transition-colors duration-200 group-hover:border-[var(--accent)]/40">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[11px] font-mono font-semibold text-[#818CF8]">
+                    <span className="text-[11px] font-mono font-semibold text-[var(--accent)]">
                       {step.number}
                     </span>
-                    <span className="text-sm font-bold text-slate-900 dark:text-[#F5F5F7] tracking-wider uppercase">
+                    <span className="text-sm font-bold text-[var(--text)] tracking-wider uppercase">
                       {step.name}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-[#A7A9B7] leading-relaxed">
+                  <p className="text-xs text-[var(--text-muted)] leading-relaxed">
                     {step.description}
                   </p>
                 </div>

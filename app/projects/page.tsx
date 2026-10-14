@@ -24,12 +24,12 @@ export default function ProjectsPage() {
   });
 
   return (
-    <div className="pt-32 pb-24 md:py-36 min-h-screen">
+    <div className="pt-32 pb-24 md:py-36 min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back link */}
         <Link
           href="/#projects"
-          className="inline-flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-accent transition-colors mb-8 group"
+          className="inline-flex items-center gap-2 text-xs font-mono text-[var(--text-faint)] hover:text-[var(--accent)] transition-colors mb-8 group"
         >
           <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
           <span>Back to Home</span>
@@ -49,10 +49,10 @@ export default function ProjectsPage() {
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all ${
+              className={`btn-outline px-4 py-2 rounded-xl text-xs tracking-wide focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] ${
                 selectedCategory === cat
-                  ? 'bg-accent/15 text-accent border border-accent/40 shadow-sm'
-                  : 'glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 border border-slate-200 dark:border-white/10'
+                  ? 'btn-outline-active font-semibold shadow-[var(--shadow-sm)]'
+                  : 'font-normal'
               }`}
             >
               {cat}
@@ -74,12 +74,12 @@ export default function ProjectsPage() {
                 className="h-full"
               >
                 <GlassCard
-                  className="h-full flex flex-col overflow-hidden hover:border-accent/40 transition-all group border-slate-200 dark:border-white/10 bg-white/80 dark:bg-graphite-900/80"
+                  className="h-full flex flex-col overflow-hidden hover:border-[var(--accent)]/40 transition-all group border border-[var(--border)] bg-[var(--bg-elevated)] shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)]"
                   tilt={true}
                 >
                   {/* Project Preview Image — shown ABOVE all text */}
                   {project.image && (
-                    <div className="relative w-full aspect-video overflow-hidden bg-slate-100 dark:bg-graphite-950 flex-shrink-0">
+                    <div className="relative w-full aspect-video overflow-hidden bg-[var(--bg-subtle)] flex-shrink-0">
                       <Image
                         src={project.image}
                         alt={`Screenshot of ${project.title} project`}
@@ -88,7 +88,7 @@ export default function ProjectsPage() {
                         className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                         loading={idx < 3 ? 'eager' : 'lazy'}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)]/40 via-transparent to-transparent pointer-events-none" />
                     </div>
                   )}
 
@@ -96,33 +96,33 @@ export default function ProjectsPage() {
                   <div className="p-6 md:p-7 flex flex-col flex-1 justify-between">
                     <div className="space-y-4">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400 truncate">
+                        <span className="text-xs font-mono text-[var(--text-faint)] truncate">
                           {project.category}
                         </span>
                         <div className="flex items-center gap-2 shrink-0">
                           {project.year && (
-                            <span className="text-xs font-mono text-accent font-semibold">
+                            <span className="text-xs font-mono text-[var(--accent)] font-semibold">
                               {project.year}
                             </span>
                           )}
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-mono text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-mono text-[var(--text-muted)] bg-[var(--bg-subtle)] border border-[var(--border)]">
                             {project.status}
                           </span>
                         </div>
                       </div>
 
                       <div>
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-accent transition-colors leading-tight">
+                        <h3 className="text-xl font-bold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors leading-tight">
                           {project.title}
                         </h3>
                         {project.subtitle && (
-                          <span className="block text-xs font-normal text-slate-500 dark:text-slate-400 mt-1 font-mono">
+                          <span className="block text-xs font-normal text-[var(--text-faint)] mt-1 font-mono">
                             {project.subtitle}
                           </span>
                         )}
                       </div>
 
-                      <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                      <p className="text-[var(--text-muted)] text-xs sm:text-sm leading-relaxed line-clamp-3">
                         {project.shortDescription}
                       </p>
 
@@ -130,23 +130,23 @@ export default function ProjectsPage() {
                         {project.technologies.slice(0, 4).map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-0.5 rounded text-[10px] font-mono text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10"
+                            className="px-2 py-0.5 rounded text-[10px] font-mono text-[var(--text)] bg-[var(--bg-subtle)] border border-[var(--border)]"
                           >
                             {tech}
                           </span>
                         ))}
                         {project.technologies.length > 4 && (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-mono text-accent bg-accent/10 border border-accent/20">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-mono text-[var(--accent)] bg-[var(--accent-soft)] border border-[var(--accent)]/20">
                             +{project.technologies.length - 4}
                           </span>
                         )}
                       </div>
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
+                    <div className="mt-6 pt-4 border-t border-[var(--border)] flex items-center justify-between">
                       <Link
                         href={`/projects/${project.slug}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--accent)] hover:underline transition-colors"
                       >
                         <span>Case Study</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
@@ -158,7 +158,7 @@ export default function ProjectsPage() {
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+                            className="inline-flex items-center gap-1 text-xs font-mono text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors"
                             aria-label={`View ${project.title} source code on GitHub`}
                           >
                             <Github className="w-3.5 h-3.5" />
@@ -170,7 +170,7 @@ export default function ProjectsPage() {
                             href={project.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs font-mono text-accent hover:text-accent-hover transition-colors font-medium"
+                            className="inline-flex items-center gap-1 text-xs font-mono text-[var(--accent)] hover:text-[var(--accent-2)] transition-colors font-medium"
                             aria-label={`Open live demo of ${project.title}`}
                           >
                             <ExternalLink className="w-3.5 h-3.5" />

@@ -12,6 +12,17 @@ const nextConfig = {
   experimental: {
     webpackBuildWorker: false,
   },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      canvas: false,
+    };
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      canvas: false,
+    };
+    return config;
+  },
 };
 
 export default nextConfig;

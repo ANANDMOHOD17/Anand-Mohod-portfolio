@@ -125,15 +125,15 @@ export default function RotatingHeadline() {
     >
       {/* ── Static Label ── fixed at all times, never animates ─────────── */}
       <div className="hero-mask-static-label flex items-center gap-2 mb-1">
-        <span className="font-mono text-xs sm:text-sm tracking-wider text-slate-400 uppercase">
+        <span className="font-mono text-xs sm:text-sm tracking-wider text-[var(--text-faint)] uppercase">
           HI, I&apos;M
         </span>
-        <span className="font-bold text-xs sm:text-sm tracking-wider text-slate-900 dark:text-white uppercase underline decoration-accent decoration-2 underline-offset-4">
+        <span className="font-bold text-xs sm:text-sm tracking-wider text-[var(--text)] uppercase underline decoration-[var(--accent)] decoration-2 underline-offset-4">
           ANAND
         </span>
         {/* Subtle accent dot indicator */}
         <span
-          className={`inline-block w-1.5 h-1.5 rounded-full bg-accent transition-all duration-300 ${
+          className={`inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] transition-all duration-300 ${
             isWiping ? 'opacity-100 scale-125' : 'opacity-60 scale-100'
           }`}
           aria-hidden="true"

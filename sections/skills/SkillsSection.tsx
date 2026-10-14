@@ -74,7 +74,7 @@ export default function SkillsSection() {
         />
 
         {/* ── Category Filter Tabs — Individual categories only ── */}
-        <div className="flex items-center justify-start gap-2 mb-8 pb-3 border-b border-slate-200 dark:border-white/10 overflow-x-auto scrollbar-none">
+        <div className="flex items-center justify-start gap-2 mb-8 pb-3 border-b border-[var(--border)] overflow-x-auto scrollbar-none">
           {/* Per-category tabs */}
           {categories.map((cat) => {
             const isSelected = selectedCategory === cat.label;
@@ -83,10 +83,10 @@ export default function SkillsSection() {
                 key={cat.label}
                 type="button"
                 onClick={() => setSelectedCategory(cat.label)}
-                className={`relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold tracking-wide transition-all shrink-0 ${
+                className={`relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold tracking-wide transition-all shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] ${
                   isSelected
-                    ? 'text-accent'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'text-[var(--accent)] font-semibold'
+                    : 'text-[var(--text-muted)] hover:text-[var(--text)]'
                 }`}
               >
                 {cat.icon}
@@ -94,7 +94,7 @@ export default function SkillsSection() {
                 {isSelected && (
                   <motion.div
                     layoutId="activeCategoryTab"
-                    className="absolute bottom-0 left-2 right-2 h-0.5 bg-accent rounded-full"
+                    className="absolute bottom-0 left-2 right-2 h-0.5 bg-[var(--accent)] rounded-full"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -117,17 +117,17 @@ export default function SkillsSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="glass-panel rounded-2xl p-5 border border-slate-200 dark:border-[#27272F]
-                           bg-white/80 dark:bg-[#111116]
-                           hover:border-[#6366F1]/50 hover:bg-white dark:hover:bg-[#16161D]
-                           hover:-translate-y-1 hover:shadow-md
+                className="glass-panel rounded-2xl p-5 border border-[var(--border)]
+                           bg-[var(--bg-elevated)]
+                           hover:border-[var(--accent)]/40 hover:shadow-[var(--shadow-md)]
+                           hover:-translate-y-1 shadow-[var(--shadow-sm)]
                            transition-all duration-300
-                           flex flex-col items-start gap-3"
+                           flex flex-col items-start gap-3 group"
               >
-                {/* Icon container — neutral in idle state, accent tint on hover via parent group */}
+                {/* Icon container — inner sub-box */}
                 <div
-                  className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/10
-                             flex items-center justify-center text-[#8B8F9F] shrink-0"
+                  className="w-11 h-11 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)]
+                             flex items-center justify-center text-[var(--accent)] shrink-0 transition-transform group-hover:scale-105"
                   aria-hidden="true"
                 >
                   {getSkillIcon(skill.iconName)}
@@ -135,10 +135,10 @@ export default function SkillsSection() {
 
                 {/* Name + Category */}
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-[#F8FAFC] leading-tight">
+                  <h3 className="text-sm font-bold text-[var(--text)] leading-tight">
                     {skill.name}
                   </h3>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-[#7F8496] mt-0.5 block">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--text-faint)] mt-0.5 block">
                     {skill.category}
                   </span>
                 </div>

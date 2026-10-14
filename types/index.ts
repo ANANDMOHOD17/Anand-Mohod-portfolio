@@ -75,10 +75,12 @@ export interface Certificate {
   credentialId?: string;
   verificationUrl?: string;
   image?: string;
+  preview?: string;
   pdfUrl?: string;
   description: string;
   featured: boolean;
   category: string;
+  aspectRatio?: number;
 }
 
 export interface Achievement {

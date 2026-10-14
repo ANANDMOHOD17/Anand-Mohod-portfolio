@@ -102,10 +102,10 @@ export default function HeroProfileCard() {
             ? undefined
             : { scale: 1.02 }
         }
-        className="relative w-[280px] sm:w-[320px] md:w-[340px] max-w-full rounded-3xl p-3 sm:p-3.5 border border-slate-200 dark:border-white/15 bg-white/80 dark:bg-graphite-900/80 backdrop-blur-xl shadow-xl dark:shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(99,102,241,0.12)] transition-all duration-300 hover:border-accent/50 group"
+        className="relative w-[280px] sm:w-[320px] md:w-[340px] max-w-full rounded-3xl p-3 sm:p-3.5 border border-[var(--border-strong)] bg-[var(--bg-elevated)] backdrop-blur-xl shadow-[var(--shadow-md)] transition-all duration-300 hover:border-[var(--accent)]/50 group"
       >
         {/* Profile Card Main Body */}
-        <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-900 dark:bg-graphite-950 border border-slate-200/50 dark:border-white/10 shadow-inner">
+        <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-900 dark:bg-graphite-950 border border-[var(--border)] shadow-inner">
           {/* Profile Photo */}
           <Image
             src={profileData.avatar}
@@ -116,8 +116,13 @@ export default function HeroProfileCard() {
             priority
           />
 
-          {/* Liquid Glass Bottom Gradient for Text Legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-graphite-950 via-graphite-950/40 to-transparent pointer-events-none" />
+          {/* Neutral Warm-Dark Bottom Gradient for Text Legibility */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to top, rgba(33, 31, 28, 0.85) 0%, rgba(33, 31, 28, 0.40) 40%, transparent 100%)',
+            }}
+          />
 
           {/* Dynamic / Ambient Glass Specular Reflection */}
           {!prefersReducedMotion && (
@@ -147,7 +152,7 @@ export default function HeroProfileCard() {
           )}
 
           {/* Active Status Badge (Top-Right) */}
-          <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-graphite-950/85 border border-white/15 backdrop-blur-md flex items-center gap-1.5 text-xs font-mono text-slate-200 shadow-lg">
+          <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[var(--bg-elevated)]/90 border border-[var(--border-strong)] backdrop-blur-md flex items-center gap-1.5 text-xs font-mono text-[var(--text)] shadow-sm">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -160,7 +165,7 @@ export default function HeroProfileCard() {
             <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight drop-shadow-md">
               Anand Mohod
             </h2>
-            <p className="text-xs sm:text-sm text-accent font-mono mt-0.5 font-medium tracking-wide drop-shadow-sm">
+            <p className="hero-profile-subtitle text-xs sm:text-sm font-mono mt-0.5 font-medium tracking-wide">
               Computer Engineering Student
             </p>
           </div>

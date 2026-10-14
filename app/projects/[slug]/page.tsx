@@ -56,12 +56,12 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
   ];
 
   return (
-    <div className="pt-28 pb-24 md:pt-32 md:pb-36 min-h-screen">
+    <div className="pt-28 pb-24 md:pt-32 md:pb-36 min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Navigation back */}
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-accent transition-colors mb-8 group"
+          className="inline-flex items-center gap-2 text-xs font-mono text-[var(--text-faint)] hover:text-[var(--accent)] transition-colors mb-8 group"
         >
           <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
           <span>Back to All Projects</span>
@@ -69,7 +69,7 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
 
         {/* Hero Banner Image — shown FIRST, before title */}
         {project.image && (
-          <div className="relative w-full h-56 sm:h-72 md:h-96 rounded-2xl overflow-hidden mb-10 shadow-2xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-graphite-950">
+          <div className="relative w-full h-56 sm:h-72 md:h-96 rounded-2xl overflow-hidden mb-10 shadow-2xl border border-[var(--border)] bg-[var(--bg-subtle)]">
             <Image
               src={project.image}
               alt={`Screenshot preview of ${project.title}`}
@@ -78,26 +78,26 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
               className="object-cover object-top"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)]/50 via-transparent to-transparent pointer-events-none" />
           </div>
         )}
 
         {/* Header Area */}
-        <header className="space-y-6 mb-12 border-b border-slate-200 dark:border-white/10 pb-10">
+        <header className="space-y-6 mb-12 border-b border-[var(--border)] pb-10">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="px-3 py-1 rounded-full text-xs font-mono text-accent bg-accent/10 border border-accent/30 font-semibold">
+            <span className="px-3 py-1 rounded-full text-xs font-mono text-[var(--accent)] bg-[var(--accent-soft)] border border-[var(--accent)]/30 font-semibold">
               {project.category}
             </span>
             {project.year && (
-              <span className="px-3 py-1 rounded-full text-xs font-mono text-accent bg-accent/5 border border-accent/20">
+              <span className="px-3 py-1 rounded-full text-xs font-mono text-[var(--accent)] bg-[var(--accent-soft)] border border-[var(--accent)]/20">
                 {project.year}
               </span>
             )}
-            <span className="px-3 py-1 rounded-full text-xs font-mono text-emerald-500 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 font-medium">
+            <span className="px-3 py-1 rounded-full text-xs font-mono text-[var(--success)] bg-[var(--success)]/10 border border-[var(--success)]/20 font-medium">
               Status: {project.status}
             </span>
             {project.featured && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono text-amber-500 dark:text-amber-300 bg-amber-500/10 border border-amber-500/20 font-medium">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono text-[var(--accent)] bg-[var(--accent-soft)] border border-[var(--accent)]/30 font-medium">
                 <Sparkles className="w-3 h-3" />
                 Featured Work
               </span>
@@ -105,17 +105,17 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
           </div>
 
           <div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-[var(--text)] tracking-tight leading-tight">
               {project.title}
             </h1>
             {project.subtitle && (
-              <p className="text-base sm:text-lg font-mono text-accent font-medium mt-2">
+              <p className="text-base sm:text-lg font-mono text-[var(--accent)] font-medium mt-2">
                 {project.subtitle}
               </p>
             )}
           </div>
 
-          <p className="text-lg sm:text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+          <p className="text-lg sm:text-xl text-[var(--text-muted)] leading-relaxed font-normal">
             {project.shortDescription}
           </p>
 
@@ -145,7 +145,7 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <ExternalLink className="w-4 h-4 text-accent" />
+                  <ExternalLink className="w-4 h-4 text-[var(--accent)]" />
                   <span>Live Deployment</span>
                 </GlassButton>
               )}
@@ -159,26 +159,26 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
           <div className="lg:col-span-8 space-y-12">
             {/* Overview */}
             <section id="overview" className="scroll-mt-32 space-y-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-accent font-mono text-sm">01.</span>
+              <h2 className="text-xl sm:text-2xl font-bold text-[var(--text)] flex items-center gap-2">
+                <span className="text-[var(--accent)] font-mono text-sm">01.</span>
                 Project Overview
               </h2>
-              <p className="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+              <p className="text-[var(--text-muted)] text-base sm:text-lg leading-relaxed font-normal">
                 {project.fullDescription}
               </p>
             </section>
 
             {/* Technologies Used */}
             <section id="tech-stack" className="scroll-mt-32 space-y-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-accent font-mono text-sm">02.</span>
+              <h2 className="text-xl sm:text-2xl font-bold text-[var(--text)] flex items-center gap-2">
+                <span className="text-[var(--accent)] font-mono text-sm">02.</span>
                 Tech Stack &amp; Toolchain
               </h2>
               <div className="flex flex-wrap gap-2.5">
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3.5 py-1.5 rounded-lg text-xs font-mono text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10"
+                    className="px-3.5 py-1.5 rounded-lg text-xs font-mono text-[var(--text)] bg-[var(--bg-subtle)] border border-[var(--border)]"
                   >
                     {tech}
                   </span>
@@ -188,14 +188,14 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
 
             {/* Key Features */}
             <section id="features" className="scroll-mt-32 space-y-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-accent font-mono text-sm">03.</span>
+              <h2 className="text-xl sm:text-2xl font-bold text-[var(--text)] flex items-center gap-2">
+                <span className="text-[var(--accent)] font-mono text-sm">03.</span>
                 Key Capabilities &amp; Features
               </h2>
               <ul className="space-y-3">
                 {project.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300 text-sm sm:text-base">
-                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                  <li key={idx} className="flex items-start gap-3 text-[var(--text-muted)] text-sm sm:text-base">
+                    <CheckCircle2 className="w-5 h-5 text-[var(--accent)] shrink-0 mt-0.5" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -205,21 +205,21 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
             {/* Architecture Breakdown (if present) */}
             {project.architecture && (
               <section id="architecture" className="scroll-mt-32 space-y-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                  <span className="text-accent font-mono text-sm">04.</span>
+                <h2 className="text-xl sm:text-2xl font-bold text-[var(--text)] flex items-center gap-2">
+                  <span className="text-[var(--accent)] font-mono text-sm">04.</span>
                   System Architecture
                 </h2>
-                <GlassCard className="p-6 border-slate-200 dark:border-white/10 bg-white/80 dark:bg-graphite-900/80 space-y-4" tilt={false}>
-                  <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+                <GlassCard className="p-6 border border-[var(--border)] bg-[var(--bg-elevated)] space-y-4" tilt={false}>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed font-medium">
                     {project.architecture.summary}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                     {project.architecture.components.map((c, i) => (
-                      <div key={i} className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 space-y-1">
-                        <span className="text-xs font-mono text-accent font-bold block">
+                      <div key={i} className="p-3.5 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] space-y-1">
+                        <span className="text-xs font-mono text-[var(--accent)] font-bold block">
                           {c.name}
                         </span>
-                        <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-normal">
+                        <p className="text-[11px] text-[var(--text-muted)] leading-normal">
                           {c.role}
                         </p>
                       </div>
@@ -232,18 +232,18 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
             {/* What I Did / Key Contributions */}
             {contributionsList.length > 0 && (
               <section id="contributions" className="scroll-mt-32 space-y-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                  <span className="text-accent font-mono text-sm">
+                <h2 className="text-xl sm:text-2xl font-bold text-[var(--text)] flex items-center gap-2">
+                  <span className="text-[var(--accent)] font-mono text-sm">
                     {project.architecture ? '05.' : '04.'}
                   </span>
                   What I Did &amp; Key Contributions
                 </h2>
                 <div className="space-y-3">
                   {contributionsList.map((item, idx) => (
-                    <GlassCard key={idx} className="p-4 border-slate-200 dark:border-white/5 bg-slate-50/70 dark:bg-graphite-900/60" tilt={false}>
+                    <GlassCard key={idx} className="p-4 border border-[var(--border)] bg-[var(--bg-elevated)]" tilt={false}>
                       <div className="flex items-start gap-3">
-                        <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
-                        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                        <CheckCircle2 className="w-4 h-4 text-[var(--accent)] shrink-0 mt-0.5" />
+                        <p className="text-sm text-[var(--text-muted)] leading-relaxed">
                           {item}
                         </p>
                       </div>
@@ -255,16 +255,16 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
 
             {/* What I Learned */}
             <section id="learnings" className="scroll-mt-32 space-y-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-accent font-mono text-sm">
+              <h2 className="text-xl sm:text-2xl font-bold text-[var(--text)] flex items-center gap-2">
+                <span className="text-[var(--accent)] font-mono text-sm">
                   {project.architecture ? (contributionsList.length > 0 ? '06.' : '05.') : (contributionsList.length > 0 ? '05.' : '04.')}
                 </span>
                 What I Learned &amp; Engineering Takeaways
               </h2>
               <ul className="space-y-3">
                 {project.learnings.map((learning, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-slate-700 dark:text-slate-300 text-sm sm:text-base">
-                    <span className="w-2 h-2 rounded-full bg-accent mt-2 shrink-0" />
+                  <li key={idx} className="flex items-start gap-3 text-[var(--text-muted)] text-sm sm:text-base">
+                    <span className="w-2 h-2 rounded-full bg-[var(--accent)] mt-2 shrink-0" />
                     <span>{learning}</span>
                   </li>
                 ))}
@@ -274,10 +274,10 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
 
           {/* Sticky Mini Table of Contents Sidebar */}
           <aside className="lg:col-span-4 sticky top-28 hidden lg:block">
-            <div className="glass-panel rounded-2xl p-6 border border-slate-200 dark:border-white/10 space-y-4 bg-white/70 dark:bg-graphite-900/70 shadow-sm">
-              <div className="flex items-center gap-2 pb-3 border-b border-slate-200 dark:border-white/10">
-                <BookOpen className="w-4 h-4 text-accent" />
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 font-semibold">
+            <div className="rounded-2xl p-6 border border-[var(--border)] space-y-4 bg-[var(--bg-elevated)] shadow-[var(--shadow-sm)]">
+              <div className="flex items-center gap-2 pb-3 border-b border-[var(--border)]">
+                <BookOpen className="w-4 h-4 text-[var(--accent)]" />
+                <span className="text-xs font-mono uppercase tracking-wider text-[var(--text)] font-semibold">
                   Table of Contents
                 </span>
               </div>
@@ -287,17 +287,17 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
                   <a
                     key={item.id}
                     href={`#${item.id}`}
-                    className="text-xs font-mono text-slate-600 dark:text-slate-400 hover:text-accent dark:hover:text-accent transition-colors py-1 px-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5"
+                    className="text-xs font-mono text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors py-1 px-2 rounded-lg hover:bg-[var(--bg-subtle)]"
                   >
                     {item.label}
                   </a>
                 ))}
               </nav>
 
-              <div className="pt-4 border-t border-slate-200 dark:border-white/10">
+              <div className="pt-4 border-t border-[var(--border)]">
                 <Link
                   href="/projects"
-                  className="flex items-center gap-2 text-xs font-mono text-accent hover:underline font-semibold"
+                  className="flex items-center gap-2 text-xs font-mono text-[var(--accent)] hover:underline font-semibold"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                   <span>Browse All Projects</span>
@@ -308,17 +308,17 @@ export default function ProjectCaseStudyPage({ params }: CaseStudyProps) {
         </div>
 
         {/* Footer Navigation */}
-        <div className="mt-16 pt-8 border-t border-slate-200 dark:border-white/10 flex items-center justify-between">
+        <div className="mt-16 pt-8 border-t border-[var(--border)] flex items-center justify-between">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 hover:text-accent font-mono transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-[var(--text-muted)] hover:text-[var(--accent)] font-mono transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>All Projects</span>
           </Link>
           <Link
             href="/#contact"
-            className="inline-flex items-center gap-2 text-sm text-accent hover:underline font-mono transition-colors font-semibold"
+            className="inline-flex items-center gap-2 text-sm text-[var(--accent)] hover:underline font-mono transition-colors font-semibold"
           >
             <span>Discuss This Project</span>
           </Link>

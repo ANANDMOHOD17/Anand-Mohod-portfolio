@@ -29,12 +29,26 @@ export default function SectionHeading({
   const containerRef = useRef<HTMLDivElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  // IntersectionObserver: Triggers animation once when section heading enters viewport
+  // IntersectionObserver: Triggers animation once when section heading enters viewport (pre-reveal)
   useEffect(() => {
     if (prefersReducedMotion) {
       setHasAnimated(true);
       return;
     }
+
+    // Immediate check if ancestor section is already marked visible
+    if (containerRef.current?.closest('.is-visible')) {
+      setHasAnimated(true);
+      return;
+    }
+
+    const onReveal = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (!detail?.id || containerRef.current?.closest(`#${detail.id}`)) {
+        setHasAnimated(true);
+      }
+    };
+    window.addEventListener('reveal-section', onReveal);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -44,8 +58,8 @@ export default function SectionHeading({
         }
       },
       {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.1,
+        rootMargin: '0px 0px -10% 0px',
       }
     );
 
@@ -53,7 +67,10 @@ export default function SectionHeading({
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('reveal-section', onReveal);
+    };
   }, [prefersReducedMotion]);
 
   // Determine lines for 2-line title structure
@@ -94,23 +111,23 @@ export default function SectionHeading({
       {/* 1. Pill Label */}
       <div
         className={cn(
-          'section-heading__label inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-wider text-accent border border-accent/30 bg-accent/10 mb-4 shadow-sm backdrop-blur-sm',
+          'section-heading__label inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-wider text-[var(--accent)] border border-[var(--border)] bg-[var(--accent-soft)] mb-4 shadow-[var(--shadow-sm)] backdrop-blur-sm',
           isCentered && 'justify-center'
         )}
       >
         <span
-          className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shrink-0"
+          className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse shrink-0"
           aria-hidden="true"
         />
-        <span className="font-semibold text-accent">{number}</span>
-        <span className="text-accent/60">/</span>
+        <span className="font-semibold text-[var(--accent)]">{number}</span>
+        <span className="text-[var(--text-faint)]">/</span>
         <span className="uppercase font-medium tracking-wide">{label}</span>
       </div>
 
       {/* 2. Title (Per-Line Slide + Blur + Color Sweep) */}
       <h2
         className={cn(
-          'section-heading__title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]',
+          'section-heading__title text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[var(--text)] leading-[1.12]',
           isCentered ? 'text-center' : 'text-left'
         )}
       >
@@ -145,7 +162,7 @@ export default function SectionHeading({
 
       {/* 4. Subtitle Editorial Description */}
       {description && (
-        <p className="section-heading__subtitle mt-3.5 text-base md:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
+        <p className="section-heading__subtitle mt-3.5 text-base md:text-lg text-[var(--text-muted)] leading-relaxed font-normal">
           {description}
         </p>
       )}

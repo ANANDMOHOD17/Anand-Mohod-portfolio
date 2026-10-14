@@ -40,7 +40,7 @@ export function ReduceMotionToggle() {
       onClick={toggleReducedMotion}
       aria-label={reducedMotion ? 'Enable animations and motion effects' : 'Reduce motion and animations'}
       title={reducedMotion ? 'Motion: Reduced (Click to enable)' : 'Motion: On (Click to reduce)'}
-      className="fixed bottom-6 left-6 z-40 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium glass-card border border-white/10 dark:border-white/10 text-slate-400 hover:text-white transition-all duration-200 hover:border-accent/40 shadow-lg backdrop-blur-md focus-visible:ring-2 focus-visible:ring-accent focus:outline-none"
+      className="btn-outline fixed bottom-6 left-6 z-40 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium shadow-lg backdrop-blur-md"
     >
       {reducedMotion ? (
         <>

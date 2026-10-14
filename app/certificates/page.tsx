@@ -8,6 +8,7 @@ import GlassCard from '@/components/ui/GlassCard';
 import CertificateViewer from '@/components/viewer/CertificateViewer';
 import { certificatesData } from '@/data/certificates';
 import { Certificate } from '@/types';
+import { getAssetPath } from '@/lib/utils';
 import { ArrowLeft, Award, Eye, ShieldCheck, ExternalLink } from 'lucide-react';
 
 export default function CertificatesPage() {
@@ -20,13 +21,19 @@ export default function CertificatesPage() {
     ? certificatesData
     : certificatesData.filter((c) => c.category === activeCategory);
 
+  const prefetchPreview = (url?: string) => {
+    if (!url || typeof window === 'undefined') return;
+    const img = new Image();
+    img.src = getAssetPath(url);
+  };
+
   return (
-    <div className="pt-32 pb-24 md:py-36 min-h-screen">
+    <div className="pt-32 pb-24 md:py-36 min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Link */}
         <Link
           href="/#certificates"
-          className="inline-flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 hover:text-accent transition-colors mb-8 group"
+          className="inline-flex items-center gap-2 text-xs font-mono text-[var(--text-faint)] hover:text-[var(--accent)] transition-colors mb-8 group"
         >
           <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
           <span>Back to Home</span>
@@ -47,10 +54,10 @@ export default function CertificatesPage() {
                 key={cat}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-medium tracking-wide transition-all ${
+                className={`btn-outline px-4 py-2 rounded-xl text-xs tracking-wide focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] ${
                   activeCategory === cat
-                    ? 'bg-accent/15 text-accent border border-accent/40 shadow-sm font-semibold'
-                    : 'glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'btn-outline-active font-semibold shadow-[var(--shadow-sm)]'
+                    : 'font-medium'
                 }`}
               >
                 {cat}
@@ -73,58 +80,66 @@ export default function CertificatesPage() {
                   transition={{ duration: 0.2 }}
                 >
                   <GlassCard
-                    className="p-6 h-full flex flex-col justify-between hover:border-[#6366F1]/40 transition-all cursor-pointer group border-slate-200 dark:border-[#27272F] bg-white/80 dark:bg-[#111116] shadow-glass-sm hover:shadow-[0_15px_35px_rgba(99,102,241,0.12)]"
+                    className="p-6 h-full flex flex-col justify-between hover:border-[var(--border-strong)] hover:-translate-y-0.5 transition-all duration-200 ease-out cursor-pointer group border border-[var(--border)] bg-[var(--bg-elevated)] shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)]"
                     onClick={() => setSelectedCert(cert)}
+                    onMouseEnter={() => prefetchPreview(cert.preview)}
                     tilt={true}
                   >
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        {/* Icon — neutral idle */}
-                        <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-[#2E2E3A] flex items-center justify-center group-hover:scale-105 transition-transform">
-                          <Award className="w-5 h-5 text-[#8B8F9F]" />
+                        {/* Icon */}
+                        <div className="w-9 h-9 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border)] flex items-center justify-center group-hover:scale-105 transition-transform">
+                          <Award className="w-5 h-5 text-[var(--text-faint)] group-hover:text-[var(--accent)] transition-colors" />
                         </div>
                         <div className="flex items-center gap-2">
-                          {/* Category badge — neutral */}
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.03] border border-[#2A2A36] text-[#9A9DAC] font-medium">
+                          {/* Category badge */}
+                          <span className="btn-outline text-[10px] font-mono px-2 py-0.5 rounded-full font-medium">
                             {cert.category}
                           </span>
-                          <span className="text-xs font-mono text-[#94A3B8]">
+                          <span className="text-xs font-mono text-[var(--text-faint)]">
                             {cert.date}
                           </span>
                         </div>
                       </div>
 
                       <div>
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-accent/90 block mb-1">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--text-faint)] block mb-1">
                           {cert.issuer}
                         </span>
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#A5B4FC] transition-colors line-clamp-2">
+                        <h3 className="text-lg font-bold text-[var(--text)] line-clamp-2 leading-snug">
                           {cert.name}
                         </h3>
                       </div>
 
-                      <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+                      <p className="text-xs text-[var(--text-muted)] leading-relaxed line-clamp-3">
                         {cert.description}
                       </p>
                     </div>
 
-                    <div className="mt-6 pt-3 border-t border-slate-200/60 dark:border-white/5 flex items-center justify-between text-xs font-mono text-accent">
-                      <span className="flex items-center gap-1.5 font-medium group-hover:underline">
+                    <div className="mt-6 pt-3 border-t border-[var(--border)] flex items-center justify-between text-xs font-mono text-[var(--accent)]">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedCert(cert);
+                        }}
+                        className="flex items-center gap-1.5 font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-md"
+                      >
                         <Eye className="w-3.5 h-3.5" />
-                        View Certificate
-                      </span>
+                        <span>View Certificate</span>
+                      </button>
                       {cert.verificationUrl ? (
                         <a
                           href={cert.verificationUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="text-slate-500 hover:text-accent flex items-center gap-1 text-[11px] transition-colors"
+                          className="text-[var(--text-muted)] hover:text-[var(--accent)] flex items-center gap-1 text-[11px] transition-colors"
                         >
                           Verify <ExternalLink className="w-3 h-3" />
                         </a>
                       ) : (
-                        <span className="text-slate-400 dark:text-slate-500 text-[10px]">
+                        <span className="text-[var(--text-faint)] text-[10px]">
                           {cert.credentialId ? `#${cert.credentialId.slice(0, 8)}...` : 'Verified'}
                         </span>
                       )}
@@ -135,24 +150,26 @@ export default function CertificatesPage() {
             </AnimatePresence>
           </motion.div>
         ) : (
-          <GlassCard className="p-12 text-center max-w-2xl mx-auto border-slate-200 dark:border-[#27272F] bg-white dark:bg-[#111116]">
-            <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mx-auto mb-4">
+          <GlassCard className="p-12 text-center max-w-2xl mx-auto border border-[var(--border)] bg-[var(--bg-elevated)]">
+            <div className="w-12 h-12 rounded-2xl bg-[var(--accent-soft)] border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] mx-auto mb-4">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+            <h3 className="text-lg font-bold text-[var(--text)] mb-2">
               No Certificates Listed
             </h3>
-            <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto leading-relaxed font-normal">
+            <p className="text-sm text-[var(--text-muted)] max-w-md mx-auto leading-relaxed font-normal">
               Technical credentials and verified certifications will be displayed here once added.
             </p>
           </GlassCard>
         )}
       </div>
 
-      {/* Full-Screen Certificate Viewer */}
+      {/* Full-Screen Immersive Certificate Viewer via Portal */}
       <CertificateViewer
         certificate={selectedCert}
+        certificates={filteredCerts}
         onClose={() => setSelectedCert(null)}
+        onNavigate={(cert) => setSelectedCert(cert)}
       />
     </div>
   );

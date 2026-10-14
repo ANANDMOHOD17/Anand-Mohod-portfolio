@@ -70,7 +70,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.35 }}
-              className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-xl font-normal leading-relaxed"
+              className="text-base sm:text-lg text-[var(--text-muted)] max-w-xl font-normal leading-relaxed"
             >
               &ldquo;{profileData.tagline}&rdquo;
             </motion.p>
@@ -103,7 +103,7 @@ export default function HeroSection() {
                   className="inline-flex"
                 >
                   <GlassButton variant="secondary" size="lg">
-                    <Download className="w-4 h-4 text-accent" />
+                    <Download className="w-4 h-4 text-[var(--accent)]" />
                     <span>DOWNLOAD RESUME</span>
                   </GlassButton>
                 </a>
@@ -113,10 +113,10 @@ export default function HeroSection() {
               <MagneticButton strength={0.25}>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-accent dark:hover:text-accent transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-white/5"
+                  className="btn-outline inline-flex items-center gap-1.5 px-3.5 py-2.5 text-sm font-semibold rounded-lg"
                 >
                   <span>Contact Me</span>
-                  <ArrowUpRight className="w-4 h-4 text-accent" />
+                  <ArrowUpRight className="w-4 h-4 text-current" />
                 </a>
               </MagneticButton>
             </motion.div>
@@ -165,18 +165,18 @@ export default function HeroSection() {
       </div>
 
       {/* Downward Scroll Indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-slate-400 dark:text-slate-500 text-xs font-mono">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-[var(--text-faint)] text-xs font-mono">
         <a
           href="#about"
-          className="flex flex-col items-center gap-2 hover:text-accent transition-colors"
+          className="flex flex-col items-center gap-2 hover:text-[var(--accent)] transition-colors"
           aria-label="Scroll to about section"
         >
           <span className="tracking-wider uppercase text-[10px]">SCROLL TO EXPLORE</span>
-          <div className="w-4 h-7 rounded-full border border-slate-300 dark:border-white/20 flex items-start justify-center p-1">
+          <div className="w-4 h-7 rounded-full border border-[var(--border-strong)] flex items-start justify-center p-1">
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-              className="w-1 h-1 rounded-full bg-accent"
+              className="w-1 h-1 rounded-full bg-[var(--accent)]"
             />
           </div>
         </a>

@@ -11,6 +11,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Semantic Design Tokens mapped to CSS variables
+        bg: {
+          DEFAULT: 'var(--bg)',
+          elevated: 'var(--bg-elevated)',
+          subtle: 'var(--bg-subtle)',
+        },
+        surface: {
+          DEFAULT: 'var(--bg-elevated)',
+          subtle: 'var(--bg-subtle)',
+        },
+        text: {
+          DEFAULT: 'var(--text)',
+          muted: 'var(--text-muted)',
+          faint: 'var(--text-faint)',
+        },
+        border: {
+          DEFAULT: 'var(--border)',
+          strong: 'var(--border-strong)',
+        },
+        accent: {
+          DEFAULT: 'var(--accent)',
+          2: 'var(--accent-2)',
+          soft: 'var(--accent-soft)',
+          contrast: 'var(--accent-contrast)',
+          hover: 'var(--accent-2)',
+          active: 'var(--accent)',
+          dim: 'var(--accent-soft)',
+          glow: 'var(--glow)',
+        },
+        success: 'var(--success)',
         graphite: {
           950: '#0A0A0F', // Primary Background
           900: '#111116', // Cards / Primary Surface
@@ -26,13 +56,6 @@ const config: Config = {
           100: '#F1F5F9',
           50: '#F8FAFC',  // Primary Text
         },
-        accent: {
-          DEFAULT: '#6366F1', // Primary Accent (Indigo 500)
-          hover: '#818CF8',   // Secondary Accent (Indigo 400)
-          active: '#4F46E5',  // Deep Accent (Indigo 600)
-          dim: 'rgba(99, 102, 241, 0.12)',
-          glow: 'rgba(99, 102, 241, 0.20)',
-        },
       },
       fontFamily: {
         grotesk: [
@@ -44,6 +67,7 @@ const config: Config = {
           'sans-serif',
         ],
         sans: [
+          'var(--font-inter)',
           'Inter',
           '-apple-system',
           'BlinkMacSystemFont',
@@ -52,18 +76,22 @@ const config: Config = {
           'sans-serif',
         ],
         mono: [
+          'var(--font-mono)',
           'JetBrains Mono',
           'Fira Code',
           'monospace',
         ],
       },
       boxShadow: {
-        'glass-sm': '0 4px 16px -2px rgba(0, 0, 0, 0.45)',
-        'glass-md': '0 8px 30px -4px rgba(0, 0, 0, 0.65)',
-        'glass-lg': '0 20px 45px -8px rgba(0, 0, 0, 0.8)',
-        'glass-light-sm': '0 2px 10px rgba(0, 0, 0, 0.06)',
-        'glass-light-md': '0 8px 24px rgba(0, 0, 0, 0.08)',
-        'accent-glow': '0 0 25px -4px rgba(99, 102, 241, 0.20)',
+        'theme-sm': 'var(--shadow-sm)',
+        'theme-md': 'var(--shadow-md)',
+        'glow': 'var(--glow)',
+        'glass-sm': 'var(--shadow-sm)',
+        'glass-md': 'var(--shadow-md)',
+        'glass-lg': 'var(--shadow-md)',
+        'glass-light-sm': 'var(--shadow-sm)',
+        'glass-light-md': 'var(--shadow-md)',
+        'accent-glow': 'var(--glow)',
       },
       animation: {
         'pulse-subtle': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',

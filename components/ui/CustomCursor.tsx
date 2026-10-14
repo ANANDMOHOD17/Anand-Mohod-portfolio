@@ -59,7 +59,7 @@ export default function CustomCursor() {
     <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
       {/* Precision center dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-accent pointer-events-none -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-[var(--accent)] pointer-events-none -translate-x-1/2 -translate-y-1/2"
         style={{
           x: springX,
           y: springY,
@@ -68,7 +68,7 @@ export default function CustomCursor() {
       />
       {/* Subtle outer magnetic ring */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full border border-accent/40 pointer-events-none -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 rounded-full border border-[var(--accent)]/40 pointer-events-none -translate-x-1/2 -translate-y-1/2"
         style={{
           x: springX,
           y: springY,
@@ -77,8 +77,8 @@ export default function CustomCursor() {
         animate={{
           width: isPointer ? 36 : 22,
           height: isPointer ? 36 : 22,
-          borderColor: isPointer ? 'rgba(99, 102, 241, 0.6)' : 'rgba(255, 255, 255, 0.2)',
-          backgroundColor: isPointer ? 'rgba(99, 102, 241, 0.08)' : 'transparent',
+          borderColor: isPointer ? 'var(--accent)' : 'var(--border-strong)',
+          backgroundColor: isPointer ? 'var(--accent-soft)' : 'transparent',
         }}
         transition={{ type: 'spring', damping: 20, stiffness: 300 }}
       />

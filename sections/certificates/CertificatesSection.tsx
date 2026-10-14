@@ -9,6 +9,7 @@ import GlassButton from '@/components/ui/GlassButton';
 import CertificateViewer from '@/components/viewer/CertificateViewer';
 import { certificatesData } from '@/data/certificates';
 import { Certificate } from '@/types';
+import { getAssetPath } from '@/lib/utils';
 import { Award, ArrowUpRight, Eye, ShieldCheck, ExternalLink, ChevronDown, CheckCircle2 } from 'lucide-react';
 
 export default function CertificatesSection() {
@@ -18,6 +19,12 @@ export default function CertificatesSection() {
   const INITIAL_COUNT = 6;
   const displayCertificates = showAll ? certificatesData : certificatesData.slice(0, INITIAL_COUNT);
   const remainingCount = certificatesData.length - INITIAL_COUNT;
+
+  const prefetchPreview = (url?: string) => {
+    if (!url || typeof window === 'undefined') return;
+    const img = new Image();
+    img.src = getAssetPath(url);
+  };
 
   return (
     <section id="certificates" className="py-24 md:py-32 relative">
@@ -35,7 +42,7 @@ export default function CertificatesSection() {
             <Link href="/certificates">
               <GlassButton variant="secondary" size="md">
                 <span>View Full Archive ({certificatesData.length})</span>
-                <ArrowUpRight className="w-4 h-4 text-accent" />
+                <ArrowUpRight className="w-4 h-4 text-[var(--accent)]" />
               </GlassButton>
             </Link>
           )}
@@ -56,48 +63,53 @@ export default function CertificatesSection() {
                     className="h-full"
                   >
                     <GlassCard
-                      className="p-6 h-full flex flex-col justify-between hover:border-[#6366F1]/40 transition-all border-slate-200 dark:border-[#27272F] bg-white/80 dark:bg-[#111116] group shadow-glass-sm hover:shadow-[0_15px_35px_rgba(99,102,241,0.12)]"
+                      onClick={() => setSelectedCert(cert)}
+                      onMouseEnter={() => prefetchPreview(cert.preview)}
+                      className="p-6 h-full flex flex-col justify-between cursor-pointer border border-[var(--border)] bg-[var(--bg-elevated)] group shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] hover:border-[var(--border-strong)] hover:-translate-y-0.5 transition-all duration-200 ease-out"
                       tilt={true}
                     >
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
-                          {/* Icon container — neutral idle */}
-                          <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-[#2E2E3A] flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
-                            <Award className="w-5 h-5 text-[#8B8F9F]" />
+                          {/* Icon container */}
+                          <div className="w-10 h-10 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] flex items-center justify-center group-hover:scale-105 transition-transform shadow-[var(--shadow-sm)]">
+                            <Award className="w-5 h-5 text-[var(--text-faint)] group-hover:text-[var(--accent)] transition-colors" />
                           </div>
                           <div className="flex items-center gap-2">
-                            {/* Category badge — neutral */}
-                            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white/[0.03] border border-[#2A2A36] text-[#9A9DAC] font-medium">
+                            {/* Category badge */}
+                            <span className="btn-outline text-[10px] font-mono px-2.5 py-0.5 rounded-full font-medium">
                               {cert.category}
                             </span>
-                            <span className="text-xs font-mono text-[#94A3B8]">
+                            <span className="text-xs font-mono text-[var(--text-faint)]">
                               {cert.date}
                             </span>
                           </div>
                         </div>
 
                         <div>
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-[#94A3B8] font-semibold block mb-1">
+                          <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--text-faint)] font-semibold block mb-1">
                             {cert.issuer}
                           </span>
-                          <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-[#F8FAFC] group-hover:text-[#A5B4FC] transition-colors line-clamp-2 leading-snug">
+                          <h3 className="text-base sm:text-lg font-bold text-[var(--text)] line-clamp-2 leading-snug">
                             {cert.name}
                           </h3>
                         </div>
 
-                        <p className="text-xs text-slate-600 dark:text-[#CBD5E1] leading-relaxed line-clamp-2">
+                        <p className="text-xs text-[var(--text-muted)] leading-relaxed line-clamp-2">
                           {cert.description}
                         </p>
                       </div>
 
                       {/* Verify / View Actions */}
-                      <div className="mt-6 pt-3.5 border-t border-slate-200/60 dark:border-white/5 flex items-center justify-between text-xs font-mono">
+                      <div className="mt-6 pt-3.5 border-t border-[var(--border)] flex items-center justify-between text-xs font-mono">
                         <button
                           type="button"
-                          onClick={() => setSelectedCert(cert)}
-                          className="inline-flex items-center gap-1.5 font-semibold text-[#818CF8] hover:text-[#A5B4FC] hover:underline focus:outline-none"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedCert(cert);
+                          }}
+                          className="inline-flex items-center gap-1.5 font-semibold text-[var(--accent)] hover:text-[var(--accent-2)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-md"
                         >
-                          <Eye className="w-3.5 h-3.5 text-[#818CF8]" />
+                          <Eye className="w-3.5 h-3.5 text-[var(--accent)]" />
                           <span>View Certificate</span>
                         </button>
 
@@ -107,16 +119,17 @@ export default function CertificatesSection() {
                               href={cert.verificationUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-[11px] text-[#818CF8] hover:text-[#A5B4FC] hover:underline transition-colors"
+                              onClick={(e) => e.stopPropagation()}
+                              className="inline-flex items-center gap-1 text-[11px] text-[var(--accent)] hover:text-[var(--accent-2)] hover:underline transition-colors"
                               title="Verify on Credly / Issuer Portal"
                             >
                               <span>Verify</span>
                               <ExternalLink className="w-3 h-3" />
                             </a>
                           )}
-                          {/* Credential ID badge — neutral, not purple */}
-                          <span className="inline-flex items-center gap-1 text-[#9A9DAC] text-[10px] font-medium bg-white/[0.03] px-2 py-0.5 rounded-md border border-[#2A2A36]">
-                            <CheckCircle2 className="w-3 h-3 text-[#8B8F9F]" />
+                          {/* Credential ID badge */}
+                          <span className="inline-flex items-center gap-1 text-[var(--text-muted)] text-[10px] font-medium bg-[var(--bg-subtle)] px-2 py-0.5 rounded-md border border-[var(--border)]">
+                            <CheckCircle2 className="w-3 h-3 text-[var(--text-faint)]" />
                             <span>{cert.credentialId ? `#${cert.credentialId.slice(0, 6)}` : 'Verified'}</span>
                           </span>
                         </div>
@@ -133,7 +146,7 @@ export default function CertificatesSection() {
                 <button
                   type="button"
                   onClick={() => setShowAll(!showAll)}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-accent/40 bg-accent/10 hover:bg-accent/20 text-accent font-mono text-xs font-semibold tracking-wide transition-all shadow-sm hover:shadow"
+                  className="btn-outline inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs font-semibold tracking-wide shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)]"
                 >
                   <span>
                     {showAll ? 'Show Less' : `Show More (${remainingCount} Remaining)`}
@@ -148,24 +161,26 @@ export default function CertificatesSection() {
             )}
           </>
         ) : (
-          <GlassCard className="p-10 text-center max-w-2xl mx-auto border-slate-200 dark:border-white/10 bg-white dark:bg-[#111116]">
-            <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mx-auto mb-4">
+          <GlassCard className="p-10 text-center max-w-2xl mx-auto border border-[var(--border)] bg-[var(--bg-elevated)]">
+            <div className="w-12 h-12 rounded-2xl bg-[var(--accent-soft)] border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] mx-auto mb-4">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+            <h3 className="text-lg font-bold text-[var(--text)] mb-2">
               Certifications Updating
             </h3>
-            <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto leading-relaxed font-normal">
+            <p className="text-sm text-[var(--text-muted)] max-w-md mx-auto leading-relaxed font-normal">
               Official technical certifications and verified course credentials will appear here once uploaded.
             </p>
           </GlassCard>
         )}
       </div>
 
-      {/* Full-Screen Liquid Glass Certificate Viewer */}
+      {/* Full-Screen Immersive Certificate Viewer via Portal */}
       <CertificateViewer
         certificate={selectedCert}
+        certificates={certificatesData}
         onClose={() => setSelectedCert(null)}
+        onNavigate={(cert) => setSelectedCert(cert)}
       />
     </section>
   );

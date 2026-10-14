@@ -51,22 +51,22 @@ export default function StatCounter({
   return (
     <div
       ref={ref}
-      className="p-3.5 sm:p-4 rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/[0.03] backdrop-blur-md flex flex-col justify-between transition-all duration-300 hover:border-accent/40 hover:-translate-y-0.5 shadow-sm hover:shadow-md"
+      className="p-3.5 sm:p-4 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] backdrop-blur-md flex flex-col justify-between transition-all duration-300 hover:border-[var(--accent)]/40 hover:-translate-y-0.5 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)]"
     >
       <div className="flex items-baseline gap-0.5">
-        <span className="text-2xl sm:text-3xl font-extrabold font-mono tracking-tight text-accent">
+        <span className="text-2xl sm:text-3xl font-extrabold font-mono tracking-tight text-[var(--accent)]">
           {count}
         </span>
-        <span className="text-lg sm:text-xl font-bold font-mono text-accent/80">
+        <span className="text-lg sm:text-xl font-bold font-mono text-[var(--accent)]/80">
           {suffix}
         </span>
       </div>
       <div className="mt-1">
-        <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 block leading-tight">
+        <span className="text-xs sm:text-sm font-semibold text-[var(--text)] block leading-tight">
           {label}
         </span>
         {sublabel && (
-          <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400 mt-0.5 block">
+          <span className="text-[10px] font-mono text-[var(--text-faint)] mt-0.5 block">
             {sublabel}
           </span>
         )}

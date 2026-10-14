@@ -51,14 +51,14 @@ export default function JourneySection() {
         <div className="hidden lg:block relative mt-12">
           {/* Subtle background circuit watermark */}
           <div className="absolute inset-0 pointer-events-none -z-10 opacity-30" aria-hidden="true">
-            <div className="w-full h-full bg-[radial-gradient(#272733_1px,transparent_1px)] [background-size:24px_24px]" />
+            <div className="w-full h-full bg-[radial-gradient(var(--border)_1px,transparent_1px)] [background-size:24px_24px]" />
           </div>
 
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true, margin: '0px 0px -10% 0px', amount: 0.1 }}
             className="space-y-6 relative"
           >
             {/* ROW 1: Milestone 1 (Left: 2024–2025) */}
@@ -67,8 +67,8 @@ export default function JourneySection() {
                 <MilestoneCard item={journeyData[0]} period={getCleanPeriod(journeyData[0].period)} stepNum="01" isPresent={false} />
               </motion.div>
               <div className="col-span-6 flex items-center justify-start pl-4" aria-hidden="true">
-                <div className="flex items-center gap-3 text-xs font-mono text-[#525260]">
-                  <div className="w-12 h-[1px] bg-[#272733]" />
+                <div className="flex items-center gap-3 text-xs font-mono text-[var(--text-faint)]">
+                  <div className="w-12 h-[1px] bg-[var(--border)]" />
                   <span>PHASE 01 // FOUNDATION</span>
                 </div>
               </div>
@@ -77,9 +77,9 @@ export default function JourneySection() {
             {/* Connector 1 -> 2 (Left to Right downward flow) */}
             <div className="grid grid-cols-12 gap-8 h-14 relative" aria-hidden="true">
               <div className="col-span-12 relative flex items-center justify-center">
-                <div className="absolute left-[25%] right-[25%] top-1/2 h-[1px] bg-gradient-to-r from-[#272733] via-[#6366F1]/50 to-[#272733]" />
-                <div className="z-10 flex items-center gap-2 px-3 py-1 rounded-full bg-[#111116] border border-[#272733] text-[11px] font-mono text-[#8B8F9F]">
-                  <ArrowDownRight className="w-3.5 h-3.5 text-[#818CF8]" />
+                <div className="absolute left-[25%] right-[25%] top-1/2 h-[1px] bg-gradient-to-r from-[var(--border)] via-[var(--accent)]/50 to-[var(--border)]" />
+                <div className="z-10 flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-elevated)] border border-[var(--border)] text-[11px] font-mono text-[var(--text-muted)] shadow-[var(--shadow-sm)]">
+                  <ArrowDownRight className="w-3.5 h-3.5 text-[var(--accent)]" />
                   <span>PROGRESSION</span>
                 </div>
               </div>
@@ -88,9 +88,9 @@ export default function JourneySection() {
             {/* ROW 2: Milestone 2 (Right: 2025–2026) */}
             <div className="grid grid-cols-12 gap-8 items-center">
               <div className="col-span-6 flex items-center justify-end pr-4" aria-hidden="true">
-                <div className="flex items-center gap-3 text-xs font-mono text-[#525260]">
+                <div className="flex items-center gap-3 text-xs font-mono text-[var(--text-faint)]">
                   <span>PHASE 02 // DEVELOPMENT</span>
-                  <div className="w-12 h-[1px] bg-[#272733]" />
+                  <div className="w-12 h-[1px] bg-[var(--border)]" />
                 </div>
               </div>
               <motion.div variants={cardVariants} className="col-span-6">
@@ -101,9 +101,9 @@ export default function JourneySection() {
             {/* Connector 2 -> 3 (Right to Left downward flow) */}
             <div className="grid grid-cols-12 gap-8 h-14 relative" aria-hidden="true">
               <div className="col-span-12 relative flex items-center justify-center">
-                <div className="absolute left-[25%] right-[25%] top-1/2 h-[1px] bg-gradient-to-r from-[#272733] via-[#6366F1]/50 to-[#272733]" />
-                <div className="z-10 flex items-center gap-2 px-3 py-1 rounded-full bg-[#111116] border border-[#272733] text-[11px] font-mono text-[#8B8F9F]">
-                  <ArrowDownLeft className="w-3.5 h-3.5 text-[#818CF8]" />
+                <div className="absolute left-[25%] right-[25%] top-1/2 h-[1px] bg-gradient-to-r from-[var(--border)] via-[var(--accent)]/50 to-[var(--border)]" />
+                <div className="z-10 flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-elevated)] border border-[var(--border)] text-[11px] font-mono text-[var(--text-muted)] shadow-[var(--shadow-sm)]">
+                  <ArrowDownLeft className="w-3.5 h-3.5 text-[var(--accent)]" />
                   <span>EXPANSION</span>
                 </div>
               </div>
@@ -115,8 +115,8 @@ export default function JourneySection() {
                 <MilestoneCard item={journeyData[2]} period={getCleanPeriod(journeyData[2].period)} stepNum="03" isPresent={false} />
               </motion.div>
               <div className="col-span-6 flex items-center justify-start pl-4" aria-hidden="true">
-                <div className="flex items-center gap-3 text-xs font-mono text-[#525260]">
-                  <div className="w-12 h-[1px] bg-[#272733]" />
+                <div className="flex items-center gap-3 text-xs font-mono text-[var(--text-faint)]">
+                  <div className="w-12 h-[1px] bg-[var(--border)]" />
                   <span>PHASE 03 // SPECIALIZATION</span>
                 </div>
               </div>
@@ -125,9 +125,9 @@ export default function JourneySection() {
             {/* Connector 3 -> 4 (Left to Right downward flow to Present) */}
             <div className="grid grid-cols-12 gap-8 h-14 relative" aria-hidden="true">
               <div className="col-span-12 relative flex items-center justify-center">
-                <div className="absolute left-[25%] right-[25%] top-1/2 h-[1px] bg-gradient-to-r from-[#272733] via-[#6366F1] to-[#272733]" />
-                <div className="z-10 flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#111116] border border-[#6366F1]/40 text-[11px] font-mono text-[#A5B4FC] shadow-[0_0_12px_rgba(99,102,241,0.15)]">
-                  <Sparkles className="w-3.5 h-3.5 text-[#818CF8]" />
+                <div className="absolute left-[25%] right-[25%] top-1/2 h-[1px] bg-gradient-to-r from-[var(--border)] via-[var(--accent)] to-[var(--border)]" />
+                <div className="z-10 flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--bg-elevated)] border border-[var(--accent)]/40 text-[11px] font-mono text-[var(--accent)] shadow-[var(--shadow-sm)]">
+                  <Sparkles className="w-3.5 h-3.5 text-[var(--accent)]" />
                   <span>CURRENT HORIZON</span>
                 </div>
               </div>
@@ -136,9 +136,9 @@ export default function JourneySection() {
             {/* ROW 4: Milestone 4 (Right: PRESENT) */}
             <div className="grid grid-cols-12 gap-8 items-center">
               <div className="col-span-6 flex items-center justify-end pr-4" aria-hidden="true">
-                <div className="flex items-center gap-3 text-xs font-mono text-[#818CF8]/80">
+                <div className="flex items-center gap-3 text-xs font-mono text-[var(--accent)]">
                   <span>ACTIVE DEPLOYMENT</span>
-                  <div className="w-12 h-[1px] bg-[#6366F1]/50" />
+                  <div className="w-12 h-[1px] bg-[var(--accent)]/50" />
                 </div>
               </div>
               <motion.div variants={cardVariants} className="col-span-6">
@@ -154,12 +154,12 @@ export default function JourneySection() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: true, margin: '0px 0px -10% 0px', amount: 0.1 }}
             className="relative pl-6 sm:pl-8 space-y-8"
           >
             {/* Continuous Vertical Rail */}
             <div
-              className="absolute top-4 bottom-4 left-[11px] sm:left-[15px] w-[2px] bg-gradient-to-b from-[#272733] via-[#3F3F52] to-[#6366F1]/60"
+              className="absolute top-4 bottom-4 left-[11px] sm:left-[15px] w-[2px] bg-gradient-to-b from-[var(--border)] via-[var(--border-strong)] to-[var(--accent)]/60"
               aria-hidden="true"
             />
 
@@ -178,8 +178,8 @@ export default function JourneySection() {
                   <div
                     className={`absolute -left-[20px] sm:-left-[24px] top-4 w-3 h-3 rounded-full transition-all duration-300 ${
                       isPresent
-                        ? 'bg-[#6366F1] shadow-[0_0_12px_rgba(99,102,241,0.6)] ring-4 ring-[#6366F1]/20'
-                        : 'bg-[#1E1E26] border border-[#3A3A46] group-hover:border-[#6366F1] group-hover:bg-[#6366F1]'
+                        ? 'bg-[var(--accent)] shadow-[var(--glow)] ring-4 ring-[var(--accent-soft)]'
+                        : 'bg-[var(--bg-subtle)] border border-[var(--border-strong)] group-hover:border-[var(--accent)] group-hover:bg-[var(--accent)]'
                     }`}
                     aria-hidden="true"
                   />
@@ -195,7 +195,7 @@ export default function JourneySection() {
                   {/* Downward indicator between cards on mobile */}
                   {!isPresent && (
                     <div className="flex justify-center pt-3 pb-1 opacity-40" aria-hidden="true">
-                      <ArrowDown className="w-3.5 h-3.5 text-[#7F8496]" />
+                      <ArrowDown className="w-3.5 h-3.5 text-[var(--text-faint)]" />
                     </div>
                   )}
                 </motion.div>
@@ -221,53 +221,53 @@ function MilestoneCard({ item, period, stepNum, isPresent }: MilestoneCardProps)
     <article
       className={`relative p-6 sm:p-7 rounded-2xl transition-all duration-300 ease-out group ${
         isPresent
-          ? 'bg-[#111116] border border-[#6366F1]/45 shadow-[0_0_30px_rgba(99,102,241,0.08)] hover:border-[#6366F1]/70 hover:-translate-y-1'
-          : 'bg-[#111116] border border-[#272733] hover:border-[#3F3F52] hover:-translate-y-1 shadow-sm'
+          ? 'bg-[var(--bg-elevated)] border border-[var(--accent)]/45 shadow-[var(--shadow-md)] hover:border-[var(--accent)]/70 hover:-translate-y-1'
+          : 'bg-[var(--bg-elevated)] border border-[var(--border)] hover:border-[var(--accent)]/40 hover:-translate-y-1 shadow-[var(--shadow-sm)]'
       }`}
     >
       {/* Corner Technical Indicators */}
       <div className="absolute top-2.5 right-2.5 flex items-center gap-1 opacity-40 group-hover:opacity-80 transition-opacity" aria-hidden="true">
-        <span className="w-1 h-1 rounded-full bg-[#7F8496]" />
-        <span className="w-1 h-1 rounded-full bg-[#7F8496]" />
+        <span className="w-1 h-1 rounded-full bg-[var(--text-faint)]" />
+        <span className="w-1 h-1 rounded-full bg-[var(--text-faint)]" />
       </div>
 
       {/* Header: Period & Status */}
       <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-mono font-bold text-[#818CF8] bg-white/[0.04] border border-[#272733] px-2.5 py-1 rounded-lg">
+          <span className="text-xs font-mono font-bold text-[var(--accent)] bg-[var(--accent-soft)] border border-[var(--accent)]/20 px-2.5 py-1 rounded-lg">
             {period}
           </span>
-          <span className="text-[11px] font-mono text-[#525260]">
+          <span className="text-[11px] font-mono text-[var(--text-faint)]">
             // {stepNum}
           </span>
         </div>
 
         {isPresent ? (
-          <span className="inline-flex items-center gap-1.5 text-[10px] font-mono font-semibold uppercase tracking-wider text-[#A5B4FC] bg-[#6366F1]/10 border border-[#6366F1]/30 px-2.5 py-0.5 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#818CF8] animate-pulse" />
+          <span className="inline-flex items-center gap-1.5 text-[10px] font-mono font-semibold uppercase tracking-wider text-[var(--accent)] bg-[var(--accent-soft)] border border-[var(--accent)]/30 px-2.5 py-0.5 rounded-full">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
             Current Focus
           </span>
         ) : (
-          <span className="text-[10px] font-mono uppercase tracking-wider text-[#7F8496]">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--text-faint)]">
             Completed
           </span>
         )}
       </div>
 
       {/* Milestone Title */}
-      <h3 className="text-lg sm:text-xl font-extrabold text-[#F5F5F7] tracking-tight leading-snug mb-3 group-hover:text-white transition-colors">
+      <h3 className="text-lg sm:text-xl font-extrabold text-[var(--text)] tracking-tight leading-snug mb-3 group-hover:text-[var(--accent)] transition-colors">
         {item.title}
       </h3>
 
       {/* Milestone Description */}
-      <p className="text-xs sm:text-sm text-[#A7A9B7] leading-relaxed mb-5 font-normal">
+      <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed mb-5 font-normal">
         {item.description}
       </p>
 
       {/* Competencies & Toolchain Footer */}
-      <div className="pt-4 border-t border-[#272733]/80">
+      <div className="pt-4 border-t border-[var(--border)]">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] font-mono uppercase tracking-wider text-[#7F8496]">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--text-faint)]">
             Competencies & Tooling:
           </span>
         </div>
@@ -275,7 +275,7 @@ function MilestoneCard({ item, period, stepNum, isPresent }: MilestoneCardProps)
           {item.skillsAcquired.map((skill) => (
             <span
               key={skill}
-              className="px-2.5 py-1 rounded-md text-[11px] font-mono text-[#CBD5E1] bg-[#16161E] border border-[#272733] transition-colors group-hover:border-[#3A3A46]"
+              className="btn-outline px-2.5 py-1 rounded-md text-[11px] font-mono"
             >
               {skill}
             </span>

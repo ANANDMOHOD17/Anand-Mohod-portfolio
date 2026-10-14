@@ -81,16 +81,19 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} dark scroll-smooth is-loading`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} scroll-smooth is-loading`}
       suppressHydrationWarning
     >
       <head>
-        {/* Anti-flash inline style: prevents any 1-second reveal of the site before JS mounts */}
+        <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" id="theme-color-meta" content="#05060a" />
+        {/* Anti-flash inline style: binds to var(--bg) before first paint */}
         <style
           dangerouslySetInnerHTML={{
             __html: `
               html, body {
-                background-color: #050505 !important;
+                background-color: var(--bg) !important;
+                color: var(--text) !important;
               }
               html.is-loading,
               body.is-loading {
@@ -129,10 +132,17 @@ export default function RootLayout({
             __html: `
               try {
                 const savedTheme = localStorage.getItem('theme');
-                if (savedTheme === 'light') {
-                  document.documentElement.classList.remove('dark');
-                } else {
+                const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : (systemDark ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+                if (theme === 'dark') {
                   document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+                const meta = document.getElementById('theme-color-meta');
+                if (meta) {
+                  meta.setAttribute('content', theme === 'dark' ? '#05060a' : '#f1ece4');
                 }
               } catch (_) {}
               // Failsafe watchdog: guarantees content is never permanently locked
@@ -146,7 +156,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#050505] text-slate-800 dark:text-slate-100 min-h-screen selection:bg-accent/20 selection:text-white relative transition-colors duration-300 is-loading">
+      <body className="bg-[var(--bg)] text-[var(--text)] min-h-screen relative is-loading">
         {/* Unique Name Fill Preloader */}
         <NameFillPreloader name="ANAND MOHOD" />
 

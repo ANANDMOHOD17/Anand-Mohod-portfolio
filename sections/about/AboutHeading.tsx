@@ -19,12 +19,26 @@ export default function AboutHeading({
   const containerRef = useRef<HTMLDivElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  // IntersectionObserver: Triggers animation once when section heading enters viewport
+  // IntersectionObserver: Triggers animation once when section heading enters viewport (pre-reveal)
   useEffect(() => {
     if (prefersReducedMotion) {
       setHasAnimated(true);
       return;
     }
+
+    // Immediate check if ancestor section is already marked visible
+    if (containerRef.current?.closest('.is-visible')) {
+      setHasAnimated(true);
+      return;
+    }
+
+    const onReveal = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (!detail?.id || containerRef.current?.closest(`#${detail.id}`)) {
+        setHasAnimated(true);
+      }
+    };
+    window.addEventListener('reveal-section', onReveal);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -34,8 +48,8 @@ export default function AboutHeading({
         }
       },
       {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.1,
+        rootMargin: '0px 0px -10% 0px',
       }
     );
 
@@ -43,7 +57,10 @@ export default function AboutHeading({
       observer.observe(containerRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('reveal-section', onReveal);
+    };
   }, [prefersReducedMotion]);
 
   const isAnimated = hasAnimated && !prefersReducedMotion;
@@ -58,13 +75,13 @@ export default function AboutHeading({
       )}
     >
       {/* 1. Pill Label "01 / ABOUT" - matching Skills pill structure with accent dot */}
-      <div className="section-heading__label inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-wider text-accent border border-accent/30 bg-accent/10 mb-4 shadow-sm backdrop-blur-sm">
+      <div className="section-heading__label inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono tracking-wider text-[var(--accent)] border border-[var(--border)] bg-[var(--accent-soft)] mb-4 shadow-[var(--shadow-sm)] backdrop-blur-sm">
         <span
-          className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse shrink-0"
+          className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse shrink-0"
           aria-hidden="true"
         />
-        <span className="font-semibold text-accent">{number}</span>
-        <span className="text-accent/60">/</span>
+        <span className="font-semibold text-[var(--accent)]">{number}</span>
+        <span className="text-[var(--text-faint)]">/</span>
         <span className="uppercase font-medium tracking-wide">{label}</span>
       </div>
 
@@ -72,13 +89,13 @@ export default function AboutHeading({
              word-spacing is applied inline to guarantee natural separation between all words.
              The three words are plain text inside the gradient span so spacing is always rendered. */}
       <h2
-        className="section-heading__title about-heading-title font-extrabold tracking-tight text-slate-900 dark:text-white"
+        className="section-heading__title about-heading-title font-extrabold tracking-tight text-[var(--text)]"
         aria-label="WHO IS ANAND?"
       >
         <span className="section-heading__line-wrapper block overflow-hidden">
           {/* We use TWO child spans:
-              1. "WHO IS" — inherits the parent gradient white-to-indigo
-              2. "ANAND?" — the dedicated accent span with its own deeper indigo gradient
+              1. "WHO IS" — inherits the section line-1 gradient
+              2. "ANAND?" — the dedicated accent span with its own accent gradient
               A zero-width non-joiner + explicit space character between them guarantees visual separation
               that is not affected by background-clip: text */}
           <span
@@ -101,7 +118,7 @@ export default function AboutHeading({
 
       {/* 4. Subtitle Editorial Description */}
       {description && (
-        <p className="section-heading__subtitle mt-3.5 text-base md:text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
+        <p className="section-heading__subtitle mt-3.5 text-base md:text-lg text-[var(--text-muted)] leading-relaxed font-normal">
           {description}
         </p>
       )}

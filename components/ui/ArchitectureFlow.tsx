@@ -33,7 +33,7 @@ const STAGES: Stage[] = [
     icon: Monitor,
     description: 'Dynamic vector tile rendering with interactive climate risk choropleth maps.',
     specs: ['60 FPS WebGL Map', 'GeoJSON Layers', 'Responsive Sliders'],
-    color: '#6366f1', // Indigo
+    color: 'var(--accent)',
   },
   {
     id: 'api',
@@ -43,7 +43,7 @@ const STAGES: Stage[] = [
     icon: Server,
     description: 'High-throughput asynchronous endpoints with query validation and response caching.',
     specs: ['< 45ms Latency', 'Pydantic V2', 'CORS & Rate Limiting'],
-    color: '#818cf8', // Indigo light
+    color: 'var(--accent-2)',
   },
   {
     id: 'ml',
@@ -53,7 +53,7 @@ const STAGES: Stage[] = [
     icon: Brain,
     description: 'Trained climate anomaly detection & multi-parameter regression models.',
     specs: ['LSTM Regressor', 'Feature Normalizer', 'Batch Inference'],
-    color: '#4f46e5', // Indigo dark
+    color: 'var(--accent)',
   },
   {
     id: 'data',
@@ -108,10 +108,10 @@ export function ArchitectureFlow() {
               <button
                 type="button"
                 onClick={() => setActiveStage(stage.id)}
-                className={`relative w-full text-left p-4 rounded-xl border transition-all duration-300 focus:outline-none ${
+                className={`relative w-full text-left p-4 rounded-xl transition-all duration-300 focus:outline-none ${
                   isActive
-                    ? 'bg-graphite-900/95 border-accent shadow-[0_0_30px_rgba(99,102,241,0.25)] scale-[1.02]'
-                    : 'bg-graphite-950/60 border-white/10 hover:border-white/25 hover:bg-graphite-900/60'
+                    ? 'btn-outline btn-outline-active shadow-[0_0_30px_rgba(99,102,241,0.25)] scale-[1.02]'
+                    : 'btn-outline hover:scale-[1.01]'
                 }`}
               >
                 {/* Node Status Indicator */}
@@ -144,7 +144,7 @@ export function ArchitectureFlow() {
                     <h5 className="text-sm font-bold text-white leading-tight">
                       {stage.name}
                     </h5>
-                    <span className="text-[11px] font-mono text-indigo-300/90 block mt-0.5">
+                    <span className="text-[11px] font-mono text-[var(--accent)]/90 block mt-0.5">
                       {stage.tech}
                     </span>
                   </div>

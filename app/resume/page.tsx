@@ -98,13 +98,13 @@ export default function ResumePage() {
   const resumeDownloadName = 'Anand_Mohod_Resume.pdf';
 
   return (
-    <div className="pt-32 pb-24 md:py-36 min-h-screen">
+    <div className="pt-32 pb-24 md:py-36 min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Navigation & Action Buttons */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
           <Link
             href="/#resume"
-            className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-accent transition-colors group"
+            className="inline-flex items-center gap-2 text-xs font-mono text-[var(--text-faint)] hover:text-[var(--accent)] transition-colors group"
           >
             <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
             <span>Back to Home</span>
@@ -112,14 +112,14 @@ export default function ResumePage() {
 
           <div className="flex items-center gap-3 w-full sm:w-auto">
             {/* View Mode Toggle */}
-            <div className="inline-flex p-1 rounded-xl bg-slate-900/60 border border-white/10 text-xs font-medium">
+            <div className="inline-flex p-1 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] text-xs font-medium">
               <button
                 type="button"
                 onClick={() => setActiveTab('document')}
                 className={`px-3 py-1.5 rounded-lg transition-all ${
                   activeTab === 'document'
-                    ? 'bg-accent text-white shadow-sm'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-[var(--accent)] text-[var(--accent-contrast)] shadow-sm'
+                    : 'text-[var(--text-muted)] hover:text-[var(--text)]'
                 }`}
               >
                 Interactive View
@@ -129,25 +129,14 @@ export default function ResumePage() {
                 onClick={() => setActiveTab('pdf')}
                 className={`px-3 py-1.5 rounded-lg transition-all ${
                   activeTab === 'pdf'
-                    ? 'bg-accent text-white shadow-sm'
-                    : 'text-slate-400 hover:text-white'
+                    ? 'bg-[var(--accent)] text-[var(--accent-contrast)] shadow-sm'
+                    : 'text-[var(--text-muted)] hover:text-[var(--text)]'
                 }`}
               >
                 PDF Preview
               </button>
             </div>
 
-            <a
-              href={resumePdfPath}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 sm:flex-none"
-            >
-              <GlassButton variant="secondary" size="sm" className="w-full sm:w-auto">
-                <ExternalLink className="w-3.5 h-3.5 text-accent" />
-                <span className="hidden sm:inline">Open PDF</span>
-              </GlassButton>
-            </a>
 
             <a
               href={resumePdfPath}
@@ -171,17 +160,17 @@ export default function ResumePage() {
 
         {/* View Switch: PDF Frame or Structured Document Sheet */}
         {activeTab === 'pdf' ? (
-          <div className="glass-panel rounded-2xl border border-white/15 bg-graphite-900/95 shadow-glass-lg p-3 sm:p-4 overflow-hidden">
-            <div className="flex items-center justify-between px-3 py-2 border-b border-white/10 mb-3 text-xs text-slate-400 font-mono">
-              <span className="flex items-center gap-1.5 text-slate-300">
-                <FileText className="w-3.5 h-3.5 text-accent" />
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-elevated)] shadow-[var(--shadow-md)] p-3 sm:p-4 overflow-hidden">
+            <div className="flex items-center justify-between px-3 py-2 border-b border-[var(--border)] mb-3 text-xs text-[var(--text-muted)] font-mono">
+              <span className="flex items-center gap-1.5 text-[var(--text)]">
+                <FileText className="w-3.5 h-3.5 text-[var(--accent)]" />
                 Anand_Mohod_Resume.pdf (1 Page)
               </span>
               <a
                 href={resumePdfPath}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent hover:underline flex items-center gap-1"
+                className="text-[var(--accent)] hover:underline flex items-center gap-1"
               >
                 Full screen <ExternalLink className="w-3 h-3" />
               </a>
@@ -189,16 +178,16 @@ export default function ResumePage() {
             <iframe
               src={resumePdfPath}
               title="Anand Mohod Resume PDF"
-              className="w-full h-[850px] md:h-[1050px] rounded-xl border border-white/10 bg-white"
+              className="w-full h-[850px] md:h-[1050px] rounded-xl border border-[var(--border)] bg-white"
             />
           </div>
         ) : (
           /* Structured Resume Document Sheet */
-          <div className="glass-panel rounded-2xl border border-white/15 bg-graphite-900/95 shadow-glass-lg p-6 sm:p-10 md:p-12 space-y-9 relative overflow-hidden">
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-elevated)] shadow-[var(--shadow-md)] p-6 sm:p-10 md:p-12 space-y-9 relative overflow-hidden">
             {/* Header */}
-            <div className="border-b border-white/10 pb-7 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="border-b border-[var(--border)] pb-7 flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="flex items-center gap-5">
-                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border border-accent/40 bg-graphite-950 flex-shrink-0 shadow-glass-md">
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border border-[var(--border-strong)] bg-[var(--bg-subtle)] flex-shrink-0 shadow-[var(--shadow-sm)]">
                   <Image
                     src={profileData.avatar}
                     alt={profileData.name}
@@ -208,51 +197,51 @@ export default function ResumePage() {
                   />
                 </div>
                 <div>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--text)] tracking-tight">
                     Anand S. Mohod
                   </h1>
-                  <p className="text-sm sm:text-base text-accent font-medium mt-0.5">
+                  <p className="text-sm sm:text-base text-[var(--accent)] font-medium mt-0.5">
                     Python Developer | Software Developer
                   </p>
-                  <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-1">
-                    <MapPin className="w-3.5 h-3.5 text-slate-500" />
+                  <div className="flex items-center gap-1.5 text-xs text-[var(--text-faint)] mt-1">
+                    <MapPin className="w-3.5 h-3.5 text-[var(--text-faint)]" />
                     <span>Amravati, Maharashtra</span>
                   </div>
                 </div>
               </div>
 
               {/* Contact Details */}
-              <div className="space-y-2 text-xs text-slate-300 font-mono">
+              <div className="space-y-2 text-xs text-[var(--text-muted)] font-mono">
                 <a
                   href={profileData.contact.phone.value}
-                  className="flex items-center gap-2 hover:text-accent transition-colors"
+                  className="flex items-center gap-2 hover:text-[var(--accent)] transition-colors"
                 >
-                  <Phone className="w-3.5 h-3.5 text-accent" />
+                  <Phone className="w-3.5 h-3.5 text-[var(--accent)]" />
                   <span>+91 7028393036</span>
                 </a>
                 <a
                   href={profileData.contact.email.value}
-                  className="flex items-center gap-2 hover:text-accent transition-colors"
+                  className="flex items-center gap-2 hover:text-[var(--accent)] transition-colors"
                 >
-                  <Mail className="w-3.5 h-3.5 text-accent" />
+                  <Mail className="w-3.5 h-3.5 text-[var(--accent)]" />
                   <span>officialanandmohod@gmail.com</span>
                 </a>
                 <a
                   href="https://linkedin.com/in/anand-mohod-ab2a88428"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-accent transition-colors"
+                  className="flex items-center gap-2 hover:text-[var(--accent)] transition-colors"
                 >
-                  <ExternalLink className="w-3.5 h-3.5 text-accent" />
+                  <ExternalLink className="w-3.5 h-3.5 text-[var(--accent)]" />
                   <span>linkedin.com/in/anand-mohod-ab2a88428</span>
                 </a>
                 <a
                   href="https://github.com/ANANDMOHOD17"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 hover:text-accent transition-colors"
+                  className="flex items-center gap-2 hover:text-[var(--accent)] transition-colors"
                 >
-                  <ExternalLink className="w-3.5 h-3.5 text-accent" />
+                  <ExternalLink className="w-3.5 h-3.5 text-[var(--accent)]" />
                   <span>github.com/ANANDMOHOD17</span>
                 </a>
               </div>
@@ -260,10 +249,10 @@ export default function ResumePage() {
 
             {/* 1. PROFESSIONAL SUMMARY */}
             <div className="space-y-2.5">
-              <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold border-b border-accent/20 pb-1">
+              <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold border-b border-[var(--border)] pb-1">
                 PROFESSIONAL SUMMARY
               </h2>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
                 Computer Engineering student (B.Tech) with hands-on experience in Python, software
                 development, databases, AI and full-stack project development. Built practical
                 applications across voting, rental, retail, agriculture, climate-risk prediction and
@@ -275,41 +264,41 @@ export default function ResumePage() {
 
             {/* 2. EDUCATION */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-                <GraduationCap className="w-3.5 h-3.5 text-accent" />
-                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+              <div className="flex items-center gap-2 border-b border-[var(--border)] pb-1">
+                <GraduationCap className="w-3.5 h-3.5 text-[var(--accent)]" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold">
                   EDUCATION
                 </h2>
               </div>
               <div className="space-y-3 text-xs">
                 {/* College */}
-                <div className="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-1">
+                <div className="p-3.5 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] space-y-1">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                    <h3 className="text-sm font-bold text-white">
+                    <h3 className="text-sm font-bold text-[var(--text)]">
                       Jagadambha College of Engineering & Technology, Yavatmal
                     </h3>
-                    <span className="font-mono text-accent text-xs">2024–2028</span>
+                    <span className="font-mono text-[var(--accent)] text-xs">2024–2028</span>
                   </div>
-                  <p className="text-slate-300">
+                  <p className="text-[var(--text-muted)]">
                     B.Tech – Computer Engineering | 3rd Year, 5th Semester |{' '}
-                    <span className="text-accent font-medium">CGPA: 7.9 (2nd Year)</span>
+                    <span className="text-[var(--accent)] font-medium">CGPA: 7.9 (2nd Year)</span>
                   </p>
                 </div>
 
                 {/* HSC & SSC */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-0.5">
-                    <span className="font-semibold text-white">HSC – Rural Institute, Amravati</span>
-                    <p className="text-slate-300 font-mono text-[11px]">
+                  <div className="p-3 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border)] space-y-0.5">
+                    <span className="font-semibold text-[var(--text)]">HSC – Rural Institute, Amravati</span>
+                    <p className="text-[var(--text-muted)] font-mono text-[11px]">
                       12th Percentage:{' '}
-                      <span className="text-accent font-medium">60.33%</span>
+                      <span className="text-[var(--accent)] font-medium">60.33%</span>
                     </p>
                   </div>
-                  <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-0.5">
-                    <span className="font-semibold text-white">SSC – Shri Ganeshdas Rathi Vidyalaya, Amravati</span>
-                    <p className="text-slate-300 font-mono text-[11px]">
+                  <div className="p-3 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border)] space-y-0.5">
+                    <span className="font-semibold text-[var(--text)]">SSC – Shri Ganeshdas Rathi Vidyalaya, Amravati</span>
+                    <p className="text-[var(--text-muted)] font-mono text-[11px]">
                       10th Percentage:{' '}
-                      <span className="text-accent font-medium">73.60%</span>
+                      <span className="text-[var(--accent)] font-medium">73.60%</span>
                     </p>
                   </div>
                 </div>
@@ -318,9 +307,9 @@ export default function ResumePage() {
 
             {/* 3. TECHNICAL SKILLS */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-                <Code2 className="w-3.5 h-3.5 text-accent" />
-                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+              <div className="flex items-center gap-2 border-b border-[var(--border)] pb-1">
+                <Code2 className="w-3.5 h-3.5 text-[var(--accent)]" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold">
                   TECHNICAL SKILLS
                 </h2>
               </div>
@@ -328,14 +317,14 @@ export default function ResumePage() {
                 {technicalSkills.map((item, index) => (
                   <div
                     key={item.category}
-                    className={`p-3 rounded-lg bg-white/5 border border-white/5 ${
+                    className={`p-3 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border)] ${
                       index === technicalSkills.length - 1 ? 'sm:col-span-2' : ''
                     }`}
                   >
-                    <span className="text-slate-400 font-semibold block mb-0.5">
+                    <span className="text-[var(--text-faint)] font-semibold block mb-0.5">
                       {item.category}:
                     </span>
-                    <span className="text-slate-100 font-medium">{item.skills}</span>
+                    <span className="text-[var(--text)] font-medium">{item.skills}</span>
                   </div>
                 ))}
               </div>
@@ -343,9 +332,9 @@ export default function ResumePage() {
 
             {/* 4. PROJECTS */}
             <div className="space-y-3.5">
-              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-                <FolderGit2 className="w-3.5 h-3.5 text-accent" />
-                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+              <div className="flex items-center gap-2 border-b border-[var(--border)] pb-1">
+                <FolderGit2 className="w-3.5 h-3.5 text-[var(--accent)]" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold">
                   PROJECTS
                 </h2>
               </div>
@@ -353,16 +342,16 @@ export default function ResumePage() {
                 {projects.map((proj) => (
                   <div
                     key={proj.title}
-                    className="p-3.5 rounded-xl bg-white/5 border border-white/5 space-y-1.5"
+                    className="p-3.5 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border)] space-y-1.5"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                      <h3 className="text-sm font-bold text-white tracking-tight">
+                      <h3 className="text-sm font-bold text-[var(--text)] tracking-tight">
                         {proj.title}
                       </h3>
-                      <span className="font-mono text-accent text-xs">{proj.year}</span>
+                      <span className="font-mono text-[var(--accent)] text-xs">{proj.year}</span>
                     </div>
-                    <div className="flex items-start gap-2 text-xs text-slate-300 leading-relaxed">
-                      <span className="text-accent select-none mt-0.5">•</span>
+                    <div className="flex items-start gap-2 text-xs text-[var(--text-muted)] leading-relaxed">
+                      <span className="text-[var(--accent)] select-none mt-0.5">•</span>
                       <p>{proj.bullet}</p>
                     </div>
                   </div>
@@ -372,21 +361,21 @@ export default function ResumePage() {
 
             {/* 5. CERTIFICATIONS & PROGRAMS */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-                <Award className="w-3.5 h-3.5 text-accent" />
-                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+              <div className="flex items-center gap-2 border-b border-[var(--border)] pb-1">
+                <Award className="w-3.5 h-3.5 text-[var(--accent)]" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold">
                   CERTIFICATIONS & PROGRAMS
                 </h2>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[var(--text-muted)]">
                 {certifications.map((cert) => (
                   <div
                     key={cert.name}
-                    className="p-2.5 rounded-lg bg-white/5 border border-white/5 flex items-start gap-2"
+                    className="p-2.5 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border)] flex items-start gap-2"
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-accent flex-shrink-0 mt-0.5" />
+                    <Sparkles className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0 mt-0.5" />
                     <span>
-                      <strong className="text-white font-semibold">{cert.name}</strong> –{' '}
+                      <strong className="text-[var(--text)] font-semibold">{cert.name}</strong> –{' '}
                       {cert.program}
                     </span>
                   </div>
@@ -396,9 +385,9 @@ export default function ResumePage() {
 
             {/* 6. CAREER INTERESTS */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-                <Compass className="w-3.5 h-3.5 text-accent" />
-                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+              <div className="flex items-center gap-2 border-b border-[var(--border)] pb-1">
+                <Compass className="w-3.5 h-3.5 text-[var(--accent)]" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold">
                   CAREER INTERESTS
                 </h2>
               </div>
@@ -406,7 +395,7 @@ export default function ResumePage() {
                 {careerInterests.map((interest) => (
                   <span
                     key={interest}
-                    className="px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-200 font-medium font-mono"
+                    className="px-3.5 py-1.5 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border)] text-[var(--text)] font-medium font-mono"
                   >
                     {interest}
                   </span>
@@ -416,36 +405,36 @@ export default function ResumePage() {
 
             {/* 7. ADDITIONAL INFORMATION */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 border-b border-accent/20 pb-1">
-                <Briefcase className="w-3.5 h-3.5 text-accent" />
-                <h2 className="text-xs font-mono uppercase tracking-widest text-accent font-semibold">
+              <div className="flex items-center gap-2 border-b border-[var(--border)] pb-1">
+                <Briefcase className="w-3.5 h-3.5 text-[var(--accent)]" />
+                <h2 className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-semibold">
                   ADDITIONAL INFORMATION
                 </h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-0.5">
-                  <span className="text-slate-400 font-semibold block">Internship Availability:</span>
-                  <span className="text-slate-100">Open to paid or unpaid opportunities</span>
+                <div className="p-3 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border)] space-y-0.5">
+                  <span className="text-[var(--text-faint)] font-semibold block">Internship Availability:</span>
+                  <span className="text-[var(--text)]">Open to paid or unpaid opportunities</span>
                 </div>
-                <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-0.5">
-                  <span className="text-slate-400 font-semibold block">Work Preference:</span>
-                  <span className="text-slate-100 flex items-center gap-1.5">
-                    <Globe className="w-3 h-3 text-accent" /> Remote or Offline
+                <div className="p-3 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border)] space-y-0.5">
+                  <span className="text-[var(--text-faint)] font-semibold block">Work Preference:</span>
+                  <span className="text-[var(--text)] flex items-center gap-1.5">
+                    <Globe className="w-3 h-3 text-[var(--accent)]" /> Remote or Offline
                   </span>
                 </div>
-                <div className="p-3 rounded-lg bg-white/5 border border-white/5 space-y-0.5">
-                  <span className="text-slate-400 font-semibold block">Duration:</span>
-                  <span className="text-slate-100 flex items-center gap-1.5">
-                    <Clock className="w-3 h-3 text-accent" /> Flexible (1–6 months)
+                <div className="p-3 rounded-lg bg-[var(--bg-subtle)] border border-[var(--border)] space-y-0.5">
+                  <span className="text-[var(--text-faint)] font-semibold block">Duration:</span>
+                  <span className="text-[var(--text)] flex items-center gap-1.5">
+                    <Clock className="w-3 h-3 text-[var(--accent)]" /> Flexible (1–6 months)
                   </span>
                 </div>
               </div>
             </div>
 
             {/* Bottom Download Bar */}
-            <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-mono">
+            <div className="pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-faint)] font-mono">
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[var(--success)]" />
                 Verified Single-Page PDF Asset
               </span>
               <div className="flex items-center gap-3">
@@ -453,16 +442,16 @@ export default function ResumePage() {
                   href={resumePdfPath}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-300 hover:text-accent flex items-center gap-1.5 transition-colors"
+                  className="text-[var(--text-muted)] hover:text-[var(--accent)] flex items-center gap-1.5 transition-colors"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>View Raw PDF</span>
                 </a>
-                <span className="text-slate-600">•</span>
+                <span className="text-[var(--border-strong)]">•</span>
                 <a
                   href={resumePdfPath}
                   download={resumeDownloadName}
-                  className="text-accent hover:underline flex items-center gap-1.5 font-medium"
+                  className="text-[var(--accent)] hover:underline flex items-center gap-1.5 font-medium"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download PDF (Direct)</span>
