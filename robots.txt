@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://anandmohod.vercel.app/sitemap.xml
