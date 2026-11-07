@@ -8,7 +8,7 @@ export const certificatesData: Certificate[] = [
     date: 'Oct 03, 2026',
     pdfUrl: '/certificates/anand-mohod-tantragyutki-hackathon-certificate.pdf',
     preview: '/certificates/previews/ycce-tantragyutki-hackathon-2026.webp',
-    aspectRatio: 1.341,
+    aspectRatio: 1.411,
     description: 'Participated in the Tantragyutki hackathon conducted under Prarambh 2.0, organized by Engineering India YCCE, as team Build Bridge.',
     featured: true,
     category: 'Technical Competition',
